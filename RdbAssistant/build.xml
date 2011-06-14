@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project name="RdbAssistant" default="testing" basedir=".">
+	<target name="release">
+		<ant antfile="methods.xml" target="release">
+			<property file="ant/release.properties"/>
+		</ant>
+	</target>
+	<target name="testing">
+		<ant antfile="methods.xml" target="release">
+			<property file="ant/testing.properties"/>
+		</ant>
+	</target>
+</project>

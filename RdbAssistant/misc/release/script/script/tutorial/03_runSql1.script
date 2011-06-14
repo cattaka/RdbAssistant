@@ -1,0 +1,20 @@
+<%
+// 親テーブルの検索
+ScriptTable st1 = runSql("SELECT * FROM ANIMALS ORDER BY ID");
+// 子テーブルから親に紐付くレコードを検索
+ScriptTable st2 = runSql("SELECT * FROM ANIMALS_DETAIL WHERE ANIMALS_ID IN ? ORDER BY ID", st1.getColumnValuesAsSet("ID"));
+
+// 画面に出力する
+int rowCount = 0;
+// 親テーブルの出力
+table.setValueAt("ANIMALS",rowCount, 0);
+table.writeTable(st1,rowCount,1);
+rowCount+=st1.getRowCount();
+rowCount+=1;
+// 子テーブルの出力
+table.setValueAt("ANIMALS_DETAIL",rowCount, 0);
+table.writeTable(st2,rowCount,1);
+rowCount+=st2.getRowCount();
+rowCount+=1;
+
+%>

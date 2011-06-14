@@ -1,0 +1,5 @@
+icon.new
+icon.open
+icon.save
+icon.saveas
+icon.run

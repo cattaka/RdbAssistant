@@ -1,0 +1,15 @@
+<%
+// 比較する内容をテーブルから取得する
+ScriptTable st1 = runSql("SELECT * FROM ANIMALS_DETAIL ORDER BY ID");
+ScriptTable st2 = runSql("SELECT * FROM ANIMALS_DETAIL2 ORDER BY ID");
+
+// 比較を行う:createMarkedDiff関数
+//  第1引数：新しいテーブル
+//  第2引数：古いテーブル
+//  第3引数以降：紐付けとなるキー(複数可)
+ScriptTable result = createMarkedDiff(st1, st2, "ID");
+
+// 画面に出力する
+table.writeTable(result,0, 0);
+table.trim();
+%>
