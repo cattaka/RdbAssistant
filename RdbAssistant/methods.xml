@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project name="RdbAssistant" default="release" basedir=".">
+	<target name="init">
+		<delete dir="./build"/>
+		<delete dir="./release"/>
+
+		<available file="build.sign.xml" property="dosign"/>
+		<property file="src/resources/version.properties"/>
+		<property name="archive.name" value="${app.name}_${release.number}_${release.name}_${build.number}"/>
+	</target>
+	<target name="release" depends="init,build">
+		<delete dir="./release"/>
+		
+		<mkdir dir="./release/applet"/>
+		<copy file="build/${app.name}.jar" tofile="./release/applet/${app.name}-applet.jar"/>
+		<echo message="applet is created."/>
+
+		<mkdir dir="./release/apprication"/>
+		<copy todir="./release/apprication">
+			<fileset dir="misc/release"/>
+			<fileset file="license.txt"/>
+			<fileset file="readme.txt"/>
+		</copy>
+		<mkdir dir="./release/apprication/scriptdoc"/>
+		<copy todir="./release/apprication/scriptdoc">
+			<fileset dir="build/scriptdoc"/>
+		</copy>
+		<copy file="build/${app.name}.jar" todir="./release/apprication"/>
+		<zip zipfile="./release/${archive.name}.zip">
+			<fileset dir="./release/apprication"/>
+		</zip>
+		
+		<mkdir dir="./release/webstart"/>
+		<copy file="build/${app.name}.jar" todir="./release/webstart"/>
+		<copy file="misc/${app.name}.jnlp" todir="./release/webstart"/>
+		<echo message="webstart is created."/>
+
+		<ant antfile="methods.xml" target="src"/>
+		<ant antfile="methods.xml" target="sign"/>
+		
+		<echo message="release is created."/>
+		<buildnumber file="src/resources/version.properties"/>
+	</target>
+	<target name="src">
+		<zip zipfile="release/${archive.name}-src.zip">
+			<fileset dir="./" excludes="build.sign.xml,release/**,build/**,workspace/**,bin/**"/>
+		</zip>
+	</target>
+	<target name="sign" if="dosign">
+		<ant antfile="build.sign.xml" target="sign"/>
+	</target>
+	<target name="build" depends="init">
+		<delete dir="./build"/>
+		<mkdir dir="./build/class"/>
+		<copy file="src/resources/version.properties" todir="./build/class"/>
+		<copy todir="./build/class">
+			<fileset dir="src/resources"/>
+		</copy>
+		<javac srcdir="src/java" encoding="UTF-8" deprecation="on" destdir="./build/class" classpath="./build/class" debug="on">
+			<compilerarg value="-Xlint:unchecked" />
+		</javac>
+		<javadoc header="${release.number}" windowtitle="${javadoc.script.title}" access="public" encoding="UTF-8" charset="UTF-8" author="true" classpath="./build/class" destdir="./build/scriptdoc" doctitle="RdbAssistant" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="${javadoc.script.package}" source="1.5" sourcepath="./src/java" splitindex="true" use="true" version="true"/>
+		
+		<jar jarfile="build/${app.name}.jar" basedir="build/class" manifest="src/resources/MANIFEST.MF"/>
+		<echo message="${app.name}.jar is created."/>
+	</target>
+</project>

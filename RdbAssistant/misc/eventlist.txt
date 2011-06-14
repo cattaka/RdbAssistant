@@ -1,0 +1,10 @@
+relayRdbaMessage
+  findConditonDialog.show
+  findConditonDialog.search
+  findConditonDialog.replace
+  findConditonDialog.replaceSearch
+  findConditonDialog.replaceAll
+  rdbaSqlEditorPanel.new
+  rdbaSqlEditorPanel.open
+  rdbaSqlEditorPanel.save
+  rdbaSqlEditorPanel.saveAs

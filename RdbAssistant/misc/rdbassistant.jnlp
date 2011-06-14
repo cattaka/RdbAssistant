@@ -1,0 +1,16 @@
+<jnlp codebase="http://www.cattaka.net/files/rdbassistant/jnlp/" href="rdbassistant.jnlp">
+  <information>
+    <title>RdbAssistant</title>
+    <vendor>Cattaka's Java Laboratory</vendor>
+	<homepage href="http://www.cattaka.net/"/>
+    <description kind="short">Util</description>
+  </information>
+  <security>
+    <all-permissions/>
+  </security>
+  <resources>
+    <j2se version="1.5+"/>
+    <jar href="rdbassistant.jar" main="true"/>
+    </resources>
+  <application-desc main-class="net.cattaka.rdbassistant.RdbAssistant"/>
+</jnlp>

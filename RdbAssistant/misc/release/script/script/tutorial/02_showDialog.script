@@ -1,0 +1,13 @@
+<%
+// ユーザーにダイアログを表示し、yes/no/cancel等の確認を行います。 
+// cancel時にはスクリプトが中止されます。 
+showConfirmDialog("確認用ダイアログです。");
+
+// ユーザーに確認用のダイアログを表示します。 
+showMessageDialog("メッセージ用ダイアログです。");
+
+// ユーザーに入力用のダイアログを表示します。
+//  throwOnCancelがtrueの場合はcancel時にはスクリプトが中止されます。 
+showInputDialog("ユーザに入力ダイアログを表示します。", "初期値", true);
+
+%>

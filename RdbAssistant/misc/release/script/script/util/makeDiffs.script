@@ -1,0 +1,175 @@
+<%
+/*
+==============================================================================================
+◇使い方：
+	１：作成する
+		MakeDiffs makeDiffs = new MakeDiffs();
+	２：親テーブルを指定する(複数回可)
+		makeDiffs.addTable(<ラベル>,<SQL文>,<キーの配列>,<プレースホルダ値の配列>);
+	３：子テーブルを指定する(複数回可)
+		makeDiffs.addTableRelate(<ラベル>,<SQL文>,<キーの配列>,<親のテーブルのラベル>,<親のテーブルのラベルの列名の配列>);
+	４：実行する
+		start(table);
+==============================================================================================
+*/
+class MakeDiffs {
+    class TableInfo {
+        private String table;
+        private String sql;
+        private String parentTable;
+        private String[] primaryKeyColumns;
+        private String[] foreignKeyColumns;
+		private boolean hasArg;
+        private Object[] arg;
+		private ScriptTable lastTable;
+        public TableInfo(String table, String sql, String[] primaryKeyColumns, String parentTable, String[] foreignKeyColumns) {
+            super();
+            this.table = table;
+            this.sql = sql;
+			this.primaryKeyColumns = primaryKeyColumns;
+            this.parentTable = parentTable;
+            this.foreignKeyColumns = foreignKeyColumns;
+			this.hasArg = false;
+        }
+        public TableInfo(String table, String sql, String[] primaryKeyColumns, String parentTable, String[] foreignKeyColumns, Object[] arg) {
+            super();
+            this.table = table;
+            this.sql = sql;
+			this.primaryKeyColumns = primaryKeyColumns;
+            this.parentTable = parentTable;
+            this.foreignKeyColumns = foreignKeyColumns;
+			this.hasArg = true;
+			this.arg = arg;
+        }
+        public String[] getPrimaryKeyColumns() {
+            return primaryKeyColumns;
+        }
+        public void setPrimaryKeyColumns(String[] primaryKeyColumns) {
+            this.primaryKeyColumns = primaryKeyColumns;
+        }
+        public String[] getForeignKeyColumns() {
+            return foreignKeyColumns;
+        }
+        public void setForeignKeyColumns(String[] foreignKeyColumns) {
+            this.foreignKeyColumns = foreignKeyColumns;
+        }
+        public String getTable() {
+            return table;
+        }
+        public String getSql() {
+            return sql;
+        }
+        public String getParentTable() {
+            return parentTable;
+        }
+		public boolean hasArg() {
+			return hasArg;
+		}
+        public Object[] getArg() {
+            return arg;
+        }
+		public void setLastTable(ScriptTable lastTable) {
+			this.lastTable = lastTable;
+		}
+		public ScriptTable getLastTable() {
+			return lastTable;
+		}
+    }
+	private ArrayList<String> tableList = new ArrayList<String>();
+	private HashMap<String, TableInfo> tableMap = new HashMap<String, TableInfo>();
+
+	public void addTable(String table, String sql, String[] primaryKeyColumns) {
+		TableInfo tableInfo = new TableInfo(table, sql, primaryKeyColumns, null, null);
+		tableMap.put(table,tableInfo);
+		tableList.add(table);
+	}
+	public void addTable(String table, String sql, String[] primaryKeyColumns, Object[] arg) {
+		TableInfo tableInfo = new TableInfo(table, sql, primaryKeyColumns, null, null, arg);
+		tableMap.put(table,tableInfo);
+		tableList.add(table);
+	}
+	public void addTableRelate(String table, String sql, String[] primaryKeyColumns, String parentTable, String[] foreignKeyColumns) {
+		TableInfo tableInfo = new TableInfo(table, sql, primaryKeyColumns, parentTable, foreignKeyColumns);
+		tableMap.put(table,tableInfo);
+		tableList.add(table);
+	}
+	public ScriptTable makeDiffs() throws Exception {
+		ArrayList<ScriptTable> resultTableList = new ArrayList<ScriptTable>();
+		HashMap<String, ScriptTable> resultTableMap = new HashMap<String, ScriptTable>();
+		int maxRowCount = 0;
+		int maxColCount = 0;
+		for(String table : tableList) {
+			TableInfo tableInfo = tableMap.get(table);
+			ScriptTable st;
+			if (tableInfo.getParentTable() != null) {
+				ScriptTable parentResult = resultTableMap.get(tableInfo.getParentTable());
+				if (parentResult == null) {
+					throw new RuntimeException("Error:" + tableInfo.getParentTable());
+				}
+				Set<String[]> keyValues = parentResult.getColumnValuesAsSet(tableInfo.getForeignKeyColumns());
+				st = runSql(tableInfo.getSql(), keyValues);
+			} else {
+				if (tableInfo.hasArg()) {
+					st = runSql(tableInfo.getSql(), tableInfo.getArg());
+				} else {
+					st = runSql(tableInfo.getSql());
+				}
+			}
+			resultTableList.add(st);
+			resultTableMap.put(table, st);
+			maxRowCount += st.getRowCount() + 2;
+			maxColCount = Math.max(maxColCount, st.getColumnCount());
+		}
+		ScriptTable result = new ScriptTable(maxRowCount, maxColCount);
+		int rowCount = 0;
+		for(String table : tableList) {
+			TableInfo tableInfo = tableMap.get(table);
+			ScriptTable oldSt = tableInfo.getLastTable();
+			ScriptTable st = resultTableMap.get(table);
+			ScriptTable diff;
+			if (oldSt == null) {
+				diff = st;
+			} else {
+				diff = createMarkedDiff(st,oldSt,tableInfo.getPrimaryKeyColumns());
+			}
+			tableInfo.setLastTable(st);
+			result.setValueAt(tableInfo.getTable(),rowCount,0);
+			result.setValueAt(st.getDescription(),rowCount,4);
+			rowCount++;
+			result.writeTable(diff, rowCount, 0);
+			rowCount += diff.getRowCount();
+			rowCount++;
+		}
+		result.trim();
+		return result;
+	}
+	public void start(ScriptTable table) throws Exception {
+		int rowCount = 0;
+		String label = "ラベル";
+		while(true) {
+			label=showInputDialog("次のDBのスナップショットを取りますか？", label, false);
+			if (label==null) {
+				break;
+			}
+		
+			ScriptTable st = this.makeDiffs();
+			table.setValueAt(label,rowCount, 0);
+			table.writeTable(st,rowCount,1);
+			rowCount+=st.getRowCount();
+			rowCount+=1;
+		}
+		table.trim();
+	}
+}
+
+// 使い方サンプル
+//String animalsId = showInputDialog("ANIMALSテーブルのIDを入力","1", true);
+//
+//// 定義を準備
+//MakeDiffs makeDiffs = new MakeDiffs();
+//makeDiffs.addTable("ANIMALS","SELECT * FROM ANIMALS WHERE ID=? ORDER BY ID", new String[]{"ID"}, new String[]{animalsId});
+//makeDiffs.addTableRelate("ANIMALS_DETAIL","SELECT * FROM ANIMALS_DETAIL WHERE ANIMALS_ID IN ? ORDER BY ID", new String[]{"ID"}, "ANIMALS", new String[]{"ID"});
+//
+//// 処理開始
+//makeDiffs.start(table);
+%>

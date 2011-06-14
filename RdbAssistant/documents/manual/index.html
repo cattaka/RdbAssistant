@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE>RdbAssistantマニュアル</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.4  (Linux)">
+	<META NAME="AUTHOR" CONTENT="Takao Sumitomo">
+	<META NAME="CREATED" CONTENT="20090726;14592400">
+	<META NAME="CHANGEDBY" CONTENT="Takao Sumitomo">
+	<META NAME="CHANGED" CONTENT="20090801;16515200">
+	<META NAME="Info 1" CONTENT="Cattaka">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 1.5cm }
+		P { margin-bottom: 0.21cm }
+		H1 { margin-top: 0cm; margin-bottom: 0cm; background: transparent; page-break-before: auto }
+		H1.western { font-family: "VL ゴシック", sans-serif; font-size: 12pt }
+		H1.cjk { font-family: "VL ゴシック"; font-size: 12pt }
+		H1.ctl { font-family: "VL ゴシック"; font-size: 16pt }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ja-JP" DIR="LTR">
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=6><SPAN LANG="en-US"><B>RdbAssistant
+</B></SPAN></FONT></FONT><FONT SIZE=6><B>マニュアル</B></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Copyright
+(c) 2009, Takao Sumitomo</SPAN></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<DIV ID="目次1" DIR="LTR">
+	<DIV ID="目次1_Head" DIR="LTR">
+		<P STYLE="margin-top: 0.42cm; page-break-after: avoid"><FONT FACE="VL ゴシック"><FONT SIZE=4 STYLE="font-size: 16pt"><B>目次</B></FONT></FONT></P>
+	</DIV>
+	<P STYLE="margin-left: 0.5cm; margin-right: 0.5cm; margin-bottom: 0cm; background: transparent">
+	<FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">1.</SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 10pt">概要</FONT><FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">	1</SPAN></FONT></FONT></P>
+	<P STYLE="margin-left: 0.5cm; margin-right: 0.5cm; margin-bottom: 0cm; background: transparent">
+	<FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">2.</SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 10pt">動作環境</FONT><FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">	1</SPAN></FONT></FONT></P>
+	<P STYLE="margin-left: 0.5cm; margin-right: 0.5cm; margin-bottom: 0cm; background: transparent">
+	<FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">3.</SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 10pt">主な特徴</FONT><FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">	1</SPAN></FONT></FONT></P>
+	<P STYLE="margin-left: 0.5cm; margin-right: 0.5cm; margin-bottom: 0cm; background: transparent">
+	<FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">4.</SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 10pt">初期設定手順</FONT><FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">	1</SPAN></FONT></FONT></P>
+	<P STYLE="margin-left: 0.5cm; margin-right: 0.5cm; margin-bottom: 0cm; background: transparent">
+	<FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">5.SQL</SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 10pt">エディタ</FONT><FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">	3</SPAN></FONT></FONT></P>
+	<P STYLE="margin-left: 0.5cm; margin-right: 0.5cm; margin-bottom: 0cm; background: transparent">
+	<FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">6.</SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 10pt">スクリプトエディタ</FONT><FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">	5</SPAN></FONT></FONT></P>
+	<P STYLE="margin-left: 0.5cm; margin-right: 0.5cm; margin-bottom: 0cm; background: transparent">
+	<FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">7.</SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 10pt">設定</FONT><FONT FACE="さざなみ明朝, serif"><FONT SIZE=2 STYLE="font-size: 10pt"><SPAN LANG="en-US">	8</SPAN></FONT></FONT></P>
+</DIV>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H1 CLASS="cjk"><FONT FACE="VL ゴシック, sans-serif"><SPAN LANG="en-US">1.</SPAN></FONT>概要</H1>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Oracle</SPAN></FONT></FONT>と<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">MySQL</SPAN></FONT></FONT>と<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQLite</SPAN></FONT></FONT>に対応した<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Java</SPAN></FONT></FONT>で動作する<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>エディタです。</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JSP</SPAN></FONT></FONT>に良く似たスクリプトが使用可能であり、</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm">複数テーブルの関連のある行だけを一度で取得したり、</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm">差分を作成して表示することができます。</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H1 CLASS="cjk"><FONT FACE="VL ゴシック, sans-serif"><SPAN LANG="en-US">2.</SPAN></FONT>動作環境</H1>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Java(TM)
+	2 SDK, Standard Edition Version 1.5.0</SPAN></FONT></FONT>以上</P>
+	<P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(</SPAN></FONT></FONT>スクリプト機能を使用するためには<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JDK</SPAN></FONT></FONT>付属の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">tools.jar</SPAN></FONT></FONT>が必要です<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">)</SPAN></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H1 CLASS="cjk"><FONT FACE="VL ゴシック, sans-serif"><SPAN LANG="en-US">3.</SPAN></FONT>主な特徴</H1>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm">◆複数の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">RDBMS</SPAN></FONT></FONT>に対応しています。</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Oracle(9i</SPAN></FONT></FONT>以降<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">)</SPAN></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">MySQL(5</SPAN></FONT></FONT>以降<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">)</SPAN></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQLite(3</SPAN></FONT></FONT>以降<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">)</SPAN></FONT></FONT></P>
+</UL>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm">◆<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>編集と実行が行えます</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">入力補助としてデータベースのオブジェクトの閲覧することができます。</P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">DML</SPAN></FONT></FONT>文の自動生成ができます。</P>
+	<LI><P STYLE="margin-bottom: 0cm">データベースから取得した情報は<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">CSV</SPAN></FONT></FONT>、<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">TSV</SPAN></FONT></FONT>、<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">HTML</SPAN></FONT></FONT>形式でクリップボードにコピーできるので</P>
+	<P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Excel</SPAN></FONT></FONT>等へそのままコピー＆ペーストできます。</P>
+</UL>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm">◆スクリプト機能</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JSP</SPAN></FONT></FONT>の様なスクリプトが使用できます。</P>
+	<LI><P STYLE="margin-bottom: 0cm">スクリプトにより複数のテーブルに跨ったデータを一度に抜き出して表示することができます。</P>
+	<LI><P STYLE="margin-bottom: 0cm">抜き出したデータを比較し、差分をとって表示することができます。</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H1 CLASS="cjk"><FONT FACE="VL ゴシック, sans-serif"><SPAN LANG="en-US">4.</SPAN></FONT>初期設定手順</H1>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">1.JDBC</SPAN></FONT></FONT>ドライバの入手</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Oracle(Oracle
+	JDBC Driver)</SPAN></FONT></FONT></P>
+	<P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US"><A HREF="http://www.oracle.com/technology/global/jp/software/tech/java/jdbc/index.html"><FONT SIZE=2 STYLE="font-size: 10pt">http://www.oracle.com/technology/global/jp/software/tech/java/jdbc/index.html</FONT></A></SPAN></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">MySQL(MySQL
+	Connector/J) <BR><A HREF="http://dev.mysql.com/downloads/#connector-j"><FONT SIZE=2 STYLE="font-size: 10pt">http://dev.mysql.com/downloads/#connector-j</FONT></A></SPAN></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQLite(SQLiteJDBC)
+	<BR><A HREF="http://www.zentus.com/sqlitejdbc/"><FONT SIZE=2 STYLE="font-size: 10pt">http://www.zentus.com/sqlitejdbc/</FONT></A></SPAN></FONT></FONT></P>
+</UL>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">2.</SPAN></FONT></FONT>設定</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm">メニューバーの編集から設定を選び、</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm">使用したい<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">RDBMS</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JDBC</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Jar</SPAN></FONT></FONT>ファイルを指定してください。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><IMG SRC="index_html_m70058bf6.gif" ALIGN=MIDDLE></P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><IMG SRC="index_html_m1bce0875.gif" ALIGN=MIDDLE></P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">3.</SPAN></FONT></FONT>接続先の設定</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">メインウインドウの新規接続タブの新規ボタンを押し、</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">使用したい<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">RDBMS</SPAN></FONT></FONT>を選択した後、それぞれ必要な情報を入力してください。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">最後に<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">OK</SPAN></FONT></FONT>ボタンを押すと接続先リストに入力した内容が追加されます。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><IMG SRC="index_html_56e4accb.gif" ALIGN=MIDDLE></P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><IMG SRC="index_html_m5ffe3ddd.gif" ALIGN=MIDDLE></P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">4.</SPAN></FONT></FONT>接続</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">接続先リストから対象を選択して接続ボタンを押すと</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">RDBMS</SPAN></FONT></FONT>への接続が開始されます。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><IMG SRC="index_html_m2dade531.gif" ALIGN=MIDDLE></P>
+<P STYLE="margin-left: -1cm; margin-bottom: 0cm"><BR>
+</P>
+<H1 CLASS="cjk"><FONT FACE="VL ゴシック, sans-serif"><SPAN LANG="en-US">5.SQL</SPAN></FONT>エディタ</H1>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>タブを選択すると<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>の入力と実行が行えます。</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm">◆<B>画面の内容</B></P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><IMG SRC="index_html_mee92998.gif" NAME="オブジェクト2" WIDTH=563 HEIGHT=416></P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(1)DB</SPAN></FONT></FONT>情報</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">接続中のデータベースのテーブルやカラムの情報が表示されます。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">一覧から選択したカラムを入力したり、<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>文を自動生成することができます。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><IMG SRC="index_html_536a4661.png" NAME="グラフィックス3" ALIGN=BOTTOM WIDTH=430 HEIGHT=374 BORDER=0></P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(2)</SPAN></FONT></FONT>クイックアクセス</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">設定ダイアログにて指定したディレクトリの内容を表示します。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">作業でよく使う<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>を作成しておけば<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>を素早く実行するのに便利です。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><IMG SRC="index_html_m52843731.png" NAME="グラフィックス4" ALIGN=BOTTOM WIDTH=448 HEIGHT=389 BORDER=0></P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(3)</SPAN></FONT></FONT>新規</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">新しい<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>ファイルを作成します</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(4)</SPAN></FONT></FONT>開く</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">既存の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>ファイルを開きます</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(5)</SPAN></FONT></FONT>保存</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">編集中の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>ファイルを上書き保存します。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(6)</SPAN></FONT></FONT>別名で保存</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">編集中の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>ファイルを別名を指定して保存します。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(7)SQL</SPAN></FONT></FONT>実行</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">現在開いている<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>を実行します。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(8)</SPAN></FONT></FONT>検索<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">/</SPAN></FONT></FONT>置換</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>エディタ内を検索<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">/</SPAN></FONT></FONT>置換します。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(9)SQL</SPAN></FONT></FONT>エディタ</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>の内容がここに表示<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">/</SPAN></FONT></FONT>入力されます。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(10)</SPAN></FONT></FONT>結果テーブル</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>の実行結果が表示されます。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">右クリックにより<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">TSV</SPAN></FONT></FONT>、<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">CSV</SPAN></FONT></FONT>、<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">HTML</SPAN></FONT></FONT>形式でクリップボードにコピーできます。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(11)</SPAN></FONT></FONT>結果ログ</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>の実行結果やエラーログが表示されます。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><BR>
+</P>
+<H1 CLASS="cjk"><FONT FACE="VL ゴシック, sans-serif"><SPAN LANG="en-US">6.</SPAN></FONT>スクリプトエディタ</H1>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm">スクリプトタブを選択するとスクリプトの作成と実行が行えます。</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm; font-weight: medium">
+スクリプトは<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JSP</SPAN></FONT></FONT>に良く似た形式であり、スクリプトレットを使用することで</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm; font-weight: medium">
+<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Java</SPAN></FONT></FONT>言語のコードを埋め込むことができます。</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm">スクリプト機能を使用するためには設定ダイアログにて</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">tools.jar</SPAN></FONT></FONT>とスクリプト作業用ディレクトリが正しく設定されている必要があります。</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm">スクリプトで使用できる関数等は付属のドキュメントをご覧下さい。</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm">◆<B>画面の内容</B></P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><IMG SRC="index_html_4daf20f1.gif" NAME="オブジェクト1" WIDTH=614 HEIGHT=412></P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(1)</SPAN></FONT></FONT>スクリプト一覧</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">設定ダイアログにて指定したディレクトリの内容を表示します。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(2)</SPAN></FONT></FONT>新規</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">新しいスクリプトを作成します</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(3)</SPAN></FONT></FONT>開く</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">既存のスクリプトを開きます</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(4)</SPAN></FONT></FONT>保存</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">編集中のスクリプトを上書き保存します。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(5)</SPAN></FONT></FONT>別名で保存</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">編集中のスクリプトを別名を指定して保存します。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(6)</SPAN></FONT></FONT>スクリプト実行</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">現在開いているスクリプトを実行します。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">コンパイルされていない状態ならコンパイルしてから実行します。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(7)</SPAN></FONT></FONT>コンパイル</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">編集中のスクリプトをコンパイルします。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(8)</SPAN></FONT></FONT>検索<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">/</SPAN></FONT></FONT>置換</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">スクリプトエディタ内を検索<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">/</SPAN></FONT></FONT>置換します。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(9)</SPAN></FONT></FONT>スクリプトエディタ</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">スクリプトの内容がここに表示<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">/</SPAN></FONT></FONT>入力されます。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(10)</SPAN></FONT></FONT>結果ログ</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">スクリプトのコンパイル結果や実行の成功<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">/</SPAN></FONT></FONT>失敗、</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">エラーログが表示されます。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(11)</SPAN></FONT></FONT>変換されたソース</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">コンパイル時にスクリプトが変換された<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Java</SPAN></FONT></FONT>ファイルが表示されます。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(12)</SPAN></FONT></FONT>出力テーブル</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">スクリプトにより出力されたテーブルが表示されます。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">右クリックにより<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">TSV</SPAN></FONT></FONT>、<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">CSV</SPAN></FONT></FONT>、<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">HTML</SPAN></FONT></FONT>形式でクリップボードにコピーできます。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">HTML</SPAN></FONT></FONT>形式では前景色、背景色、枠線も併せて出力されます。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">※：<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Microsoft
+Office Excel</SPAN></FONT></FONT>にそのまま貼り付けることができます。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(13)</SPAN></FONT></FONT>出力ログ</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm">スクリプトにより出力されたテキストログが表示されます。</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-left: 0.58cm; margin-bottom: 0cm">◆<B>スクリプトについて</B></P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm; font-weight: medium">スクリプトは以下の構成要素からなります。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><B>・スクリプトレット</B></P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm; font-weight: medium"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">	</SPAN></FONT></FONT>スクリプト内でスクリプトレット（<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">&lt;%</SPAN></FONT></FONT>と<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">%&gt;</SPAN></FONT></FONT>）で囲まれたものは</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm; font-weight: medium">
+<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Java</SPAN></FONT></FONT>のコードとして扱われます。</P>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><B>・出力先</B></P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm; font-weight: medium">
+スクリプト内では暗黙オブジェクトとして<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">out</SPAN></FONT></FONT>と<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">table</SPAN></FONT></FONT>の２つが利用できます。</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm; font-weight: medium">
+これらには文字列やテーブルを出力することが可能で</P>
+<P STYLE="margin-left: 1.5cm; margin-bottom: 0cm; font-weight: medium">
+スクリプトの実行完了後に出力された内容を画面上で確認することができます。</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>out
+	: java.io.PrintWriter</B></SPAN></FONT></FONT></P>
+	<P STYLE="margin-bottom: 0cm; font-weight: medium">スクリプト内でこのオブジェクトに出力を行うと、</P>
+	<P STYLE="margin-bottom: 0cm; font-weight: medium">書き込んだ内容が<B>出力ログ</B>に表示されます。</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>table
+	:
+	net.cattaka.rdbassistant.script.core.ScriptTable</B><BR></SPAN></FONT></FONT>スクリプト内でこのオブジェクトに出力を行うと、</P>
+	<P STYLE="margin-bottom: 0cm; font-weight: medium">書き込んだ内容が<B>出力テーブル</B>に表示されます。</P>
+</UL>
+<P STYLE="margin-left: 1cm; margin-bottom: 0cm"><B>・ディレクティブ</B></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">page</SPAN></FONT></FONT></P>
+	<P STYLE="margin-bottom: 0cm; font-weight: medium"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JSP</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">page</SPAN></FONT></FONT>ディレクティブと同様に<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">import</SPAN></FONT></FONT>するクラスを指定します。</P>
+	<P STYLE="margin-bottom: 0cm; font-weight: medium"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">import</SPAN></FONT></FONT>のみサポートします。</P>
+	<P STYLE="margin-bottom: 0cm; font-weight: medium">例：<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">&lt;%@
+	page import=&quot;java.util.*&quot; %&gt;</SPAN></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">include</SPAN></FONT></FONT></P>
+	<P STYLE="margin-bottom: 0cm; font-weight: medium"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JSP</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">include</SPAN></FONT></FONT>ディレクティブと同様に指定されたファイルを</P>
+	<P STYLE="margin-bottom: 0cm; font-weight: medium">その位置に展開します</P>
+	<P STYLE="margin-bottom: 0cm; font-weight: medium">例：<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">&lt;%@
+	include file=&quot;functions.script&quot; %&gt;</SPAN></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H1 CLASS="cjk"><FONT FACE="VL ゴシック, sans-serif"><SPAN LANG="en-US">7.</SPAN></FONT>設定</H1>
+<P STYLE="margin-left: 0.5cm; margin-bottom: 0cm"><IMG SRC="index_html_m4e4c5c55.png" NAME="グラフィックス1" ALIGN=BOTTOM WIDTH=600 HEIGHT=400 BORDER=0></P>
+<OL>
+	<LI><P STYLE="margin-bottom: 0cm">フォント<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(</SPAN></FONT></FONT>エディタ用<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">)</SPAN></FONT></FONT></P>
+	<P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>エディタやスクリプトエディタの表示に使用するフォントを指定します。</P>
+	<LI><P STYLE="margin-bottom: 0cm">フォント<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">(</SPAN></FONT></FONT>テーブル用<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">)</SPAN></FONT></FONT></P>
+	<P STYLE="margin-bottom: 0cm">テーブルの表示に使用するフォントを指定します。</P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">NULL</SPAN></FONT></FONT>の場合に表示する文字列</P>
+	<P STYLE="margin-bottom: 0cm">テーブルのセルの内容が<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">null</SPAN></FONT></FONT>の場合に表示する文字列です。</P>
+	<P STYLE="margin-bottom: 0cm">『<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">NULL</SPAN></FONT></FONT>の場合に文字列を表示する』の項目がオンの場合のみ有効です。</P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">NULL</SPAN></FONT></FONT>の場合に文字列を表示する</P>
+	<P STYLE="margin-bottom: 0cm">オフの場合はテーブルのセルの内容が<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">null</SPAN></FONT></FONT>の場合はそのセルには何も表示しません。</P>
+	<P STYLE="margin-bottom: 0cm">オンの場合は『<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">NULL</SPAN></FONT></FONT>の場合に表示する文字列』で指定した文字列を表示します。</P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>クイックアクセス</P>
+	<P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQL</SPAN></FONT></FONT>エディタのクイックアクセスに表示するディレクトリのルートを指定します。</P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">tools.jar</SPAN></FONT></FONT></P>
+	<P STYLE="margin-bottom: 0cm">スクリプトエディタにて使用する<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">tools.jar</SPAN></FONT></FONT>を指定します。</P>
+	<P STYLE="margin-bottom: 0cm">『標準の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">tools.jar</SPAN></FONT></FONT>を使用する』の項目がオフの場合のみ指定可能です。</P>
+	<P STYLE="margin-bottom: 0cm">通常<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">tools.jar</SPAN></FONT></FONT>は<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Java</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JDK</SPAN></FONT></FONT>に含まれています。<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JRE</SPAN></FONT></FONT>には含まれていません。</P>
+	<LI><P STYLE="margin-bottom: 0cm">標準の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">tools.jar</SPAN></FONT></FONT>を使用する</P>
+	<P STYLE="margin-bottom: 0cm">現在実行中の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Java</SPAN></FONT></FONT>のランタイムの<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">tools.jar</SPAN></FONT></FONT>を使用します。</P>
+	<P STYLE="margin-bottom: 0cm">標準の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">tools.jar</SPAN></FONT></FONT>が使用できない場合は『<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">tools.jar</SPAN></FONT></FONT>』の項目にて手動で指定してください。</P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">MySQL</SPAN></FONT></FONT>用<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JDBC(Jar)</SPAN></FONT></FONT></P>
+	<P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">MySQL</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JDBC</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Jar</SPAN></FONT></FONT>ファイルを指定します。<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">MySQL</SPAN></FONT></FONT>を使用する場合は必須です。</P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Oracle</SPAN></FONT></FONT>用<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JDBC(Jar)</SPAN></FONT></FONT></P>
+	<P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Oracle</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JDBC</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Jar</SPAN></FONT></FONT>ファイルを指定します。<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Oracle</SPAN></FONT></FONT>を使用する場合は必須です。</P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQLite</SPAN></FONT></FONT>用<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JDBC(Jar)</SPAN></FONT></FONT></P>
+	<P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQLite</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">JDBC</SPAN></FONT></FONT>の<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">Jar</SPAN></FONT></FONT>ファイルを指定します。<FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">SQLite</SPAN></FONT></FONT>を使用する場合は必須です。</P>
+	<LI><P STYLE="margin-bottom: 0cm">ルック＆フィール</P>
+	<P STYLE="margin-bottom: 0cm">アプリケーションの外観を指定します。</P>
+	<LI><P STYLE="margin-bottom: 0cm">ログレベル</P>
+	<P STYLE="margin-bottom: 0cm">ログに出力する閾値を指定します。</P>
+	<P STYLE="margin-bottom: 0cm">出力されたログは『ヘルプ→ログ一覧表示』から確認できます。</P>
+</OL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<HR>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="さざなみ明朝, serif"><FONT SIZE=3><SPAN LANG="en-US">last
+modified 2009/08/01</SPAN></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+</BODY>
+</HTML>

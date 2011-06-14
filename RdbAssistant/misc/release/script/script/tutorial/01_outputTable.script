@@ -1,0 +1,21 @@
+<%
+// 暗黙的変数であるtableを使用すると出力テーブルに出力できます。
+table.setValueAt("val11",1,1);
+table.setValueAt("val12",1,2);
+table.setValueAt("val21",2,1);
+table.setValueAt("val22",2,2);
+
+/// 新たにテーブルを作成する。
+ScriptTable st1 = new ScriptTable();
+st1.setValueAt("s_val11",1,1);
+st1.setValueAt("s_val12",1,2);
+st1.setValueAt("s_val21",2,1);
+st1.setValueAt("s_val22",2,2);
+st1.trim();
+
+// テーブルを出力する
+table.writeTable(st1, 4,2);
+
+// トリミングする
+table.trim();
+%>
