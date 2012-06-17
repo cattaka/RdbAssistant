@@ -60,6 +60,7 @@ import net.cattaka.util.StringUtil;
 public class SqliteSqlEditorSelection implements SqlEditorSelection {
 	public static String SELECT_DATABASE_LIST;
 	public static String SELECT_TABLES_LIST;
+	public static String SELECT_TABLES_LIST_BY_TYPE;
 	public static String[] SELECT_DETAIL_NAME_LIST;
 	public static String[] SELECT_DETAIL_SQL_LIST;
 	public static String[] SELECT_DETAIL_TOP_COLUMN_LIST;
@@ -77,6 +78,7 @@ public class SqliteSqlEditorSelection implements SqlEditorSelection {
 		}
 		SELECT_DATABASE_LIST = properties.getProperty("SELECT_DATABASE_LIST");
 		SELECT_TABLES_LIST = properties.getProperty("SELECT_TABLES_LIST");
+		SELECT_TABLES_LIST_BY_TYPE = properties.getProperty("SELECT_TABLES_LIST_BY_TYPE");
 		SELECT_DETAIL_NAME_LIST = properties.getPropertyArray("SELECT_DETAIL_NAME_LIST");
 		SELECT_DETAIL_SQL_LIST = properties.getPropertyArray("SELECT_DETAIL_SQL_LIST");
 		SELECT_DETAIL_TOP_COLUMN_LIST = properties.getPropertyArray("SELECT_DETAIL_TOP_COLUMN_LIST");
@@ -110,18 +112,28 @@ public class SqliteSqlEditorSelection implements SqlEditorSelection {
 	public List<String> getObjectTypeList() {
 		ArrayList<String> result = new ArrayList<String>();
 		result.add("ALL");
+		result.add("table");
+		result.add("index");
 		return result;
 	}
 	
 	public ResultSetTableModel getTableList(String database, String objectType) {
+		boolean hasObjectType = (objectType != null && !"ALL".equals(objectType));
 		String sqlStr = null;
-		sqlStr = SELECT_TABLES_LIST;
+		if (hasObjectType) {
+			sqlStr = SELECT_TABLES_LIST_BY_TYPE;
+		} else {
+			sqlStr = SELECT_TABLES_LIST;
+		}
 		StaticResultSetTableModel result = new StaticResultSetTableModel();
 		if (sqlStr != null) {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			try {
 				stmt = rdbConnection.getConnection().prepareStatement(sqlStr);
+				if (hasObjectType) {
+					stmt.setString(1, objectType);
+				}
 //				stmt.setString(1, database);
 				rs = stmt.executeQuery();
 				result.extractResultSetData(rdbConnection, rs, null);
