@@ -1,5 +1,0 @@
-Copyright 2009 Takao Sumitomo. All rights reserved.
-
-    RdbAssistant : Relational DataBase Assistant
-        ${release_number} - build ${build_number} -
-    URL http://www.cattaka.net/
