@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2010, Takao Sumitomo
  * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, 
- * with or without modification, are permitted provided 
+ *
+ * Redistribution and use in source and binary forms,
+ * with or without modification, are permitted provided
  * that the following conditions are met:
- * 
- *     * Redistributions of source code must retain the 
+ *
+ *     * Redistributions of source code must retain the
  *       above copyright notice, this list of conditions
  *       and the following disclaimer.
  *     * Redistributions in binary form must reproduce
@@ -14,7 +14,7 @@
  *       conditions and the following disclaimer in the
  *       documentation and/or other materials provided
  *       with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
  * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +30,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * The views and conclusions contained in the software
  * and documentation are those of the authors and should
  * not be interpreted as representing official policies,
@@ -50,13 +50,16 @@ import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.NClob;
 import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
 import java.sql.Ref;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.RowId;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
+import java.sql.SQLXML;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -70,7 +73,7 @@ public class TelnetSqlitePreparedStatement implements PreparedStatement {
 	private Reader reader;
 	private Writer writer;
 	private String sql;
-	
+
 	private boolean closed;
 	private int updateCount;
 	private ResultSet resultSet;
@@ -85,7 +88,7 @@ public class TelnetSqlitePreparedStatement implements PreparedStatement {
 		this.sql = sql;
 		this.closed = false;
 	}
-	
+
 	public void readByPrompt() throws IOException {
 		// 次のプロンプトまで読み進めておく
 		String r;
@@ -95,7 +98,7 @@ public class TelnetSqlitePreparedStatement implements PreparedStatement {
 			}
 		}
 	}
-	
+
 	public void addBatch() throws SQLException {
 		throw new SQLException("Not implemented yet.");
 	}
@@ -374,7 +377,7 @@ public class TelnetSqlitePreparedStatement implements PreparedStatement {
 			// 改行はエスケープ
 			String sql = StringUtil.replaceString(paramString, "\\", "\\\\");
 			sql = StringUtil.replaceString(sql, "\n", "\\\n");;
-			
+
 			writer.append(sql);
 			writer.append('\n');
 			writer.flush();
@@ -410,7 +413,7 @@ public class TelnetSqlitePreparedStatement implements PreparedStatement {
 				// OK
 				this.resultSet = TelnetSqliteResultSet.createResultSet(socket, reader, writer, rowCount);
 			}
-			
+
 			// 次のプロンプトまで読み進めておく
 			readByPrompt();
 		} catch (IOException e2) {
@@ -572,6 +575,31 @@ public class TelnetSqlitePreparedStatement implements PreparedStatement {
 
 	public <T> T unwrap(Class<T> paramClass) throws SQLException {
 		throw new SQLException("Not implemented yet.");
+	}
+
+	public void closeOnCompletion() throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean isCloseOnCompletion() throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void setNClob(int arg0, NClob arg1) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setRowId(int arg0, RowId arg1) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setSQLXML(int arg0, SQLXML arg1) throws SQLException {
+		// TODO Auto-generated method stub
+
 	}
 
 }
