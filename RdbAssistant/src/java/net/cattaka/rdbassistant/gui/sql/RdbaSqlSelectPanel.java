@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2009, Takao Sumitomo
  * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, 
- * with or without modification, are permitted provided 
+ *
+ * Redistribution and use in source and binary forms,
+ * with or without modification, are permitted provided
  * that the following conditions are met:
- * 
- *     * Redistributions of source code must retain the 
+ *
+ *     * Redistributions of source code must retain the
  *       above copyright notice, this list of conditions
  *       and the following disclaimer.
  *     * Redistributions in binary form must reproduce
@@ -14,7 +14,7 @@
  *       conditions and the following disclaimer in the
  *       documentation and/or other materials provided
  *       with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
  * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +30,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * The views and conclusions contained in the software
  * and documentation are those of the authors and should
  * not be interpreted as representing official policies,
@@ -97,7 +97,7 @@ import net.cattaka.util.ExceptionHandler;
 
 public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 	private static final long serialVersionUID = 1L;
-	
+
 	private RdbaGuiInterface parentComponent;
 	private JSplitPane splitPane;
 	private JComboBox databaseComboBox;
@@ -106,25 +106,32 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 	private JTabbedPane tableDetailPanel;
 	private RdbaConnection rdbaConnection;
 	private SqlEditorSelection sqlEditorSelection;
-	
+
 	private ResultSetTableModel currentPropertyTable;
 	private String currentDatabase;
 	private String currentObjectType;
 	private String currentTable;
 
 	private RdbaSqlEditorTabbedPanel rdbaSqlEditorPanel;
-	
+
 	class JTableForTableList extends JTableForDisplay {
 		private static final long serialVersionUID = 1L;
 		private String schemaName;
-		
+
 		public JTableForTableList(JPopupMenuForColumnList popupMenu) {
 			super(popupMenu);
 		}
 
 		public void valueChanged(ListSelectionEvent e) {
 			super.valueChanged(e);
-			Object value = tableList.getValueAt(tableList.getSelectedRow(), 0);
+			int idx=0;
+			for (int i=0;i<tableList.getColumnCount();i++) {
+				if ("table_name".equals(tableList.getColumnName(i))) {
+					idx = i;
+					break;
+				}
+			}
+			Object value = tableList.getValueAt(tableList.getSelectedRow(), idx);
 			if (value != null) {
 				if (currentTable != value.toString()) {
 					currentTable = value.toString();
@@ -133,7 +140,7 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			}
 			this.setRdbaTextInterface(new RdbaTextAdapter());
 		}
-		
+
 		@Override
 		public String getFilteredString(int rowIndex, int columnIndex) {
 			if (schemaName == null) {
@@ -195,7 +202,7 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			}
 		}
 	}
-	
+
 	class TableDetailPanel extends JPanel {
 		private static final long serialVersionUID = 1L;
 		private JTableForDisplay propertyTable;
@@ -211,7 +218,7 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			propertyTable.setRdbaTextInterface(new RdbaTextAdapter());
 			propertyTable.setFont(fontForTable);
 			propertyTable.setColumnSelectionAllowed(true);
-			
+
 			this.propertyTableScrollPane = new StdScrollPane(propertyTable);
 			this.propertyTableScrollPane.setAlignmentX(JComponent.LEFT_ALIGNMENT);
 			this.setLayout(new GridLayout());
@@ -221,23 +228,23 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			return propertyTable;
 		}
 	}
-	
+
 	public RdbaSqlSelectPanel(RdbaGuiInterface parentComponent) {
 		this.parentComponent = parentComponent;
 		makeLayout();
 	}
-	
+
 	private void makeLayout() {
 		JPanel tableListPanel;
 		JPanel propertyTablePanel;
-		
+
 		this.databaseComboBox = new JComboBox();
 		this.databaseComboBox.setAlignmentX(JComponent.LEFT_ALIGNMENT);
 		this.objectTypeComboBox = new JComboBox();
 		this.objectTypeComboBox.setAlignmentX(JComponent.LEFT_ALIGNMENT);
 
 		ActionListenerImpl al = new ActionListenerImpl();
-		
+
 		{
 			tableListPanel = new JPanel();
 
@@ -249,7 +256,7 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			tableListPopupMenu.createMenuItems();
 			tableListPopupMenu.add(new JSeparator());
 			tableListPopupMenu.add(refleshItem);
-			
+
 			StdScrollPane tableListScrollPane;
 			this.tableList = new JTableForTableList(tableListPopupMenu);
 			this.tableList.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -258,7 +265,7 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			tableListScrollPane = new StdScrollPane(this.tableList);
 			tableListScrollPane.setAlignmentX(JComponent.LEFT_ALIGNMENT);
 			MouseEventUtil.createMouseEventPipe(tableListScrollPane, tableList);
-			
+
 			tableListPanel.setLayout(new BoxLayout(tableListPanel, BoxLayout.PAGE_AXIS));
 			tableListPanel.add(new JLabel(MessageBundle.getMessage("table")));
 			tableListPanel.add(tableListScrollPane);
@@ -268,20 +275,20 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			tableDetailPanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
 			propertyTablePanel = new JPanel();
 			propertyTablePanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
-			
+
 			propertyTablePanel.setLayout(new BoxLayout(propertyTablePanel, BoxLayout.PAGE_AXIS));
 			propertyTablePanel.add(new JLabel(MessageBundle.getMessage("table_detail")));
 			propertyTablePanel.add(tableDetailPanel);
 		}
 		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, tableListPanel, propertyTablePanel);
-		
+
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.add(new JLabel(MessageBundle.getMessage("database")));
 		this.add(databaseComboBox);
 		this.add(new JLabel(MessageBundle.getMessage("object_type")));
 		this.add(objectTypeComboBox);
 		this.add(splitPane);
-		
+
 		// イベントリスナー
 		{
 			this.databaseComboBox.addItemListener(new ItemListener() {
@@ -306,7 +313,7 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			});
 		}
 	}
-	
+
 	private void updateTableList() {
 		if (currentDatabase != null && currentObjectType != null) {
 			if (currentDatabase.equals(sqlEditorSelection.getDefaultDatabase())) {
@@ -364,7 +371,7 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 		}
 		return popup;
 	}
-	
+
 	/**
 	 * JSPFを実行する。
 	 * @param jspfBase
@@ -376,15 +383,15 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 		DatabaseInfo databaseInfo = new DatabaseInfo(dmd, this.databaseComboBox.getSelectedItem().toString());
 		jspfBase.setDatabaseInfo(databaseInfo);
 		jspfBase.setSelectionInfo(createJspfSelectionInfo());
-		
+
 		StringWriter sw = new StringWriter();
 		PrintWriterEx out = new PrintWriterEx(sw);
 		jspfBase.runJspf(out);
 		out.flush();
-		
+
 		this.rdbaSqlEditorPanel.appendString(sw.toString());
 	}
-	
+
 	/**
 	 * {@link #execJspf(JspfBase)}
 	 * @return
@@ -397,8 +404,15 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 		{
 			int[] selectedRows = tableList.getSelectedRows();
 			tables = new String[selectedRows.length];
+			int idx=0;
+			for (int i=0;i<tableList.getColumnCount();i++) {
+				if ("table_name".equals(tableList.getColumnName(i))) {
+					idx = i;
+					break;
+				}
+			}
 			for (int i=0;i<selectedRows.length;i++) {
-				Object obj = tableList.getValueAt(selectedRows[i], 0).toString();
+				Object obj = tableList.getValueAt(selectedRows[i], idx).toString();
 				tables[i] = (obj != null) ? obj.toString() : "";
 			}
 		}
@@ -416,15 +430,15 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 				}
 			}
 		}
-		
+
 		jsi.setDatabases(databases);
 		jsi.setTypes(types);
 		jsi.setTables(tables);
 		jsi.setColumns(columns);
-		
+
 		return jsi;
 	}
-	
+
 	/**
 	 * 現在選択中のTableDetailテーブルを取得する。
 	 * (タブで分離されているから全面の物を取得する。)
@@ -436,25 +450,25 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 		if (comp instanceof TableDetailPanel) {
 			result = ((TableDetailPanel)comp).getPropertyTable();
 		}
-		
+
 		return result;
 	}
-	
+
 	public void doGuiLayout() {
 		this.splitPane.setDividerLocation(0.5);
 		if (currentPropertyTable != null) {
 			this.tableList.setResultSetTableModel(currentPropertyTable);
 		}
 	}
-	
+
 	public RdbaConfig getRdbaConfig() {
 		return this.parentComponent.getRdbaConfig();
 	}
-	
+
 	public void reloadRdbaConfig() {
 		this.tableList.setFont(getRdbaConfig().getFontForTable());
 	}
-	
+
 	public void sendRdbaMessage(RdbaMessage rdbaMessage) {
 		this.parentComponent.sendRdbaMessage(rdbaMessage);
 	}
@@ -466,21 +480,21 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 	public RdbaSingletonBundle getRdbaSingletonBundle() {
 		return this.parentComponent.getRdbaSingletonBundle();
 	}
-	
+
 	public void setRdbaConnection(RdbaConnection rdbaConnection) {
 		this.rdbaConnection = rdbaConnection;
 		this.setSqlEditorSelection(rdbaConnection.getSqlEditorSelection(), rdbaConnection.getDefaultDatabase());
 	}
 	private void setSqlEditorSelection(SqlEditorSelection sqlEditorSelection, String defaultDatabase) {
 		this.sqlEditorSelection = sqlEditorSelection;
-		
+
 		this.databaseComboBox.setModel(new DefaultComboBoxModel(sqlEditorSelection.getDatabaseList().toArray()));
 		this.objectTypeComboBox.setModel(new DefaultComboBoxModel(sqlEditorSelection.getObjectTypeList().toArray()));
-		
+
 		this.databaseComboBox.setSelectedItem(defaultDatabase);
-		
-		currentDatabase = (String)(this.databaseComboBox.getSelectedItem()); 
-		currentObjectType = (String)(this.objectTypeComboBox.getSelectedItem()); 
+
+		currentDatabase = (String)(this.databaseComboBox.getSelectedItem());
+		currentObjectType = (String)(this.objectTypeComboBox.getSelectedItem());
 		updateTableList();
 	}
 
