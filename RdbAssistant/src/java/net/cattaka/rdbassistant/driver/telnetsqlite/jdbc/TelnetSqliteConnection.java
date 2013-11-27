@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2010, Takao Sumitomo
  * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, 
- * with or without modification, are permitted provided 
+ *
+ * Redistribution and use in source and binary forms,
+ * with or without modification, are permitted provided
  * that the following conditions are met:
- * 
- *     * Redistributions of source code must retain the 
+ *
+ *     * Redistributions of source code must retain the
  *       above copyright notice, this list of conditions
  *       and the following disclaimer.
  *     * Redistributions in binary form must reproduce
@@ -14,7 +14,7 @@
  *       conditions and the following disclaimer in the
  *       documentation and/or other materials provided
  *       with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
  * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +30,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * The views and conclusions contained in the software
  * and documentation are those of the authors and should
  * not be interpreted as representing official policies,
@@ -44,16 +44,24 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.net.Socket;
+import java.sql.Array;
+import java.sql.Blob;
 import java.sql.CallableStatement;
+import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.NClob;
 import java.sql.PreparedStatement;
+import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
+import java.sql.SQLXML;
 import java.sql.Savepoint;
 import java.sql.Statement;
+import java.sql.Struct;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.Executor;
 
 import net.cattaka.util.ExceptionHandler;
 
@@ -66,27 +74,27 @@ public class TelnetSqliteConnection implements Connection {
 	public static final char RESULT_HEADER = '+';
 	public static final char RESULT_DATA = '-';
 	public static final char COMMAND_SPECIAL = '.';
-	
+
 	public static final String CHARSET = "UTF-8";
-	
+
 	private boolean closed;
 	private String hostname;
 	private int port;
 	private String database;
-	
+
 	private Socket socket;
 	private Reader reader;
 	private Writer writer;
-	
+
 	public TelnetSqliteConnection(String hostname, int port, String database) {
 		super();
 		this.hostname = hostname;
 		this.port = port;
 		this.database = database;
-		
+
 		this.closed = false;
 	}
-	
+
 	public void prepareConection() throws SQLException {
 		if (socket != null && !socket.isClosed()) {
 			return;
@@ -129,7 +137,7 @@ public class TelnetSqliteConnection implements Connection {
 			throw new SQLException(e.getMessage());
 		}
 	}
-	
+
 	public void clearWarnings() throws SQLException {
 		throw new SQLException("Not implemented yet.");
 	}
@@ -160,7 +168,7 @@ public class TelnetSqliteConnection implements Connection {
 			}
 			throw new SQLException(e.getMessage());
 		}
-	}	
+	}
 
 	public void commit() throws SQLException {
 		throw new SQLException("Not implemented yet.");
@@ -345,4 +353,75 @@ public class TelnetSqliteConnection implements Connection {
 		}
 		return sb.toString();
 	}
+
+	public void abort(Executor executor) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public Array createArrayOf(String typeName, Object[] elements)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Blob createBlob() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Clob createClob() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public NClob createNClob() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public SQLXML createSQLXML() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Struct createStruct(String typeName, Object[] attributes)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getNetworkTimeout() throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String getSchema() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setClientInfo(Properties properties)
+			throws SQLClientInfoException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setClientInfo(String name, String value)
+			throws SQLClientInfoException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setNetworkTimeout(Executor executor, int milliseconds)
+			throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setSchema(String schema) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2010, Takao Sumitomo
  * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, 
- * with or without modification, are permitted provided 
+ *
+ * Redistribution and use in source and binary forms,
+ * with or without modification, are permitted provided
  * that the following conditions are met:
- * 
- *     * Redistributions of source code must retain the 
+ *
+ *     * Redistributions of source code must retain the
  *       above copyright notice, this list of conditions
  *       and the following disclaimer.
  *     * Redistributions in binary form must reproduce
@@ -14,7 +14,7 @@
  *       conditions and the following disclaimer in the
  *       documentation and/or other materials provided
  *       with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
  * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +30,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * The views and conclusions contained in the software
  * and documentation are those of the authors and should
  * not be interpreted as representing official policies,
@@ -48,12 +48,15 @@ import java.sql.CallableStatement;
 import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.NClob;
 import java.sql.ParameterMetaData;
 import java.sql.Ref;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.RowId;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
+import java.sql.SQLXML;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -1121,5 +1124,90 @@ public class TelnetSqliteCallableStatement implements CallableStatement {
 		// 不要
 		return null;
 	}
+
+	public void setNClob(int parameterIndex, NClob value) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setRowId(int parameterIndex, RowId x) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setSQLXML(int parameterIndex, SQLXML xmlObject)
+			throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void closeOnCompletion() throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean isCloseOnCompletion() throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public NClob getNClob(int parameterIndex) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public NClob getNClob(String parameterName) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public <T> T getObject(int parameterIndex, Class<T> type)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public <T> T getObject(String parameterName, Class<T> type)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public RowId getRowId(int parameterIndex) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public RowId getRowId(String parameterName) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public SQLXML getSQLXML(int parameterIndex) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public SQLXML getSQLXML(String parameterName) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setNClob(String parameterName, NClob value) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setRowId(String parameterName, RowId x) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setSQLXML(String parameterName, SQLXML xmlObject)
+			throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
 
 }

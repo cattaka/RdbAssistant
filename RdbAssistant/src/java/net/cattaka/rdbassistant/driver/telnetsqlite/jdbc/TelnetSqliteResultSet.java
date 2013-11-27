@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2010, Takao Sumitomo
  * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, 
- * with or without modification, are permitted provided 
+ *
+ * Redistribution and use in source and binary forms,
+ * with or without modification, are permitted provided
  * that the following conditions are met:
- * 
- *     * Redistributions of source code must retain the 
+ *
+ *     * Redistributions of source code must retain the
  *       above copyright notice, this list of conditions
  *       and the following disclaimer.
  *     * Redistributions in binary form must reproduce
@@ -14,7 +14,7 @@
  *       conditions and the following disclaimer in the
  *       documentation and/or other materials provided
  *       with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
  * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +30,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
+ *
  * The views and conclusions contained in the software
  * and documentation are those of the authors and should
  * not be interpreted as representing official policies,
@@ -49,10 +49,13 @@ import java.sql.Array;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.Date;
+import java.sql.NClob;
 import java.sql.Ref;
 import java.sql.ResultSetMetaData;
+import java.sql.RowId;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
+import java.sql.SQLXML;
 import java.sql.Statement;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -67,9 +70,9 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 	private TelnetSqliteResultSetMetaData metaData;
 	private int columnCount;
 	private int rowCount;
-	private ArrayList<ArrayList<String>> resultRow; 
-	private int currentRow; 
-	
+	private ArrayList<ArrayList<String>> resultRow;
+	private int currentRow;
+
 	private TelnetSqliteResultSet(ArrayList<ArrayList<String>> resultRow, TelnetSqliteResultSetMetaData metaData, int rowCount, int columnCount) {
 		super();
 		this.resultRow = resultRow;
@@ -78,7 +81,7 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 		this.columnCount = columnCount;
 		this.currentRow = -1;
 	}
-	
+
 	public static TelnetSqliteResultSet createResultSet(Socket socket, Reader reader, Writer writer, int rowCount) throws IOException {
 		String columnNameListArray = TelnetSqliteConnection.readLine(reader);
 		TelnetSqliteResultSetMetaData metaData = null;
@@ -91,7 +94,7 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 				columnTypeList[i] = Types.VARCHAR;
 			}
 			columnCount = columnNameList.length;
-			
+
 			while (true) {
 				String line = TelnetSqliteConnection.readLine(reader);
 				if (line.length() == 0) {
@@ -111,7 +114,7 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 					throw new IOException(line);
 				}
 			}
-			
+
 			metaData = new TelnetSqliteResultSetMetaData(columnNameList,columnTypeList);
 		} else if (columnNameListArray.length() == 0) {
 			// INSERT 文なのでResultSetが無い
@@ -119,10 +122,10 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 		} else {
 			throw new IOException(columnNameListArray);
 		}
-		
+
 		return new TelnetSqliteResultSet(resultRow, metaData, rowCount, columnCount);
 	}
-	
+
 	public boolean absolute(int paramInt) throws SQLException {
 		// 不要
 		return false;
@@ -130,32 +133,32 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 
 	public void afterLast() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void beforeFirst() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void cancelRowUpdates() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void clearWarnings() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void close() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void deleteRow() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public int findColumn(String paramString) throws SQLException {
@@ -528,7 +531,7 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 
 	public void insertRow() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public boolean isAfterLast() throws SQLException {
@@ -563,12 +566,12 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 
 	public void moveToCurrentRow() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void moveToInsertRow() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public boolean next() throws SQLException {
@@ -583,7 +586,7 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 
 	public void refreshRow() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public boolean relative(int paramInt) throws SQLException {
@@ -608,458 +611,458 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 
 	public void setFetchDirection(int paramInt) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void setFetchSize(int paramInt) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateArray(int paramInt, Array paramArray) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateArray(String paramString, Array paramArray)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateAsciiStream(int paramInt1, InputStream paramInputStream,
 			int paramInt2) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateAsciiStream(int paramInt, InputStream paramInputStream,
 			long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateAsciiStream(int paramInt, InputStream paramInputStream)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateAsciiStream(String paramString,
 			InputStream paramInputStream, int paramInt) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateAsciiStream(String paramString,
 			InputStream paramInputStream, long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateAsciiStream(String paramString,
 			InputStream paramInputStream) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBigDecimal(int paramInt, BigDecimal paramBigDecimal)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBigDecimal(String paramString, BigDecimal paramBigDecimal)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBinaryStream(int paramInt1, InputStream paramInputStream,
 			int paramInt2) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBinaryStream(int paramInt, InputStream paramInputStream,
 			long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBinaryStream(int paramInt, InputStream paramInputStream)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBinaryStream(String paramString,
 			InputStream paramInputStream, int paramInt) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBinaryStream(String paramString,
 			InputStream paramInputStream, long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBinaryStream(String paramString,
 			InputStream paramInputStream) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBlob(int paramInt, Blob paramBlob) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBlob(int paramInt, InputStream paramInputStream,
 			long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBlob(int paramInt, InputStream paramInputStream)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBlob(String paramString, Blob paramBlob)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBlob(String paramString, InputStream paramInputStream,
 			long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBlob(String paramString, InputStream paramInputStream)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBoolean(int paramInt, boolean paramBoolean)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBoolean(String paramString, boolean paramBoolean)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateByte(int paramInt, byte paramByte) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateByte(String paramString, byte paramByte)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBytes(int paramInt, byte[] paramArrayOfByte)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateBytes(String paramString, byte[] paramArrayOfByte)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateCharacterStream(int paramInt1, Reader paramReader,
 			int paramInt2) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateCharacterStream(int paramInt, Reader paramReader,
 			long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateCharacterStream(int paramInt, Reader paramReader)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateCharacterStream(String paramString, Reader paramReader,
 			int paramInt) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateCharacterStream(String paramString, Reader paramReader,
 			long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateCharacterStream(String paramString, Reader paramReader)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateClob(int paramInt, Clob paramClob) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateClob(int paramInt, Reader paramReader, long paramLong)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateClob(int paramInt, Reader paramReader)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateClob(String paramString, Clob paramClob)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateClob(String paramString, Reader paramReader,
 			long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateClob(String paramString, Reader paramReader)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateDate(int paramInt, Date paramDate) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateDate(String paramString, Date paramDate)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateDouble(int paramInt, double paramDouble)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateDouble(String paramString, double paramDouble)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateFloat(int paramInt, float paramFloat) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateFloat(String paramString, float paramFloat)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateInt(int paramInt1, int paramInt2) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateInt(String paramString, int paramInt) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateLong(int paramInt, long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateLong(String paramString, long paramLong)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNCharacterStream(int paramInt, Reader paramReader,
 			long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNCharacterStream(int paramInt, Reader paramReader)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNCharacterStream(String paramString, Reader paramReader,
 			long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNCharacterStream(String paramString, Reader paramReader)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNClob(int paramInt, Reader paramReader, long paramLong)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNClob(int paramInt, Reader paramReader)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNClob(String paramString, Reader paramReader,
 			long paramLong) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNClob(String paramString, Reader paramReader)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNString(int paramInt, String paramString)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNString(String paramString1, String paramString2)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNull(int paramInt) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateNull(String paramString) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateObject(int paramInt1, Object paramObject, int paramInt2)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateObject(int paramInt, Object paramObject)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateObject(String paramString, Object paramObject,
 			int paramInt) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateObject(String paramString, Object paramObject)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateRef(int paramInt, Ref paramRef) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateRef(String paramString, Ref paramRef) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateRow() throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateShort(int paramInt, short paramShort) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateShort(String paramString, short paramShort)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateString(int paramInt, String paramString)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateString(String paramString1, String paramString2)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateTime(int paramInt, Time paramTime) throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateTime(String paramString, Time paramTime)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateTimestamp(int paramInt, Timestamp paramTimestamp)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public void updateTimestamp(String paramString, Timestamp paramTimestamp)
 			throws SQLException {
 		// 不要
-		
+
 	}
 
 	public boolean wasNull() throws SQLException {
@@ -1081,7 +1084,7 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 		ArrayList<String> result = new ArrayList<String>();
 		StringBuilder sb = new StringBuilder();
 		int mode = 0;
-		
+
 		for (int i=0;i<src.length();i++) {
 			char ch = src.charAt(i);
 			switch(mode) {
@@ -1139,7 +1142,78 @@ public class TelnetSqliteResultSet implements java.sql.ResultSet {
 		if (mode != 0) {
 			result.add(sb.toString());
 		}
-		
+
 		return result.toArray(new String[result.size()]);
 	}
+
+	public NClob getNClob(int arg0) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public NClob getNClob(String arg0) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public <T> T getObject(int arg0, Class<T> arg1) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public <T> T getObject(String arg0, Class<T> arg1) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public RowId getRowId(int arg0) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public RowId getRowId(String arg0) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public SQLXML getSQLXML(int arg0) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public SQLXML getSQLXML(String arg0) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateNClob(int arg0, NClob arg1) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void updateNClob(String arg0, NClob arg1) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void updateRowId(int arg0, RowId arg1) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void updateRowId(String arg0, RowId arg1) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void updateSQLXML(int arg0, SQLXML arg1) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void updateSQLXML(String arg0, SQLXML arg1) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
 }
