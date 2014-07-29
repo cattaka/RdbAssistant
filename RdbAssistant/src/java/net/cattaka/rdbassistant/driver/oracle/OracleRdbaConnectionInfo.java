@@ -83,9 +83,14 @@ public class OracleRdbaConnectionInfo implements RdbaConnectionInfo {
 			info.setProperty("user", userName);
 			info.setProperty("password", password);
 			conn = driver.connect(toUrl(), info);
-			conn.setAutoCommit(false);
 		} catch (SQLException e) {
 			throw new RdbaException(e.getMessage(),e);
+		}
+		try {
+			conn.setAutoCommit(false);
+			conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+		} catch (SQLException e) {
+			ExceptionHandler.warn(e);
 		}
 		
 		OracleRdbaConnection rdbaConnection = new OracleRdbaConnection(new ConnectionWrapper(conn), userName);

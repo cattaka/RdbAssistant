@@ -77,9 +77,14 @@ public class SqliteRdbaConnectionInfo implements RdbaConnectionInfo {
 		try {
 			Properties info = new Properties();
 			conn = driver.connect(toUrl(), info);
-			conn.setAutoCommit(false);
 		} catch (SQLException e) {
 			throw new RdbaException(e.getMessage(),e);
+		}
+		try {
+			conn.setAutoCommit(false);
+			conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+		} catch (SQLException e) {
+			ExceptionHandler.warn(e);
 		}
 		
 		SqliteRdbaConnection rdbaConnection = new SqliteRdbaConnection(new ConnectionWrapper(conn), "main");
