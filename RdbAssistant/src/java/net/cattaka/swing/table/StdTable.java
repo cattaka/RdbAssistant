@@ -45,10 +45,15 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.Date;
 
 import javax.swing.AbstractAction;
+import javax.swing.InputMap;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.text.DefaultEditorKit;
 
 import net.cattaka.util.StringUtil;
 
@@ -92,6 +97,12 @@ public class StdTable extends JTable {
 		this.setDefaultRenderer(Number.class, new StdTableStyledCellRenderer());
 		this.setDefaultRenderer(Date.class, new StdTableStyledCellRenderer());
 		this.setDefaultRenderer(StdStyledCell.class, new StdTableStyledCellRenderer());
+
+		{	// for mac support
+			int keyMask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+			InputMap im = getInputMap(WHEN_FOCUSED);
+			im.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, keyMask), "copy");
+		}
 
 		// コピーアクションを上書き
 		getActionMap().put("copy", new AbstractAction() {
