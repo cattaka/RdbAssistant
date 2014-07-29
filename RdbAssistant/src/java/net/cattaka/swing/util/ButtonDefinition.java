@@ -41,6 +41,7 @@
  */
 package net.cattaka.swing.util;
 
+import java.awt.Toolkit;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
@@ -118,7 +119,7 @@ public class ButtonDefinition {
 		KeyStroke result = null;
 		int modifiers = 0;
 		if (isAcceleratorCtrlMask()) {
-			modifiers = modifiers | InputEvent.CTRL_MASK;
+			modifiers = modifiers | Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 		}
 		if (isAcceleratorShiftMask()) {
 			modifiers = modifiers | InputEvent.SHIFT_MASK;
