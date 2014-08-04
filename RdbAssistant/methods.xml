@@ -4,16 +4,11 @@
 		<delete dir="./build"/>
 		<delete dir="./release"/>
 
-		<available file="build.sign.xml" property="dosign"/>
 		<property file="src/resources/version.properties"/>
-		<property name="archive.name" value="${app.name}_${release.number}_${release.name}_${build.number}"/>
+		<property name="archive.name" value="${app.name}_${release.number}_${build.number}"/>
 	</target>
 	<target name="release" depends="init,build">
 		<delete dir="./release"/>
-		
-		<mkdir dir="./release/applet"/>
-		<copy file="build/${app.name}.jar" tofile="./release/applet/${app.name}-applet.jar"/>
-		<echo message="applet is created."/>
 
 		<mkdir dir="./release/apprication"/>
 		<copy todir="./release/apprication">
@@ -29,14 +24,8 @@
 		<zip zipfile="./release/${archive.name}.zip">
 			<fileset dir="./release/apprication"/>
 		</zip>
-		
-		<mkdir dir="./release/webstart"/>
-		<copy file="build/${app.name}.jar" todir="./release/webstart"/>
-		<copy file="misc/${app.name}.jnlp" todir="./release/webstart"/>
-		<echo message="webstart is created."/>
 
 		<ant antfile="methods.xml" target="src"/>
-		<ant antfile="methods.xml" target="sign"/>
 		
 		<echo message="release is created."/>
 		<buildnumber file="src/resources/version.properties"/>
@@ -45,9 +34,6 @@
 		<zip zipfile="release/${archive.name}-src.zip">
 			<fileset dir="./" excludes="build.sign.xml,release/**,build/**,workspace/**,bin/**"/>
 		</zip>
-	</target>
-	<target name="sign" if="dosign">
-		<ant antfile="build.sign.xml" target="sign"/>
 	</target>
 	<target name="build" depends="init">
 		<delete dir="./build"/>

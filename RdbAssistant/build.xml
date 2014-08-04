@@ -5,9 +5,4 @@
 			<property file="ant/release.properties"/>
 		</ant>
 	</target>
-	<target name="testing">
-		<ant antfile="methods.xml" target="release">
-			<property file="ant/testing.properties"/>
-		</ant>
-	</target>
 </project>
