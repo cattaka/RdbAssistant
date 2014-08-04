@@ -102,6 +102,7 @@ public class StdTable extends JTable {
 			int keyMask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 			InputMap im = getInputMap(WHEN_FOCUSED);
 			im.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, keyMask), "copy");
+			im.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, keyMask), "selectAll");
 		}
 
 		// コピーアクションを上書き
