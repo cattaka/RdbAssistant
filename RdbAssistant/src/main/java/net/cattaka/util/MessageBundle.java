@@ -54,10 +54,6 @@ public class MessageBundle {
 		versionProperties = MessageBundleLoader.getVersionPorperties();
 	}
 	
-	public static String getBuildNumber() {
-		return versionProperties.getProperty("build.number");
-	}
-	
 	public static String getReleaseNumber() {
 		return versionProperties.getProperty("release.number");
 	}

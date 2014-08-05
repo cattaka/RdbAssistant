@@ -76,11 +76,9 @@ public class DocumentDialog extends JDialog {
 		try {
 			StringBuilder sb = new StringBuilder();
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-			String buildNumber = MessageBundle.getBuildNumber();
 			String releaseNumber = MessageBundle.getReleaseNumber();
 			String tmp;
 			while ((tmp = in.readLine()) != null) {
-				tmp = tmp.replace("${build_number}", buildNumber);
 				tmp = tmp.replace("${release_number}", releaseNumber);
 				sb.append(tmp + "\n");
 			}
