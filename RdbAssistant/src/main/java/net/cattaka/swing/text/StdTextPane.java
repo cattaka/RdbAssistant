@@ -225,7 +225,7 @@ public class StdTextPane extends JTextPane implements StdTextComponent {
 	}
 	
 	public void doFindAction(FindCondition findCondition) {
-		int result = 0;
+//		int result = 0;
 		StdStyledDocument ssd = getStdStyledDocument();
 		if (ssd == null) {
 			return;
@@ -239,21 +239,21 @@ public class StdTextPane extends JTextPane implements StdTextComponent {
 			if (findCondition.getAction() == ACTION.REPLACE) {
 				// 置換時処理
 				if (replaceString(search, replace, findCondition.isSenseCaseSearch(), findCondition.isRegexSearch(), findCondition.isWordUnitSearch()) != -1) {
-					result++;
+//					result++;
 				}
 			}
 			
 			if (findCondition.getAction() == ACTION.REPLACE_FIND) {
 				// 置換＆検索時処理
 				if (replaceFindString(search, replace, -1, findCondition.isDownward(), findCondition.isLoopSearch(), findCondition.isSenseCaseSearch(), findCondition.isRegexSearch(), findCondition.isWordUnitSearch()) > 0) {
-					result++;
+//					result++;
 				}
 			}
 			
 			if (findCondition.getAction() == ACTION.FIND) {
 				// 検索時処理
 				if (findString(search, -1, findCondition.isDownward(), findCondition.isLoopSearch(), findCondition.isSenseCaseSearch(), findCondition.isRegexSearch(), findCondition.isWordUnitSearch()) != -1) {
-					result++;
+//					result++;
 				}
 			}
 			

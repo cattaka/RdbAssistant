@@ -42,6 +42,7 @@
 package net.cattaka.rdbassistant.driver.jdbc;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.SocketPermission;
 import java.net.URL;
@@ -135,7 +136,6 @@ public class JdbcRdbaConnectionInfo implements RdbaConnectionInfo {
 		}
 		
 		JdbcRdbaConnection rdbaConnection = new JdbcRdbaConnection(new ConnectionWrapper(conn), userName);
-		
 		return rdbaConnection;
 	}
 

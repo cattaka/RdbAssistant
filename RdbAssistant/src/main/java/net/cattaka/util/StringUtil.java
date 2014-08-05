@@ -624,15 +624,15 @@ public class StringUtil {
 				sb.append((char)r);
 			}
 		} catch (IOException e) {
+			throw e;
+		} finally {
 			if (reader != null) {
 				try {
 					reader.close();
-				} catch (IOException e2) {
-					// ありえない
+				} catch (IOException e) {
 					ExceptionHandler.warn(e);
 				}
 			}
-			throw e;
 		}
 		return sb.toString();
 	}

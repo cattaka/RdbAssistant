@@ -66,8 +66,8 @@ import net.cattaka.util.MessageBundle;
 
 public class FontChooser extends JDialog {
 	private static final long serialVersionUID = 1L;
-	private JList fontNameList;
-	private JList fontSizeList;
+	private JList<String> fontNameList;
+	private JList<Integer> fontSizeList;
 	private Font currentFont;
 	private JTextField previewPlain;
 	private JTextField previewBold;
@@ -139,8 +139,8 @@ public class FontChooser extends JDialog {
 		previewBoldItalic = new JTextField(sampleStringForFont);
 		
 		ListSelectionListenerImpl lsl = new ListSelectionListenerImpl();
-		fontNameList = new JList();
-		fontSizeList = new JList();
+		fontNameList = new JList<String>();
+		fontSizeList = new JList<Integer>();
 		{
 			String[] fontList = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 			fontNameList.setListData(fontList);

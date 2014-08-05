@@ -43,7 +43,10 @@ package net.cattaka.rdbassistant.test;
 
 import java.beans.XMLDecoder;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashSet;
+
+import net.cattaka.util.ExceptionHandler;
 
 public class CreateReservedWords {
 	@SuppressWarnings("unchecked")
@@ -60,9 +63,24 @@ public class CreateReservedWords {
 		enc.flush();
 		out.close();
 		*/
-		FileInputStream in = new FileInputStream("ReservedWords.mysql.properties");
-		XMLDecoder dec = new XMLDecoder(in);
-		words = (HashSet<String>)dec.readObject();
-		System.out.println(words);
+		FileInputStream in = null;
+		XMLDecoder dec = null;
+		try {
+			in = new FileInputStream("ReservedWords.mysql.properties");
+			dec = new XMLDecoder(in);
+			words = (HashSet<String>)dec.readObject();
+			System.out.println(words);
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					ExceptionHandler.warn(e);
+				}
+			}
+			if (dec != null) {
+				dec.close();
+			}
+		}
 	}
 }

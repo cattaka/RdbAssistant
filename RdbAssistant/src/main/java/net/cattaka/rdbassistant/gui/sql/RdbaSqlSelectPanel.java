@@ -58,7 +58,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -100,8 +99,8 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 
 	private RdbaGuiInterface parentComponent;
 	private JSplitPane splitPane;
-	private JComboBox databaseComboBox;
-	private JComboBox objectTypeComboBox;
+	private JComboBox<String> databaseComboBox;
+	private JComboBox<String> objectTypeComboBox;
 	private JTableForTableList tableList;
 	private JTabbedPane tableDetailPanel;
 	private RdbaConnection rdbaConnection;
@@ -238,9 +237,9 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 		JPanel tableListPanel;
 		JPanel propertyTablePanel;
 
-		this.databaseComboBox = new JComboBox();
+		this.databaseComboBox = new JComboBox<String>();
 		this.databaseComboBox.setAlignmentX(JComponent.LEFT_ALIGNMENT);
-		this.objectTypeComboBox = new JComboBox();
+		this.objectTypeComboBox = new JComboBox<String>();
 		this.objectTypeComboBox.setAlignmentX(JComponent.LEFT_ALIGNMENT);
 
 		ActionListenerImpl al = new ActionListenerImpl();
@@ -352,22 +351,6 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 				menuItem.addActionListener(al);
 				popup.add(menuItem);
 			}
-		}
-
-		RdbaJspfBundle jspfUserBundle = null;//getRdbaSingletonBundle().getDefaultJspfBundle();
-		if (jspfUserBundle != null) {
-			JMenu templateMenu = new JMenu(MessageBundle.getMessage("template"));
-			ActionListenerForDefaultJspf al = new ActionListenerForDefaultJspf();
-			popup.addSeparator();
-			JspfBase[] jspfBases = jspfUserBundle.getJspfList();
-			for (JspfBase jspfBase : jspfBases) {
-				JMenuItem menuItem = new JMenuItem();
-				menuItem.setText(jspfBase.getDisplayName());
-				menuItem.setActionCommand(jspfBase.getName());
-				menuItem.addActionListener(al);
-				templateMenu.add(menuItem);
-			}
-			popup.add(templateMenu);
 		}
 		return popup;
 	}
@@ -488,8 +471,8 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 	private void setSqlEditorSelection(SqlEditorSelection sqlEditorSelection, String defaultDatabase) {
 		this.sqlEditorSelection = sqlEditorSelection;
 
-		this.databaseComboBox.setModel(new DefaultComboBoxModel(sqlEditorSelection.getDatabaseList().toArray()));
-		this.objectTypeComboBox.setModel(new DefaultComboBoxModel(sqlEditorSelection.getObjectTypeList().toArray()));
+		this.databaseComboBox.setModel(new DefaultComboBoxModel<String>(sqlEditorSelection.getDatabaseList().toArray(new String[sqlEditorSelection.getDatabaseList().size()])));
+		this.objectTypeComboBox.setModel(new DefaultComboBoxModel<String>(sqlEditorSelection.getObjectTypeList().toArray(new String[sqlEditorSelection.getObjectTypeList().size()])));
 
 		this.databaseComboBox.setSelectedItem(defaultDatabase);
 

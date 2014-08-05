@@ -95,7 +95,6 @@ public class ToolsJarBundle {
 	public ToolsJarBundle() {
 	}
 
-	@SuppressWarnings("unchecked")
 	public void reloadTools(RdbaConfig rdbaConfig) {
 		this.javacMain = null;
 		
@@ -151,7 +150,6 @@ public class ToolsJarBundle {
 		return (this.javacMain != null);
 	}
 	
-	@SuppressWarnings("static-access")
 	public void compile(String[] args, PrintWriter printWriter) throws JspfException {
 		if (this.javacMain == null) {
 			throw new JspfException("Java compiler is not set.");

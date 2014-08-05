@@ -78,7 +78,7 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 	private static final long serialVersionUID = 1L;
 	private StdTextField labelField;
 	private DIPInfoFile driverFileField;
-	private JComboBox driverClassNameCombo;
+	private JComboBox<String> driverClassNameCombo;
 	private StdTextField urlField;
 	private StdTextField usernameField;
 	private JPasswordField passwordField;
@@ -111,7 +111,7 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 		
 		labelField = new StdTextField();
 		driverFileField = new DIPInfoFile("", "", DIPInfoFile.MODE_OPEN); 
-		driverClassNameCombo = new JComboBox();
+		driverClassNameCombo = new JComboBox<String>();
 		urlField = new StdTextField();
 		usernameField = new StdTextField();
 		passwordField = new JPasswordField();
@@ -231,8 +231,9 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 		
 		// Zipファイルとしてclassを検索
 		List<String> classNameList = new ArrayList<String>();
+		ZipFile zipFile = null;
 		try {
-			ZipFile zipFile = new ZipFile(jdbcFile);
+			zipFile = new ZipFile(jdbcFile);
 			Enumeration<? extends ZipEntry> entrys = zipFile.entries();
 			while (entrys.hasMoreElements()) {
 				ZipEntry entry = entrys.nextElement();
@@ -245,6 +246,14 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 			}
 		} catch (IOException e) {
 			throw new RdbaException(e);
+		} finally {
+			if (zipFile != null) {
+				try {
+					zipFile.close();
+				} catch (IOException e) {
+					ExceptionHandler.warn(e);
+				}
+			}
 		}
 		
 		// 各クラスがDriverの子供かチェックする
@@ -270,16 +279,5 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 		for (String result : resultList) {
 			driverClassNameCombo.addItem(result);
 		}
-		
-		// Jarファイルをロード
-//		MyURLClassLoader urlClassLoader = new MyURLClassLoader(new URL[]{jdbcUrl});
-//		urlClassLoader.getExtraPermission().add(new SocketPermission("*", "connect,resolve"));
-//		Class<?> driverClass;
-//		urlClassLoader.
-//		try {
-//			driverClass =  urlClassLoader.loadClass(this.driverClassName);
-//		} catch (ClassNotFoundException e) {
-//			throw new RdbaException(MessageBundle.getMessage("jdbc_class_not_found"));
-//		}
 	}
 }

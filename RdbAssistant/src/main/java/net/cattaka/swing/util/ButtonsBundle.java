@@ -83,7 +83,7 @@ public class ButtonsBundle {
 			String buttonText = buttonDefinition.getButtonText();
 			KeyStroke keyStroke = buttonDefinition.createKeyStroke();
 //			String toolTip = buttonDefinition.getButtonToolTip();
-			if (buttonText == null && buttonText.length() > 0) {
+			if (buttonText == null || buttonText.length() == 0) {
 				buttonText = key;
 			}
 			if (mnemonic != null) {
@@ -105,7 +105,7 @@ public class ButtonsBundle {
 			Character mnemonic = buttonDefinition.getMnemonic();
 			String buttonText = buttonDefinition.getButtonText();
 			String toolTip = buttonDefinition.getButtonToolTip();
-			if (buttonText == null && buttonText.length() > 0) {
+			if (buttonText == null || buttonText.length() == 0) {
 				buttonText = key;
 			}
 			if (mnemonic != null) {
@@ -128,7 +128,7 @@ public class ButtonsBundle {
 			String toolTip = buttonDefinition.getButtonToolTip();
 			button.setIcon(icon);
 			button.setMargin(new Insets(0,0,0,0));
-			if (buttonText == null && buttonText.length() > 0) {
+			if (buttonText == null || buttonText.length() == 0) {
 				buttonText = key;
 			}
 			if (mnemonic != null) {

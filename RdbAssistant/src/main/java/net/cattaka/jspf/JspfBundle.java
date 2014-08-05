@@ -115,8 +115,6 @@ public class JspfBundle<T> {
 	
 	@SuppressWarnings("unchecked")
 	public void compile(ToolsJarBundle toolsJarBundle, String labelName, String sourceText, PrintWriter out) throws JspfException {
-//		String classPath = this.classPathManager.getClassPath(targetClass);
-		String classPath = null;
 		sourceText = StringUtil.removeCarriageReturn(sourceText);
 		
 		// コンパイル実行
@@ -141,15 +139,7 @@ public class JspfBundle<T> {
 		// コンパイル実行
 		try {
 			String[] args;
-			if (classPath != null) {
-				args = new String[]{
-						"-encoding", "UTF-8",
-						"-classpath", classPath,
-						"-sourcepath", getJavaSourceDir().getAbsolutePath(),
-						"-d", getClassDir().getAbsolutePath(),
-						jspfEntry.getJavaSourceFile().getAbsolutePath()
-					};
-			} else {
+			{
 				args = new String[]{
 						"-encoding", "UTF-8",
 						"-sourcepath", getJavaSourceDir().getAbsolutePath(),

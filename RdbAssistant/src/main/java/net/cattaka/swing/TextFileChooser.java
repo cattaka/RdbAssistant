@@ -64,7 +64,7 @@ public class TextFileChooser extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JFileChooserEx fileChooser;
 	private int option = JFileChooser.CANCEL_OPTION;
-	private JComboBox charsetComboBox;
+	private JComboBox<Charset> charsetComboBox;
 	
 	class JFileChooserEx extends JFileChooser {
 		private static final long serialVersionUID = 1L;
@@ -101,7 +101,7 @@ public class TextFileChooser extends JDialog {
 
 	private void makeLayout() {
 		this.fileChooser = new JFileChooserEx();
-		this.charsetComboBox = new JComboBox();
+		this.charsetComboBox = new JComboBox<Charset>();
 		JLabel encodingLabel = new JLabel(MessageBundle.getMessage("encoding"));
 		{
 			SortedMap<String, Charset> availableCharsets = Charset.availableCharsets();

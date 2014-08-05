@@ -101,11 +101,7 @@ public class StdTableStyledCellRenderer extends StdTableCellRenderer {
 				setBorder(border);
 			}
 	
-			if (cell != null) {
-				setDisplayValue(cell.getValue());
-			} else {
-				setDisplayValue(null);
-			}
+			setDisplayValue(cell.getValue());
 		} else {
 			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		}

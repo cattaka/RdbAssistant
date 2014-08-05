@@ -74,8 +74,8 @@ public class FindConditionPanel extends JPanel {
 	private ArrayList<String> searchHistory;
 	private ArrayList<String> replaceHistory;
 	
-	private StdComboBox searchField;
-	private StdComboBox replaceField;
+	private StdComboBox<String> searchField;
+	private StdComboBox<String> replaceField;
 	
 	private JRadioButton downwardRadio;
 	private JRadioButton upwardRadio;
@@ -140,8 +140,8 @@ public class FindConditionPanel extends JPanel {
 		this.searchHistory = new ArrayList<String>();
 		this.replaceHistory = new ArrayList<String>();
 		
-		this.searchField = new StdComboBox();
-		this.replaceField = new StdComboBox();
+		this.searchField = new StdComboBox<String>();
+		this.replaceField = new StdComboBox<String>();
 		this.replaceField.setEditable(true);
 		{
 			this.searchField.addKeyListener(new KeyListenerSearch());

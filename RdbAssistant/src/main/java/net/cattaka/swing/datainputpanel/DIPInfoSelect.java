@@ -52,7 +52,7 @@ public class DIPInfoSelect implements DIPInfo {
 	private String[] items;
 	private Object[] values;
 	private int defaultData;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 
 	public DIPInfoSelect(String label, String[] items, int defaultData)
 			throws InvalidDataTypeException {
@@ -70,7 +70,7 @@ public class DIPInfoSelect implements DIPInfo {
 		this.items = items;
 		this.values = items;
 		this.defaultData = defaultData;
-		this.comboBox = new JComboBox(items);
+		this.comboBox = new JComboBox<String>(items);
 		this.comboBox.setSelectedIndex(defaultData);
 	}
 
@@ -96,7 +96,7 @@ public class DIPInfoSelect implements DIPInfo {
 		this.items = items;
 		this.values = items;
 		this.defaultData = defaultData;
-		this.comboBox = new JComboBox(items);
+		this.comboBox = new JComboBox<String>(items);
 		this.comboBox.setSelectedIndex(defaultData);
 	}
 
@@ -122,7 +122,7 @@ public class DIPInfoSelect implements DIPInfo {
 		this.items = items;
 		this.values = values;
 		this.defaultData = defaultData;
-		this.comboBox = new JComboBox(items);
+		this.comboBox = new JComboBox<String>(items);
 		this.comboBox.setSelectedIndex(defaultData);
 	}
 	

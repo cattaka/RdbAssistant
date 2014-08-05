@@ -46,7 +46,7 @@ import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 
-public class StdComboBox extends JComboBox {
+public class StdComboBox<T> extends JComboBox<T> {
 	private static final long serialVersionUID = 1L;
 
 	public StdComboBox() {
@@ -54,17 +54,17 @@ public class StdComboBox extends JComboBox {
 		this.initialize();
 	}
 
-	public StdComboBox(ComboBoxModel model) {
+	public StdComboBox(ComboBoxModel<T> model) {
 		super(model);
 		this.initialize();
 	}
 
-	public StdComboBox(Object[] items) {
+	public StdComboBox(T[] items) {
 		super(items);
 		this.initialize();
 	}
 
-	public StdComboBox(Vector<?> items) {
+	public StdComboBox(Vector<T> items) {
 		super(items);
 		this.initialize();
 	}

@@ -42,6 +42,7 @@
 package net.cattaka.rdbassistant.driver.jdbc;
 
 import java.beans.XMLDecoder;
+import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -193,13 +194,25 @@ public class JdbcRdbaConnection implements RdbaConnection {
 	
 	@SuppressWarnings("unchecked")
 	private static void createReservedWords() {
+		InputStream in = null;
+		XMLDecoder dec = null;
 		try {
-			InputStream in = JdbcRdbaConnection.class.getClassLoader().getResourceAsStream(RdbaConstants.ORACLE_RESERVED_WORDS_FILE);
-			XMLDecoder dec = new XMLDecoder(in);
+			in = JdbcRdbaConnection.class.getClassLoader().getResourceAsStream(RdbaConstants.ORACLE_RESERVED_WORDS_FILE);
+			dec = new XMLDecoder(in);
 			reservedWords = (HashSet<String>)dec.readObject();
-			in.close();
 		} catch(Exception e) {
 			ExceptionHandler.error(e);
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					ExceptionHandler.warn(e);
+				}
+			}
+			if (dec != null) {
+				dec.close();
+			}
 		}
 	}
 	

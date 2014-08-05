@@ -78,7 +78,7 @@ public class RdbaConnectionInfoEditorDialog extends JDialog {
 	}; 
 	private RdbaConnectionInfo rdbaConnectionInfo = null;
 	
-	private JComboBox rdbmsComboBox;
+	private JComboBox<String> rdbmsComboBox;
 	private JPanel editorPanel;
 	private RdbaConnectionInfoEditor rdbaConnectionInfoEditor;
 
@@ -125,7 +125,7 @@ public class RdbaConnectionInfoEditorDialog extends JDialog {
 		cancelButton.setActionCommand("cancel");
 		cancelButton.addActionListener(al);
 		
-		rdbmsComboBox = new JComboBox();
+		rdbmsComboBox = new JComboBox<String>();
 		for (int i=0;i<rdbaConnectionInfoArray.length;i++) {
 			rdbmsComboBox.addItem(rdbaConnectionInfoArray[i].getRdbmsName());
 		}
