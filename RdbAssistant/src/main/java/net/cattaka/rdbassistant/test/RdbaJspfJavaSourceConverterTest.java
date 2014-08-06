@@ -41,10 +41,6 @@
  */
 package net.cattaka.rdbassistant.test;
 
-import java.io.File;
-import net.cattaka.jspf.JspfBundle;
-import net.cattaka.rdbassistant.script.RdbaScriptJavaSourceConverter;
-import net.cattaka.rdbassistant.script.core.RdbaScript;
 
 public class RdbaJspfJavaSourceConverterTest {
 	public static void main(String[] args) throws Exception {
@@ -52,10 +48,9 @@ public class RdbaJspfJavaSourceConverterTest {
 	}
 	
 	public static void convertTest() throws Exception {
-		File workDir = new File("RdbaScriptWork");
-		RdbaScriptJavaSourceConverter rjjsc = new RdbaScriptJavaSourceConverter();
-		JspfBundle<RdbaScript> jspfBundle = new JspfBundle<RdbaScript>(rjjsc, RdbaScript.class);
-		jspfBundle.setWorkDir(workDir);
+//		File workDir = new File("RdbaScriptWork");
+//		RdbaScriptJavaSourceConverter rjjsc = new RdbaScriptJavaSourceConverter();
+//		JspfBundle<RdbaScript> jspfBundle = new JspfBundle<RdbaScript>(rjjsc, RdbaScript.class);
 		
 //		StringWriter stringWriter = new StringWriter();
 //		PrintWriterEx printWriter = new PrintWriterEx(stringWriter);

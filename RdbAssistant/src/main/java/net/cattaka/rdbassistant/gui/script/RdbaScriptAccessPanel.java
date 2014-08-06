@@ -62,7 +62,7 @@ public class RdbaScriptAccessPanel extends JPanel implements RdbaGuiInterface {
 	private RdbaGuiInterface parentComponent;
 	private FileViewTreeEx fileViewTree;
 	private RdbaScriptEditorTabbedPanel rdbaScriptEditorTabbedPanel;
-	
+
 	class FileViewTreeEx extends FileViewTree {
 		private static final long serialVersionUID = 1L;
 
@@ -75,59 +75,64 @@ public class RdbaScriptAccessPanel extends JPanel implements RdbaGuiInterface {
 			boolean goFlag = false;
 			goFlag = true;
 			if (goFlag) {
-				rdbaScriptEditorTabbedPanel.openScript(file, RdbaConstants.DEFAULT_CHAR_SET);
+				rdbaScriptEditorTabbedPanel.openScript(file,
+						RdbaConstants.DEFAULT_CHAR_SET);
 			}
 		}
-		
+
 		public void refleshTarget(File target) {
-			FileTreeNode rootNode = (FileTreeNode)getModel().getRoot();
+			FileTreeNode rootNode = (FileTreeNode) getModel().getRoot();
 			refleshTarget(target, rootNode);
 		}
+
 		private void refleshTarget(File target, FileTreeNode node) {
 			File nodeFile = node.getFile();
 			try {
 				String targetCanonicalPath = target.getCanonicalPath();
 				String nodeCanonicalPath = nodeFile.getCanonicalPath();
 				if (targetCanonicalPath.indexOf(nodeCanonicalPath) == 0) {
-					if (targetCanonicalPath.length() == nodeCanonicalPath.length()) {
+					if (targetCanonicalPath.length() == nodeCanonicalPath
+							.length()) {
 						// 更新対象を特定した
 						node.reflesh();
 					} else {
 						// 子供を探しに行く
-				 		FileTreeNode[] children = node.getChildren();
-				 		for (FileTreeNode child : children) {
-				 			refleshTarget(target, child);
-				 		}
-				 	}
+						FileTreeNode[] children = node.getChildren();
+						for (FileTreeNode child : children) {
+							refleshTarget(target, child);
+						}
+					}
 				}
-			} catch(IOException e) {
+			} catch (IOException e) {
 				ExceptionHandler.error(e);
 			}
 		}
 	}
-	
+
 	public RdbaScriptAccessPanel(RdbaGuiInterface parentComponent) {
 		this.parentComponent = parentComponent;
 		makeLayout();
 	}
-	
+
 	private void makeLayout() {
 		this.fileViewTree = new FileViewTreeEx();
 		StdScrollPane fileViewTreePane;
 		fileViewTreePane = new StdScrollPane(this.fileViewTree);
-		
+
 		this.setLayout(new GridLayout());
 		this.add(fileViewTreePane);
 	}
 
 	/**
 	 * ファイル選択時に開く先を設定。
+	 * 
 	 * @param rdbaSqlEditorPanel
 	 */
-	public void setRdbaScriptEditorTabbedPanel(RdbaScriptEditorTabbedPanel rdbaScriptEditorPanel) {
+	public void setRdbaScriptEditorTabbedPanel(
+			RdbaScriptEditorTabbedPanel rdbaScriptEditorPanel) {
 		this.rdbaScriptEditorTabbedPanel = rdbaScriptEditorPanel;
 	}
-	
+
 	/** {@link RdbaGuiInterface} */
 	public void doGuiLayout() {
 		// 無し
@@ -146,30 +151,28 @@ public class RdbaScriptAccessPanel extends JPanel implements RdbaGuiInterface {
 	/** {@link RdbaGuiInterface} */
 	public void relayRdbaMessage(RdbaMessage rdbaMessage) {
 		// ファイルが更新された場合はそれに関係するディレクトリをリフレッシュする
-		if (rdbaMessage.getMessage().equals(RdbaMessageConstants.RDBASCRIPTACCESSPANEL_REFLESH)) {
+		if (rdbaMessage.getMessage().equals(
+				RdbaMessageConstants.RDBASCRIPTACCESSPANEL_REFLESH)) {
 			Object obj = rdbaMessage.getData();
 			if (obj != null && obj instanceof File) {
-				this.fileViewTree.refleshTarget((File)obj);
+				this.fileViewTree.refleshTarget((File) obj);
 			}
 		}
 	}
 
 	/** {@link RdbaGuiInterface} */
 	public void reloadRdbaConfig() {
-		if (getRdbaSingletonBundle().getScriptBundle().isAvailable()) {
-			File workDir = getRdbaSingletonBundle().getScriptBundle().getWorkDir();
-			File sourceDir = new File(workDir.getAbsolutePath() + File.separatorChar + RdbaConstants.RDBA_SCRIPT_DIR);
-			if (sourceDir.exists()) {
-				if (!sourceDir.isDirectory()) {
-					sourceDir.delete();
-				}
-			} else {
-				sourceDir.mkdir();
+		File workDir = getRdbaSingletonBundle().getScriptBundle().getWorkDir();
+		File sourceDir = new File(workDir.getAbsolutePath()
+				+ File.separatorChar + RdbaConstants.RDBA_SCRIPT_DIR);
+		if (sourceDir.exists()) {
+			if (!sourceDir.isDirectory()) {
+				sourceDir.delete();
 			}
-			this.fileViewTree.setRootDirectory(sourceDir);
 		} else {
-			this.fileViewTree.setRootDirectory(null);
+			sourceDir.mkdir();
 		}
+		this.fileViewTree.setRootDirectory(sourceDir);
 	}
 
 	/** {@link RdbaGuiInterface} */

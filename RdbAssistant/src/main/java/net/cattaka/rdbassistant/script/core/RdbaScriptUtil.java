@@ -67,7 +67,7 @@ import net.cattaka.util.StringUtil;
  * 
  * @author cattaka
  */
-public class RdbaScript {
+public class RdbaScriptUtil {
 	private RdbaConnection rdbaConnection;
 	private List<RdbaConnection> rdbaConnectionBundle = new ArrayList<RdbaConnection>();
 	private PrintWriter logWriter;
@@ -96,13 +96,6 @@ public class RdbaScript {
 		this.scriptTableUtil = new ScriptTableUtil();
 		this.out = out;
 		this.table = table;
-	}
-	
-	/**
-	 * 
-	 * @throws SQLException SQLの実行時にエラーが発生した場合にスローされます。
-	 */
-	public void runScript() throws Exception {
 	}
 	
 	/**

@@ -5,8 +5,8 @@ String animalsId = showInputDialog("ANIMALSテーブルのIDを入力","1", true
 
 // 定義を準備
 MakeDiffs makeDiffs = new MakeDiffs();
-makeDiffs.addTable("ANIMALS","SELECT * FROM ANIMALS WHERE ID=? ORDER BY ID", new String[]{"ID"}, new String[]{animalsId});
-makeDiffs.addTableRelate("ANIMALS_DETAIL","SELECT * FROM ANIMALS_DETAIL WHERE ANIMALS_ID IN ? ORDER BY ID", new String[]{"ID"}, "ANIMALS", new String[]{"ID"});
+makeDiffs.addTable("ANIMALS","SELECT * FROM ANIMALS WHERE ID=? ORDER BY ID", ["ID"], [animalsId]);
+makeDiffs.addTableRelate("ANIMALS_DETAIL","SELECT * FROM ANIMALS_DETAIL WHERE ANIMALS_ID IN ? ORDER BY ID", ["ID"], "ANIMALS", ["ID"]);
 
 // 処理開始
 //  スナップショットを取るたびに差分が表示されます

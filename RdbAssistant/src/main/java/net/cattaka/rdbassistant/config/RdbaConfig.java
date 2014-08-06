@@ -53,7 +53,6 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.Map;
 
-import net.cattaka.jspf.ToolsJarBundle;
 import net.cattaka.rdbassistant.RdbaConfigConstants;
 import net.cattaka.rdbassistant.RdbaConstants;
 import net.cattaka.swing.util.LookAndFeelBundle;
@@ -72,8 +71,6 @@ public class RdbaConfig implements Serializable {
 	private String nullString;
 	private int charactersPerTab = 4;
 	private RdbaJdbcBundle rdbaJdbcBundle = new RdbaJdbcBundle();
-	private boolean useDefaultToolsJar;
-	private ToolsJarBundle toolsJarBundle = new ToolsJarBundle();
 	private File sqlQuickAccessRoot;
 	private File scriptRoot;
 	
@@ -221,28 +218,7 @@ public class RdbaConfig implements Serializable {
 		String result = this.getProperty(RdbaConfigConstants.DRIVER_JDBC_SQLITE);
 		return (result != null) ? result : ""; 
 	}
-	
-	// -- useDefaultToolsJar ---------------------------------------------------
-	public boolean isUseDefaultToolsJar() {
-		return useDefaultToolsJar;
-	}
-
-	public void setUseDefaultToolsJar(boolean useDefaultToolsJar) {
-		this.useDefaultToolsJar = useDefaultToolsJar;
-		this.setProperty(RdbaConfigConstants.LIB_USE_DEFAULT_TOOLS, useDefaultToolsJar ? "1" : "0");
-	}
-	
-	// -- ToolsJar ---------------------------------------------------
-	public void setToolsJar(String jarName) {
-		this.setProperty(RdbaConfigConstants.LIB_TOOLS, jarName);
-		this.toolsJarBundle.reloadTools(this);
-	}
-
-	public String getToolsJar() {
-		String result = this.getProperty(RdbaConfigConstants.LIB_TOOLS);
-		return (result != null) ? result : ""; 
-	}
-	
+		
 	// -- logLevel ---------------------------------------------------
 	public String getLogLevel() {
 		return ExceptionHandler.getCurrentPriority().name();
@@ -430,20 +406,6 @@ public class RdbaConfig implements Serializable {
 			this.rdbaJdbcBundle.reloadJdbc(this);
 		}
 
-		// useDefaultToolsJar
-		{
-			String value = this.getProperty(RdbaConfigConstants.LIB_USE_DEFAULT_TOOLS);
-			if (value != null) {
-				this.useDefaultToolsJar = "1".equals(value);
-			} else {
-				this.useDefaultToolsJar = true;
-			}
-		}
-		// toolsJar作成
-		{
-			this.toolsJarBundle.reloadTools(this);
-		}
-		
 		// logLevelの設定
 		{
 			String value = this.getProperty(RdbaConfigConstants.LOG_LEVEL);
@@ -493,10 +455,6 @@ public class RdbaConfig implements Serializable {
 		return rdbaJdbcBundle;
 	}
 	
-	public ToolsJarBundle getToolsJarBundle() {
-		return toolsJarBundle;
-	}
-
 	public void load(InputStream inStream) throws IOException {
 		properties.load(inStream);
 		upgradeToNewVersion();

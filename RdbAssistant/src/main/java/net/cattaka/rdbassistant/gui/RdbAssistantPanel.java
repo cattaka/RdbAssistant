@@ -72,7 +72,7 @@ import net.cattaka.rdbassistant.gui.config.RdbaConfigEditorDialog;
 import net.cattaka.rdbassistant.jspf.core.RdbaJspfBundle;
 import net.cattaka.rdbassistant.jspf.standard.DefaultJspfBundle;
 import net.cattaka.rdbassistant.script.RdbaScriptJavaSourceConverter;
-import net.cattaka.rdbassistant.script.core.RdbaScript;
+import net.cattaka.rdbassistant.script.core.RdbaScriptUtil;
 import net.cattaka.rdbassistant.util.DocumentDialog;
 import net.cattaka.rdbassistant.util.RdbaGuiUtil;
 import net.cattaka.swing.StdStatusBar;
@@ -167,7 +167,7 @@ public class RdbAssistantPanel extends JPanel implements RdbaGuiInterface {
 		{
 			RdbaJspfBundle jspfBundle = new DefaultJspfBundle();
 			rdbaSingletonBundle.setDefaultJspfBundle(jspfBundle);
-			JspfBundle<RdbaScript> scriptBundle = new JspfBundle<RdbaScript>(new RdbaScriptJavaSourceConverter(), RdbaScript.class);
+			JspfBundle<RdbaScriptUtil> scriptBundle = new JspfBundle<RdbaScriptUtil>(new RdbaScriptJavaSourceConverter(), RdbaScriptUtil.class);
 			rdbaSingletonBundle.setScriptBundle(scriptBundle);
 		}
 		// コンフィグファイル用ダイアログ

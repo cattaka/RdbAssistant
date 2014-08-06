@@ -60,9 +60,6 @@ public class RdbaConfigConstants {
 	public static final String DRIVER_JDBC_ORACLE = "rdba.jdbc.oracle";
 	public static final String DRIVER_JDBC_SQLITE = "rdba.jdbc.sqlite";
 
-	public static final String LIB_TOOLS = "rdba.lib.tools";
-	public static final String LIB_USE_DEFAULT_TOOLS = "rdba.lib.useDefaultTools";
-
 	public static final String DEFAULT_FONT_TABLE = "Monospaced";
 	public static final String DEFAULT_FONT_EDITOR = "Monospaced";
 	

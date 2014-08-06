@@ -73,8 +73,6 @@ public class RdbaConfigEditorPanel extends JPanel {
 	private DIPInfoString nullString;
 	private DIPInfoFile sqlQuickAccess;
 	private DIPInfoFile scriptWorkDir;
-	private DIPInfoSwitch useDefaultToolsJar;
-	private DIPInfoFile toolsJar;
 	private DIPInfoFile jdbcJarMysql;
 	private DIPInfoFile jdbcJarOracle;
 	private DIPInfoFile jdbcJarSqlite;
@@ -106,8 +104,6 @@ public class RdbaConfigEditorPanel extends JPanel {
 		displayStringIfNull = new DIPInfoSwitch(MessageBundle.getMessage("display_string_if_null"), false, new DIPInfo[]{nullString}, new DIPInfo[0]);
 		sqlQuickAccess = new DIPInfoFile(MessageBundle.getMessage("sql_quick_access"), "", DIPInfoFile.MODE_OPEN);
 		scriptWorkDir = new DIPInfoFile(MessageBundle.getMessage("script_work_dir"), "", DIPInfoFile.MODE_OPEN);
-		toolsJar = new DIPInfoFile(MessageBundle.getMessage("tools_jar"), "", DIPInfoFile.MODE_OPEN);
-		useDefaultToolsJar = new DIPInfoSwitch(MessageBundle.getMessage("use_default_tools_jar"), false, new DIPInfo[0], new DIPInfo[]{toolsJar});
 		jdbcJarMysql = new DIPInfoFile(MessageBundle.getMessage("jdbc_jar_mysql"), "", DIPInfoFile.MODE_OPEN);
 		jdbcJarOracle = new DIPInfoFile(MessageBundle.getMessage("jdbc_jar_oracle"), "", DIPInfoFile.MODE_OPEN);
 		jdbcJarSqlite = new DIPInfoFile(MessageBundle.getMessage("jdbc_jar_sqlite"), "", DIPInfoFile.MODE_OPEN);
@@ -124,8 +120,6 @@ public class RdbaConfigEditorPanel extends JPanel {
 				displayStringIfNull,
 				sqlQuickAccess,
 				scriptWorkDir,
-				toolsJar,
-				useDefaultToolsJar,
 				jdbcJarMysql,
 				jdbcJarOracle,
 				jdbcJarSqlite,
@@ -151,8 +145,6 @@ public class RdbaConfigEditorPanel extends JPanel {
 		nullString.setValue(rdbaConfig.getNullString());
 		sqlQuickAccess.setValue(rdbaConfig.getSqlQuickAccessRoot());
 		scriptWorkDir.setValue(rdbaConfig.getScriptRoot());
-		useDefaultToolsJar.setValue(rdbaConfig.isUseDefaultToolsJar());
-		toolsJar.setStringValue(rdbaConfig.getToolsJar());
 		jdbcJarMysql.setStringValue(rdbaConfig.getJdbcJarMysql());
 		jdbcJarOracle.setStringValue(rdbaConfig.getJdbcJarOracle());
 		jdbcJarSqlite.setStringValue(rdbaConfig.getJdbcJarSqlite());
@@ -167,8 +159,6 @@ public class RdbaConfigEditorPanel extends JPanel {
 		rdbaConfig.setNullString(nullString.getStringValue());
 		rdbaConfig.setSqlQuickAccessRoot(sqlQuickAccess.getFileValue());
 		rdbaConfig.setScriptRoot(scriptWorkDir.getFileValue());
-		rdbaConfig.setUseDefaultToolsJar(useDefaultToolsJar.getBooleanValue());
-		rdbaConfig.setToolsJar(toolsJar.getStringValue());
 		rdbaConfig.setJdbcJarMysql(jdbcJarMysql.getStringValue());
 		rdbaConfig.setJdbcJarOracle(jdbcJarOracle.getStringValue());
 		rdbaConfig.setJdbcJarSqlite(jdbcJarSqlite.getStringValue());

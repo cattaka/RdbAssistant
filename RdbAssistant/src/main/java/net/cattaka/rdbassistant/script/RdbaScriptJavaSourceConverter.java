@@ -41,14 +41,11 @@
  */
 package net.cattaka.rdbassistant.script;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,12 +55,12 @@ import net.cattaka.jspf.JspfEntry;
 import net.cattaka.jspf.JspfException;
 import net.cattaka.jspf.JspfJavaSourceConverter;
 import net.cattaka.rdbassistant.RdbaConstants;
-import net.cattaka.rdbassistant.script.core.RdbaScript;
+import net.cattaka.rdbassistant.script.core.RdbaScriptUtil;
 import net.cattaka.util.ExceptionHandler;
 import net.cattaka.util.MessageBundle;
 import net.cattaka.util.StringUtil;
 
-public class RdbaScriptJavaSourceConverter implements JspfJavaSourceConverter<RdbaScript> {
+public class RdbaScriptJavaSourceConverter implements JspfJavaSourceConverter<RdbaScriptUtil> {
 	static class BodyPiace {
 		private boolean source;
 		private String body;
@@ -93,7 +90,7 @@ public class RdbaScriptJavaSourceConverter implements JspfJavaSourceConverter<Rd
 		CODE_END1
 	};
 	
-	public void convertSourceFile(JspfBundle<RdbaScript> jspfBundle, JspfEntry<RdbaScript> jspfEntry) throws JspfException {
+	public void convertSourceFile(JspfBundle<RdbaScriptUtil> jspfBundle, JspfEntry<RdbaScriptUtil> jspfEntry) throws JspfException {
 		try {
 			StringBuilder importString = new StringBuilder();
 			StringBuilder bodyString = new StringBuilder();
@@ -116,15 +113,9 @@ public class RdbaScriptJavaSourceConverter implements JspfJavaSourceConverter<Rd
 			}
 			
 			// Bodyの置換
-			StringUtil.replaceString(sb,"/*CLASS_NAME*/", jspfEntry.getClassName());
 			StringUtil.replaceString(sb,"/*BODY*/", bodyString.toString());
 			StringUtil.replaceString(sb,"/*IMPORT*/", importString.toString());
-			BufferedWriter javaWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(jspfEntry.getJavaSourceFile()),"UTF-8"));
-			try {
-				javaWriter.write(sb.toString());
-			} finally {
-				javaWriter.close();
-			}
+			jspfEntry.setConvertedText(sb.toString());
 		} catch (IOException e) {
 			throw new JspfException(e);
 		}
@@ -206,14 +197,14 @@ public class RdbaScriptJavaSourceConverter implements JspfJavaSourceConverter<Rd
 		return result;
 	}
 	
-	private void processSourceText(StringBuilder bodyOut, StringBuilder importOut, JspfBundle<RdbaScript> jspfBundle, String sourceText) throws JspfException {
+	private void processSourceText(StringBuilder bodyOut, StringBuilder importOut, JspfBundle<RdbaScriptUtil> jspfBundle, String sourceText) throws JspfException {
 		List<BodyPiace> bodyPieceList = splitSourceString(sourceText);
 		for (BodyPiace bodyPiace:bodyPieceList) {
 			processBodyPiace(bodyOut, importOut, jspfBundle, bodyPiace);
 		}
 	}
 	
-	private void processBodyPiace(StringBuilder bodyOut, StringBuilder importOut, JspfBundle<RdbaScript> jspfBundle, BodyPiace bodyPiace) throws JspfException {
+	private void processBodyPiace(StringBuilder bodyOut, StringBuilder importOut, JspfBundle<RdbaScriptUtil> jspfBundle, BodyPiace bodyPiace) throws JspfException {
 		String body = bodyPiace.getBody();
 		if (body == null) {
 			return;
@@ -280,7 +271,7 @@ public class RdbaScriptJavaSourceConverter implements JspfJavaSourceConverter<Rd
 	 * @param source
 	 * @return
 	 */
-	private void processDirective(StringBuilder bodyOut, StringBuilder importOut, JspfBundle<RdbaScript> jspfBundle, String source) throws JspfException {
+	private void processDirective(StringBuilder bodyOut, StringBuilder importOut, JspfBundle<RdbaScriptUtil> jspfBundle, String source) throws JspfException {
 		List<String[]> attrs = StringUtil.parseAttributeString(source);
 		if (attrs == null || attrs.size() == 0) {
 			return;
@@ -304,7 +295,7 @@ public class RdbaScriptJavaSourceConverter implements JspfJavaSourceConverter<Rd
 			}
 		}
 	}
-	private String getSourceText(JspfBundle<RdbaScript> jspfBundle, String labelName) throws JspfException {
+	private String getSourceText(JspfBundle<RdbaScriptUtil> jspfBundle, String labelName) throws JspfException {
 		StringBuilder sb = new StringBuilder();
 		String fileName = jspfBundle.getWorkDir().getAbsolutePath() + File.separatorChar + RdbaConstants.RDBA_SCRIPT_DIR + File.separatorChar + labelName; 
 		File file = new File(fileName);

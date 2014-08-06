@@ -42,6 +42,10 @@
 
 package net.cattaka.rdbassistant.gui.script;
 
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
+import groovy.lang.Script;
+
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
@@ -60,7 +64,6 @@ import java.nio.charset.Charset;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
@@ -71,8 +74,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import net.cattaka.jspf.JspfBundle;
+import net.cattaka.jspf.JspfEntry;
 import net.cattaka.jspf.JspfException;
-import net.cattaka.jspf.ToolsJarBundle;
 import net.cattaka.rdbassistant.RdbaMessageConstants;
 import net.cattaka.rdbassistant.bean.RdbaSingletonBundle;
 import net.cattaka.rdbassistant.config.RdbaConfig;
@@ -81,9 +84,10 @@ import net.cattaka.rdbassistant.gui.RdbaGuiInterface;
 import net.cattaka.rdbassistant.gui.RdbaMessage;
 import net.cattaka.rdbassistant.gui.RdbaTextInterface;
 import net.cattaka.rdbassistant.gui.table.DynamicResultSetTableModel;
-import net.cattaka.rdbassistant.script.core.RdbaScript;
+import net.cattaka.rdbassistant.script.core.RdbaScriptUtil;
 import net.cattaka.rdbassistant.script.core.ScriptTable;
 import net.cattaka.rdbassistant.script.core.ScriptTableModel;
+import net.cattaka.rdbassistant.script.core.ScriptTableUtil;
 import net.cattaka.swing.JPopupMenuForStandardText;
 import net.cattaka.swing.JTextPaneForLine;
 import net.cattaka.swing.StdScrollPane;
@@ -91,10 +95,12 @@ import net.cattaka.swing.text.FindCondition;
 import net.cattaka.swing.text.StdStyledDocument;
 import net.cattaka.swing.text.StdTextComponent;
 import net.cattaka.swing.util.ButtonsBundle;
+import net.cattaka.util.ExceptionHandler;
 import net.cattaka.util.ExceptionUtil;
 import net.cattaka.util.MessageBundle;
 import net.cattaka.util.PrintWriterEx;
-import net.cattaka.util.ExceptionHandler;
+
+import org.codehaus.groovy.control.CompilationFailedException;
 
 public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, RdbaTextInterface {
 	private static final long serialVersionUID = 1L;
@@ -262,7 +268,7 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 	 * 
 	 * @return 成功ならtrue、それ以外はfalse
 	 */
-	public boolean compileScript() {
+	public JspfEntry<RdbaScriptUtil> compileScript() {
 		String labelName = "";
 		if (this.file != null) {
 			labelName = file.getAbsolutePath();
@@ -275,37 +281,20 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 	 * 
 	 * @return 成功ならtrue、それ以外はfalse
 	 */
-	public boolean compileScript(String labelName, String sourceText) {
-		ToolsJarBundle toolsJarBundle = getRdbaConfig().getToolsJarBundle();
-		if (!toolsJarBundle.isAvailable()) {
-			// tools.jarの設定がされていない。
-			JOptionPane.showMessageDialog(this, MessageBundle.getMessage("tools_jar_not_configured"));
-			appendResultLog(MessageBundle.getMessage("tools_jar_not_configured"));
-			appendResultLog("\n");
-			return false;
-		}
-
+	public JspfEntry<RdbaScriptUtil> compileScript(String labelName, String sourceText) {
 		appendResultLog(MessageBundle.getMessage("compile_result_separator_raw"));
 		appendResultLog("\n");
-		boolean result = true;
 		StringWriter resultSw = new StringWriter();
 		PrintWriterEx resultWriter = new PrintWriterEx(resultSw);
-		JspfBundle<RdbaScript> scriptBundle = getRdbaSingletonBundle().getScriptBundle();
+		JspfBundle<RdbaScriptUtil> scriptBundle = getRdbaSingletonBundle().getScriptBundle();
+		JspfEntry<RdbaScriptUtil> result = null;
 		try {
-			scriptBundle.compile(toolsJarBundle, labelName, sourceText, resultWriter);
+			result = scriptBundle.compile(labelName, sourceText, resultWriter);
 		} catch (JspfException e) {
-			result = false;
 			resultWriter.append(e.getMessage());
 			resultWriter.append('\n');
 			ExceptionHandler.info(e);
 			this.switchResultPanel(RESULT_PANEL.RESULT_PANEL_RESULT_LOG);
-		}
-		if (result) {
-			// クラスの取得
-			RdbaScript script = scriptBundle.getNewInstance(labelName);
-			if (script == null) {
-				result = false;
-			}
 		}
 		resultWriter.flush();
 		String compileLog = resultSw.getBuffer().toString();
@@ -314,7 +303,7 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 			appendResultLog("\n");
 		}
 		
-		if (result) {
+		if (result != null) {
 			appendResultLog(MessageBundle.getMessage("compile_script_succeed"));
 			appendResultLog("\n");
 		} else {
@@ -323,7 +312,7 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 		}
 		
 		appendResultLog("\n");
-		this.setCompiledSource(scriptBundle.getJavaSource(labelName));
+		this.setCompiledSource(result);
 		return result;
 	}
 	
@@ -332,20 +321,13 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 		if (this.file != null) {
 			labelName = file.getAbsolutePath();
 		}
-		JspfBundle<RdbaScript> scriptBundle = getRdbaSingletonBundle().getScriptBundle();
-		RdbaScript script = null;
+		JspfEntry<RdbaScriptUtil> jspfEntry = null;
 		{
 			String sourceText = scriptTextPane.getText();
-			if (scriptBundle.isNeedUpdate(labelName, sourceText)) {
-				if (compileScript(labelName, sourceText)) {
-					script = scriptBundle.getNewInstance(labelName);
-				}
-			} else {
-				script = scriptBundle.getNewInstance(labelName);
-			}
+			jspfEntry = compileScript(labelName, sourceText);
 		}
 		
-		if (script != null) {
+		if (jspfEntry != null) {
 			boolean result = true;
 			ScriptTable table = new ScriptTable(64,64);
 			StringWriter resultSw = new StringWriter();
@@ -355,10 +337,24 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 			
 			appendResultLog(MessageBundle.getMessage("script_result_separator_raw"));
 			appendResultLog("\n");
+			
+			RdbaScriptUtil util = new RdbaScriptUtil();
+			util.initialize(getRdbConnection(), resultWriter, outputWriter, table, parentComponent);
+			
+			Binding binding = new Binding();
+//			binding.setVariable("rdbaConnection", rdbaConnection);
+//			binding.setVariable("logWriter", resultWriter);
+//			binding.setVariable("parentComponent", parentComponent);
+			binding.setVariable("scriptTableUtil", new ScriptTableUtil());
+			binding.setVariable("out", outputWriter);
+			binding.setVariable("table", table);
+			binding.setVariable("util", util);
+			GroovyShell groovyEngine = new GroovyShell(binding);
+			
 			try {
-				script.initialize(rdbaConnection, resultWriter, outputWriter, table, this);
-				script.runScript();
-			} catch (JspfException e) {
+				Script script = groovyEngine.parse(jspfEntry.getConvertedText());
+				script.run();
+			} catch (CompilationFailedException e) {
 				result = false;
 				resultWriter.append(e.getMessage());
 				resultWriter.append('\n');
@@ -370,7 +366,7 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 				ExceptionHandler.info(e);
 				this.switchResultPanel(RESULT_PANEL.RESULT_PANEL_RESULT_LOG);
 			} finally {
-				script.releaseAll();
+				util.releaseAll();
 			}
 			// 出力を表示
 			outputWriter.flush();
@@ -490,32 +486,8 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 		resultLog.setCaretPosition(resultLog.getDocument().getLength());
 	}
 	
-	public void setCompiledSource(File file) {
-		if (file != null && file.isFile()) {
-			Reader reader = null;
-			try {
-				reader = new InputStreamReader(new FileInputStream(file),"UTF-8");
-				StringBuilder buf = new StringBuilder();
-				int r;
-				while((r=reader.read()) != -1) {
-					buf.append((char)r);
-				}
-				this.compiledSource.setText(buf.toString());
-			} catch (IOException e) {
-				ExceptionHandler.error(e);
-			} finally {
-				if (reader != null) {
-					try {
-						reader.close();
-					} catch (IOException e2) {
-						// ありえない
-						ExceptionHandler.warn(e2);
-					}
-				}
-			}
-		} else {
-			this.compiledSource.setText("");
-		}
+	public void setCompiledSource(JspfEntry<?> entry) {
+		this.compiledSource.setText((entry != null && entry.getConvertedText() != null)?entry.getConvertedText() : "" );
 	}
 	
 	public void setText(String text) {

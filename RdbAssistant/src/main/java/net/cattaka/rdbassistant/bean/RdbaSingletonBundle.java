@@ -49,7 +49,7 @@ import javax.swing.ImageIcon;
 import net.cattaka.jspf.JspfBundle;
 import net.cattaka.rdbassistant.RdbaMessageConstants;
 import net.cattaka.rdbassistant.jspf.core.RdbaJspfBundle;
-import net.cattaka.rdbassistant.script.core.RdbaScript;
+import net.cattaka.rdbassistant.script.core.RdbaScriptUtil;
 import net.cattaka.swing.TextFileChooser;
 
 public class RdbaSingletonBundle {
@@ -57,7 +57,7 @@ public class RdbaSingletonBundle {
 	private TextFileChooser sqlTextFileChooser;
 	private TextFileChooser scriptTextFileChooser;
 	private RdbaJspfBundle jspfDefaultBundle;
-	private JspfBundle<RdbaScript> scriptBundle;
+	private JspfBundle<RdbaScriptUtil> scriptBundle;
 	
 	public RdbaSingletonBundle() {
 		createResource();
@@ -72,11 +72,11 @@ public class RdbaSingletonBundle {
 		this.jspfDefaultBundle = jspfBundle;
 	}
 	
-	public JspfBundle<RdbaScript> getScriptBundle() {
+	public JspfBundle<RdbaScriptUtil> getScriptBundle() {
 		return scriptBundle;
 	}
 
-	public void setScriptBundle(JspfBundle<RdbaScript> scriptBundle) {
+	public void setScriptBundle(JspfBundle<RdbaScriptUtil> scriptBundle) {
 		this.scriptBundle = scriptBundle;
 	}
 

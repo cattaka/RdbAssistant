@@ -6,8 +6,31 @@ import java.io.*;
 import java.util.*;
 import java.awt.Color;
 
-public class /*CLASS_NAME*/ extends RdbaScript {
-	public void runScript() throws Exception {
-		/*BODY*/
-	}
+class Global {
+  static util
+  static scriptTableUtil
+  static out
+  static table
 }
+Global.util = util
+Global.scriptTableUtil = scriptTableUtil
+Global.out = out
+Global.table = table
+
+def camelToComposite(String camel) { return util.camelToComposite(camel); }
+def compositeToCamel(String composite, boolean ucc) { return util.compositeToCamel(composite,ucc); }
+def createMarkedDiff(ScriptTable tbl1, ScriptTable tbl2, int... keyColumnIndices) { return util.createMarkedDiff(tbl1, tbl2, keyColumnIndices); }
+def createMarkedDiff(ScriptTable tbl1, ScriptTable tbl2, String... keyColumns) { return util.createMarkedDiff(tbl1, tbl2, keyColumns); }
+def escapeSql(Object obj) { return util.escapeSql(obj); }
+def getRdbaConnection(String label) { return util.getRdbaConnection(label); }
+def runSql(RdbaConnection rdbaConnection, String sqlStr) { return util.runSql(rdbaConnection, sqlStr); }
+def runSql(RdbaConnection rdbaConnection, String sqlStr, Object... args) { return util.runSql(rdbaConnection, sqlStr, args); }
+def runSql(String sqlStr) { return util.runSql(sqlStr); }
+def runSql(String sqlStr, Object... args) { return util.runSql(sqlStr, args); }
+def showConfirmDialog(String message) { return util.showConfirmDialog(message); }
+def showInputDialog(String message, String initialValue, boolean throwOnCancel) { return util.showInputDialog(message, initialValue, throwOnCancel); }
+def showMessageDialog(String message) { util.showMessageDialog(message); }
+
+/*BODY*/
+
+return;
