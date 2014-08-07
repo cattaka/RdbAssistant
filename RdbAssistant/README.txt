@@ -5,6 +5,7 @@ Copyright 2011 Takao Sumitomo. All rights reserved.
 
 ◇概要
     OracleとMySQLとSQLiteに対応したJavaで動作するSQLエディタです。
+    Groovyによるスクリプトで動的なスクリプトの実行やテーブルでの表示が行えます。
 
 ◇動作環境
     ・Java(TM) 2 SDK, Standard Edition Version 1.5.0以上
@@ -32,8 +33,6 @@ Copyright 2011 Takao Sumitomo. All rights reserved.
 ◇操作方法
     ◆SQLエディタ
        SQLタブを選択するとSQLの入力と実行が行えます。
-    ◆SQLエディタ
+    ◆スクリプト
         スクリプトタブを選択するとスクリプトの作成と実行が行えます。
-        スクリプト機能を使用するためには設定ダイアログにて
-       tools.jarとスクリプト作業用ディレクトリが正しく設定されている必要があります。
         スクリプトで使用できる関数等は付属のドキュメントをご覧下さい。

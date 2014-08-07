@@ -10,8 +10,8 @@
       <directory>${project.basedir}</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>readme.txt</include>
-        <include>license.txt</include>
+        <include>README.txt</include>
+        <include>LICENSE.txt</include>
       </includes>
     </fileSet>
     <fileSet>
