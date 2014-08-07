@@ -108,12 +108,12 @@ class MakeDiffs {
 					throw new RuntimeException("Error:" + tableInfo.getParentTable());
 				}
 				Set<List<String>> keyValues = parentResult.getColumnValuesAsSet((String[])tableInfo.getForeignKeyColumns());
-				st = Global.util.runSql(tableInfo.getSql(), keyValues);
+				st = Util.runSql(tableInfo.getSql(), keyValues);
 			} else {
 				if (tableInfo.hasArg()) {
-					st = Global.util.runSql(tableInfo.getSql(), tableInfo.getArg());
+					st = Util.runSql(tableInfo.getSql(), tableInfo.getArg());
 				} else {
-					st = Global.util.runSql(tableInfo.getSql());
+					st = Util.runSql(tableInfo.getSql());
 				}
 			}
 			resultTableList.add(st);
@@ -131,7 +131,7 @@ class MakeDiffs {
 			if (oldSt == null) {
 				diff = st;
 			} else {
-				diff = Global.util.createMarkedDiff(st,oldSt,(String[])tableInfo.getPrimaryKeyColumns());
+				diff = Util.createMarkedDiff(st,oldSt,(String[])tableInfo.getPrimaryKeyColumns());
 			}
 			tableInfo.setLastTable(st);
 			result.setValueAt(tableInfo.getTable(),rowCount,0);
@@ -148,7 +148,7 @@ class MakeDiffs {
 		int rowCount = 0;
 		String label = "ラベル";
 		while(true) {
-			label=Global.util.showInputDialog("次のDBのスナップショットを取りますか？", label, false);
+			label=Util.showInputDialog("次のDBのスナップショットを取りますか？", label, false);
 			if (label==null) {
 				break;
 			}

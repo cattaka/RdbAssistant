@@ -6,30 +6,42 @@ import java.io.*;
 import java.util.*;
 import java.awt.Color;
 
-class Global {
+class Util {
   static util
   static scriptTableUtil
   static out
   static table
+  static String camelToComposite(String camel) { return util.camelToComposite(camel); }
+  static String compositeToCamel(String composite, boolean ucc) { return util.compositeToCamel(composite,ucc); }
+  static ScriptTable createMarkedDiff(ScriptTable tbl1, ScriptTable tbl2, int... keyColumnIndices) { return util.createMarkedDiff(tbl1, tbl2, keyColumnIndices); }
+  static ScriptTable createMarkedDiff(ScriptTable tbl1, ScriptTable tbl2, String... keyColumns) { return util.createMarkedDiff(tbl1, tbl2, keyColumns); }
+  static String escapeSql(Object obj) { return util.escapeSql(obj); }
+  static String getRdbaConnection(String label) { return util.getRdbaConnection(label); }
+  static ScriptTable runSql(RdbaConnection rdbaConnection, String sqlStr) { return util.runSql(rdbaConnection, sqlStr); }
+  static ScriptTable runSql(RdbaConnection rdbaConnection, String sqlStr, Object... args) { return util.runSql(rdbaConnection, sqlStr, args); }
+  static ScriptTable runSql(String sqlStr) { return util.runSql(sqlStr); }
+  static ScriptTable runSql(String sqlStr, Object... args) { return util.runSql(sqlStr, args); }
+  static boolean showConfirmDialog(String message) { return util.showConfirmDialog(message); }
+  static String showInputDialog(String message, String initialValue, boolean throwOnCancel) { return util.showInputDialog(message, initialValue, throwOnCancel); }
+  static void showMessageDialog(String message) { util.showMessageDialog(message); }
 }
-Global.util = util
-Global.scriptTableUtil = scriptTableUtil
-Global.out = out
-Global.table = table
-
-def camelToComposite(String camel) { return util.camelToComposite(camel); }
-def compositeToCamel(String composite, boolean ucc) { return util.compositeToCamel(composite,ucc); }
-def createMarkedDiff(ScriptTable tbl1, ScriptTable tbl2, int... keyColumnIndices) { return util.createMarkedDiff(tbl1, tbl2, keyColumnIndices); }
-def createMarkedDiff(ScriptTable tbl1, ScriptTable tbl2, String... keyColumns) { return util.createMarkedDiff(tbl1, tbl2, keyColumns); }
-def escapeSql(Object obj) { return util.escapeSql(obj); }
-def getRdbaConnection(String label) { return util.getRdbaConnection(label); }
-def runSql(RdbaConnection rdbaConnection, String sqlStr) { return util.runSql(rdbaConnection, sqlStr); }
-def runSql(RdbaConnection rdbaConnection, String sqlStr, Object... args) { return util.runSql(rdbaConnection, sqlStr, args); }
-def runSql(String sqlStr) { return util.runSql(sqlStr); }
-def runSql(String sqlStr, Object... args) { return util.runSql(sqlStr, args); }
-def showConfirmDialog(String message) { return util.showConfirmDialog(message); }
-def showInputDialog(String message, String initialValue, boolean throwOnCancel) { return util.showInputDialog(message, initialValue, throwOnCancel); }
-def showMessageDialog(String message) { util.showMessageDialog(message); }
+Util.util = util
+Util.scriptTableUtil = scriptTableUtil
+Util.out = out
+Util.table = table
+def camelToComposite(String camel) { return Util.camelToComposite(camel); }
+def compositeToCamel(String composite, boolean ucc) { return Util.compositeToCamel(composite,ucc); }
+def createMarkedDiff(ScriptTable tbl1, ScriptTable tbl2, int... keyColumnIndices) { return Util.createMarkedDiff(tbl1, tbl2, keyColumnIndices); }
+def createMarkedDiff(ScriptTable tbl1, ScriptTable tbl2, String... keyColumns) { return Util.createMarkedDiff(tbl1, tbl2, keyColumns); }
+def escapeSql(Object obj) { return Util.escapeSql(obj); }
+def getRdbaConnection(String label) { return Util.getRdbaConnection(label); }
+def runSql(RdbaConnection rdbaConnection, String sqlStr) { return Util.runSql(rdbaConnection, sqlStr); }
+def runSql(RdbaConnection rdbaConnection, String sqlStr, Object... args) { return Util.runSql(rdbaConnection, sqlStr, args); }
+def runSql(String sqlStr) { return Util.runSql(sqlStr); }
+def runSql(String sqlStr, Object... args) { return Util.runSql(sqlStr, args); }
+def showConfirmDialog(String message) { return Util.showConfirmDialog(message); }
+def showInputDialog(String message, String initialValue, boolean throwOnCancel) { return Util.showInputDialog(message, initialValue, throwOnCancel); }
+def showMessageDialog(String message) { Util.showMessageDialog(message); }
 
 /*BODY*/
 
