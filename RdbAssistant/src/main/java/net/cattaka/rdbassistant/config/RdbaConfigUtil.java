@@ -42,12 +42,14 @@
 package net.cattaka.rdbassistant.config;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import net.cattaka.rdbassistant.RdbaConstants;
+import net.cattaka.rdbassistant.driver.sqlite.SqliteRdbaConnectionInfo;
 import net.cattaka.util.ExceptionHandler;
 
 public class RdbaConfigUtil {
@@ -57,6 +59,14 @@ public class RdbaConfigUtil {
 			InputStream in = new FileInputStream(RdbaConstants.RDBA_CONFIG_FILE);
 			result.loadFromXML(in);
 			in.close();
+		} catch(FileNotFoundException e) {
+			result.updateArtificialInfo();
+			{	// add tutorial
+				SqliteRdbaConnectionInfo info = new SqliteRdbaConnectionInfo();
+				info.setLabel("Tutorial");
+				info.setDatabase("tutorial/tutorial.db");
+				result.getRdbaConnectionInfo().add(info);
+			}
 		} catch(IOException e) {
 			ExceptionHandler.error(e);
 			result.updateArtificialInfo();
