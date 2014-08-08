@@ -98,21 +98,21 @@ public class RdbAssistantPanel extends JPanel implements RdbaGuiInterface {
 	class ActionListenerImpl implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equals("license")) {
-				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getMessage("license"), "net/cattaka/rdbassistant/docs/license.utf8.txt");
+				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getMessage("license"), "net/cattaka/rdbassistant/docs/license%1$s.utf8.txt");
 				dd.setSize(500, 500);
 				dd.setModal(true);
 				dd.setLocationRelativeTo(RdbAssistantPanel.this);
 				dd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dd.setVisible(true);
 			} else if (e.getActionCommand().equals("readme")) {
-				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getMessage("readme"), "net/cattaka/rdbassistant/docs/readme.utf8.txt");
+				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getMessage("readme"), "net/cattaka/rdbassistant/docs/readme%1$s.utf8.txt");
 				dd.setSize(500, 500);
 				dd.setModal(true);
 				dd.setLocationRelativeTo(RdbAssistantPanel.this);
 				dd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dd.setVisible(true);
 			} else if (e.getActionCommand().equals("about")) {
-				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getMessage("about"), "net/cattaka/rdbassistant/docs/about.utf8.txt");
+				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getMessage("about"), "net/cattaka/rdbassistant/docs/about%1$s.utf8.txt");
 				dd.setSize(400, 200);
 				dd.setModal(true);
 				dd.setLocationRelativeTo(RdbAssistantPanel.this);

@@ -1,4 +1,4 @@
-Copyright 2009 Takao Sumitomo. All rights reserved.
+Copyright 2009-2014 Takao Sumitomo. All rights reserved.
 
     RdbAssistant : Relational DataBase Assistant
         ${release_number}

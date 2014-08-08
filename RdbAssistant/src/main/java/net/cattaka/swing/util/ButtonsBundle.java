@@ -42,17 +42,17 @@
 package net.cattaka.swing.util;
 
 import java.awt.Insets;
-import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
+
 import javax.swing.AbstractButton;
 import javax.swing.Icon;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import net.cattaka.util.ExceptionHandler;
-import net.cattaka.util.MessageBundle;
 import net.cattaka.util.PropertiesEx;
+import net.cattaka.util.ResourceUtil;
 
 
 public class ButtonsBundle {
@@ -149,13 +149,6 @@ public class ButtonsBundle {
 
 class ButtonDifinitionBundleLoader {
 	public static PropertiesEx getProperties() {
-		PropertiesEx properties = new PropertiesEx();
-		try {
-			InputStream in = MessageBundle.class.getClassLoader().getResourceAsStream("buttons_ja_JP.properties");
-			properties.loadFromXML(in);
-		} catch(Exception e) {
-			ExceptionHandler.fatal(e);
-		}
-		return properties;
+		return ResourceUtil.getPropertiesExResourceAsStream("buttons%1$s.properties", true);
 	}
 }

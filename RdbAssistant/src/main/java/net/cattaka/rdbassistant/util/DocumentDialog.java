@@ -52,6 +52,7 @@ import javax.swing.JTextArea;
 
 import net.cattaka.swing.StdScrollPane;
 import net.cattaka.util.MessageBundle;
+import net.cattaka.util.ResourceUtil;
 
 
 /**
@@ -71,11 +72,9 @@ public class DocumentDialog extends JDialog {
 		textArea.setEditable(false);
 		getContentPane().add(textPane);
 		
-		URL url = DocumentDialog.class.getClassLoader().getResource(document);
-		
 		try {
 			StringBuilder sb = new StringBuilder();
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			BufferedReader in = new BufferedReader(ResourceUtil.getResourceAsReader(document));
 			String releaseNumber = MessageBundle.getReleaseNumber();
 			String tmp;
 			while ((tmp = in.readLine()) != null) {

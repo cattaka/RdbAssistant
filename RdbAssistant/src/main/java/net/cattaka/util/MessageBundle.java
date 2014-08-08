@@ -41,7 +41,6 @@
  */
 package net.cattaka.util;
 
-import java.io.InputStream;
 import java.util.MissingResourceException;
 import java.util.Properties;
 
@@ -82,23 +81,9 @@ public class MessageBundle {
 
 class MessageBundleLoader {
 	public static Properties getMessageBundle() {
-		Properties properties = new Properties();
-		try {
-			InputStream in = MessageBundle.class.getClassLoader().getResourceAsStream("messages_ja_JP.properties");
-			properties.loadFromXML(in);
-		} catch(Exception e) {
-			ExceptionHandler.error(e);
-		}
-		return properties;
+		return ResourceUtil.getPropertiesResourceAsStream("messages%1$s.properties", true);
 	}
 	public static Properties getVersionPorperties() {
-		Properties properties = new Properties();
-		try {
-			InputStream in = MessageBundle.class.getClassLoader().getResourceAsStream("version.properties");
-			properties.load(in);
-		} catch(Exception e) {
-			ExceptionHandler.error(e);
-		}
-		return properties;
+		return ResourceUtil.getPropertiesResourceAsStream("version%1$s.properties", false);
 	}
 }
