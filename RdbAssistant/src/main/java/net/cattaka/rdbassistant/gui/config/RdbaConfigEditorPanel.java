@@ -98,17 +98,17 @@ public class RdbaConfigEditorPanel extends JPanel {
 	}
 	
 	private void makeLayout() {
-		fontForEditor = new DIPInfoFont(MessageBundle.getMessage("font_for_editor"), new Font(RdbaConfigConstants.DEFAULT_FONT_EDITOR, 0 , 12));
-		fontForTable = new DIPInfoFont(MessageBundle.getMessage("font_for_table"), new Font(RdbaConfigConstants.DEFAULT_FONT_EDITOR, 0 , 12));
-		nullString = new DIPInfoString(MessageBundle.getMessage("display_null_as"),RdbaConstants.DEFAULT_NULL_STRING);
-		displayStringIfNull = new DIPInfoSwitch(MessageBundle.getMessage("display_string_if_null"), false, new DIPInfo[]{nullString}, new DIPInfo[0]);
-		sqlQuickAccess = new DIPInfoFile(MessageBundle.getMessage("sql_quick_access"), "", DIPInfoFile.MODE_OPEN);
-		scriptWorkDir = new DIPInfoFile(MessageBundle.getMessage("script_work_dir"), "", DIPInfoFile.MODE_OPEN);
-		jdbcJarMysql = new DIPInfoFile(MessageBundle.getMessage("jdbc_jar_mysql"), "", DIPInfoFile.MODE_OPEN);
-		jdbcJarOracle = new DIPInfoFile(MessageBundle.getMessage("jdbc_jar_oracle"), "", DIPInfoFile.MODE_OPEN);
-		jdbcJarSqlite = new DIPInfoFile(MessageBundle.getMessage("jdbc_jar_sqlite"), "", DIPInfoFile.MODE_OPEN);
-		lookAndFeel  = new DIPInfoSelect(MessageBundle.getMessage("look_and_feel"), LookAndFeelBundle.getLookAndFeelNames(), LookAndFeelBundle.getLookAndFeelClassNames(), LookAndFeelBundle.getDefaultLookAndFeelName());
-		logLevel = new DIPInfoSelect(MessageBundle.getMessage("log_level"), ExceptionHandler.getPriorityNames(), ExceptionHandler.Priority.WARNING.name());
+		fontForEditor = new DIPInfoFont(MessageBundle.getInstance().getMessage("font_for_editor"), new Font(RdbaConfigConstants.DEFAULT_FONT_EDITOR, 0 , 12));
+		fontForTable = new DIPInfoFont(MessageBundle.getInstance().getMessage("font_for_table"), new Font(RdbaConfigConstants.DEFAULT_FONT_EDITOR, 0 , 12));
+		nullString = new DIPInfoString(MessageBundle.getInstance().getMessage("display_null_as"),RdbaConstants.DEFAULT_NULL_STRING);
+		displayStringIfNull = new DIPInfoSwitch(MessageBundle.getInstance().getMessage("display_string_if_null"), false, new DIPInfo[]{nullString}, new DIPInfo[0]);
+		sqlQuickAccess = new DIPInfoFile(MessageBundle.getInstance().getMessage("sql_quick_access"), "", DIPInfoFile.MODE_OPEN);
+		scriptWorkDir = new DIPInfoFile(MessageBundle.getInstance().getMessage("script_work_dir"), "", DIPInfoFile.MODE_OPEN);
+		jdbcJarMysql = new DIPInfoFile(MessageBundle.getInstance().getMessage("jdbc_jar_mysql"), "", DIPInfoFile.MODE_OPEN);
+		jdbcJarOracle = new DIPInfoFile(MessageBundle.getInstance().getMessage("jdbc_jar_oracle"), "", DIPInfoFile.MODE_OPEN);
+		jdbcJarSqlite = new DIPInfoFile(MessageBundle.getInstance().getMessage("jdbc_jar_sqlite"), "", DIPInfoFile.MODE_OPEN);
+		lookAndFeel  = new DIPInfoSelect(MessageBundle.getInstance().getMessage("look_and_feel"), LookAndFeelBundle.getLookAndFeelNames(), LookAndFeelBundle.getLookAndFeelClassNames(), LookAndFeelBundle.getDefaultLookAndFeelName());
+		logLevel = new DIPInfoSelect(MessageBundle.getInstance().getMessage("log_level"), ExceptionHandler.getPriorityNames(), ExceptionHandler.Priority.WARNING.name());
 		
 		sqlQuickAccess.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		scriptWorkDir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

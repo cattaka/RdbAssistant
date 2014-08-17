@@ -76,7 +76,7 @@ public class RdbAssistant {
 				}
 			};
 			
-			String title = String.format("%s %s", MessageBundle.getMessage("rdbassistant_title"), MessageBundle.getReleaseNumber());
+			String title = String.format("%s %s", MessageBundle.getInstance().getMessage("rdbassistant_title"), MessageBundle.getInstance().getReleaseNumber());
 			this.setTitle(title);
 			this.setSize(800,600);
 			this.getContentPane().add(rdbAssistantPanel);

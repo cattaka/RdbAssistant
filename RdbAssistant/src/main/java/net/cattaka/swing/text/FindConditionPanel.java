@@ -171,8 +171,8 @@ public class FindConditionPanel extends JPanel {
 			ButtonsBundle.getInstance().applyButtonDifinition(regexSearchCheckBox, "regex_search");
 		}
 		
-		JLabel searchLabel = new JLabel(MessageBundle.getMessage("search_field"));
-		JLabel replaceLabel = new JLabel(MessageBundle.getMessage("replace_field"));
+		JLabel searchLabel = new JLabel(MessageBundle.getInstance().getMessage("search_field"));
+		JLabel replaceLabel = new JLabel(MessageBundle.getInstance().getMessage("replace_field"));
 		
 		JButton searchButton = new JButton();
 		JButton replaceSearchButton = new JButton();
@@ -223,7 +223,7 @@ public class FindConditionPanel extends JPanel {
 		
 		JPanel upDownWordPanel = new JPanel();
 		{
-			upDownWordPanel.setBorder(BorderFactory.createTitledBorder(MessageBundle.getMessage("search_direction")));
+			upDownWordPanel.setBorder(BorderFactory.createTitledBorder(MessageBundle.getInstance().getMessage("search_direction")));
 			
 			ButtonGroup bg = new ButtonGroup();
 			bg.add(this.upwardRadio);
@@ -236,7 +236,7 @@ public class FindConditionPanel extends JPanel {
 		
 		JPanel optionPanel = new JPanel();
 		{
-			optionPanel.setBorder(BorderFactory.createTitledBorder(MessageBundle.getMessage("option")));
+			optionPanel.setBorder(BorderFactory.createTitledBorder(MessageBundle.getInstance().getMessage("option")));
 			
 			BoxLayout bl = new BoxLayout(optionPanel, BoxLayout.PAGE_AXIS);
 			optionPanel.setLayout(bl);

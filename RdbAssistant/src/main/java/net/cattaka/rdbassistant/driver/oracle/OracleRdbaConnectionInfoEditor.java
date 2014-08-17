@@ -66,12 +66,12 @@ public class OracleRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 	}
 	
 	private void makeLayout() {
-		JLabel labelLabel = new JLabel(MessageBundle.getMessage("label"));
-		JLabel hostnameLabel = new JLabel(MessageBundle.getMessage("hostname"));
-		JLabel portLabel = new JLabel(MessageBundle.getMessage("port"));
-		JLabel databaseLabel = new JLabel(MessageBundle.getMessage("sid"));
-		JLabel usernameLabel = new JLabel(MessageBundle.getMessage("username"));
-		JLabel passwordLabel = new JLabel(MessageBundle.getMessage("password"));
+		JLabel labelLabel = new JLabel(MessageBundle.getInstance().getMessage("label"));
+		JLabel hostnameLabel = new JLabel(MessageBundle.getInstance().getMessage("hostname"));
+		JLabel portLabel = new JLabel(MessageBundle.getInstance().getMessage("port"));
+		JLabel databaseLabel = new JLabel(MessageBundle.getInstance().getMessage("sid"));
+		JLabel usernameLabel = new JLabel(MessageBundle.getInstance().getMessage("username"));
+		JLabel passwordLabel = new JLabel(MessageBundle.getInstance().getMessage("password"));
 		labelField = new StdTextField();
 		hostnameField = new StdTextField();
 		portField = new StdTextField();

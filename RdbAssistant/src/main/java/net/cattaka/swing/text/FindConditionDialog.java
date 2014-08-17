@@ -126,7 +126,7 @@ public class FindConditionDialog extends JDialog {
 	}
 
 	private void initialize() {
-		setTitle(MessageBundle.getMessage("search_replace"));
+		setTitle(MessageBundle.getInstance().getMessage("search_replace"));
 		setSize(400, 300);
 		
 		this.findConditionPanel = new FindConditionPanel() {

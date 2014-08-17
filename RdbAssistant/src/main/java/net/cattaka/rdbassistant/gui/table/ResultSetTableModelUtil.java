@@ -61,7 +61,7 @@ public class ResultSetTableModelUtil {
 	public static DynamicResultSetTableModel runSql(RdbaConnection rdbaConnection, String sqlStr, PrintWriter logWriter, RdbaGuiInterface parentComponent, boolean finalSqlFlag, String nullString) throws SQLException {
 		DynamicResultSetTableModel tmpResultSetTableModel = null;
 		
-		logWriter.print(MessageBundle.getMessage("sql_result_separator_raw"));
+		logWriter.print(MessageBundle.getInstance().getMessage("sql_result_separator_raw"));
 		logWriter.print("\n");
 			
 		PreparedStatement stmt = null;
@@ -115,7 +115,7 @@ public class ResultSetTableModelUtil {
 			if (rs != null) {
 				if (!finalSqlFlag) {
 					// 連続実行中のため結果は取得しない
-					String str = String.format(MessageBundle.getMessage("result_set_was_ignored"), executeTime);
+					String str = String.format(MessageBundle.getInstance().getMessage("result_set_was_ignored"), executeTime);
 					logWriter.print(str);
 					logWriter.print("\n");
 					logWriter.print("\n");
@@ -156,13 +156,13 @@ public class ResultSetTableModelUtil {
 					
 					String statusBarMessage = "";
 					if (extractThread.isCanceled()) {
-						String str = MessageBundle.getMessage("the_extraction_was_canceled");
+						String str = MessageBundle.getInstance().getMessage("the_extraction_was_canceled");
 						logWriter.print(str);
 						logWriter.print("\n");
 						statusBarMessage += str;
 					}
 					{
-						String str = String.format(MessageBundle.getMessage("rows_in_set"), tmpResultSetTableModel.getRowCount(), executeTime, extractionTime);
+						String str = String.format(MessageBundle.getInstance().getMessage("rows_in_set"), tmpResultSetTableModel.getRowCount(), executeTime, extractionTime);
 						logWriter.print(str);
 						logWriter.print("\n");
 						logWriter.print("\n");
@@ -175,13 +175,13 @@ public class ResultSetTableModelUtil {
 				// 更新ログ
 				String statusBarMessage = "";
 				if (updateCount == -1) {
-					String str = String.format(MessageBundle.getMessage("statement_was_executed"), executeTime);
+					String str = String.format(MessageBundle.getInstance().getMessage("statement_was_executed"), executeTime);
 					logWriter.print(str);
 					logWriter.print("\n");
 					logWriter.print("\n");
 					statusBarMessage += str;
 				} else {
-					String str = String.format(MessageBundle.getMessage("rows_updated"), updateCount, executeTime);
+					String str = String.format(MessageBundle.getInstance().getMessage("rows_updated"), updateCount, executeTime);
 					logWriter.print(str);
 					logWriter.print("\n");
 					logWriter.print("\n");

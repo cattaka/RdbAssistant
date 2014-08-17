@@ -67,8 +67,8 @@ public class RdbaSqlAssistTabbedPanel extends JTabbedPane implements RdbaGuiInte
 		this.rdbaSelectPanel = new RdbaSqlSelectPanel(this);
 		this.rdbaSqlQuickAccessPanel = new RdbaSqlQuickAccessPanel(this);
 		
-		this.addTab(MessageBundle.getMessage("db_info"), this.rdbaSelectPanel);
-		this.addTab(MessageBundle.getMessage("quick_access"), this.rdbaSqlQuickAccessPanel);
+		this.addTab(MessageBundle.getInstance().getMessage("db_info"), this.rdbaSelectPanel);
+		this.addTab(MessageBundle.getInstance().getMessage("quick_access"), this.rdbaSqlQuickAccessPanel);
 	}
 
 	public void setRdbaConnection(RdbaConnection rdbaConnection) {

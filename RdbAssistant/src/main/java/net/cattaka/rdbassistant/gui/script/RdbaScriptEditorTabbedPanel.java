@@ -387,7 +387,7 @@ public class RdbaScriptEditorTabbedPanel extends JPanel implements RdbaGuiInterf
 		}
 		if (rsep != null) {
 			if (rsep.isModified()) {
-				int ans = JOptionPane.showConfirmDialog(this, MessageBundle.getMessage("save_the_changes_to_document"), MessageBundle.getMessage("confirm"), JOptionPane.YES_NO_CANCEL_OPTION);
+				int ans = JOptionPane.showConfirmDialog(this, MessageBundle.getInstance().getMessage("save_the_changes_to_document"), MessageBundle.getInstance().getMessage("confirm"), JOptionPane.YES_NO_CANCEL_OPTION);
 				if (ans == JOptionPane.YES_OPTION) {
 					result = saveScript(rsep);
 				} else if (ans == JOptionPane.NO_OPTION) {

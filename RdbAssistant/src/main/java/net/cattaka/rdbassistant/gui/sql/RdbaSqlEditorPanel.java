@@ -221,8 +221,8 @@ public class RdbaSqlEditorPanel extends JPanel implements RdbaGuiInterface, Rdba
 			resultLog.setEditable(false);
 			resultLogScrollPane = new StdScrollPane(resultLog);
 			
-			resultTabbedPane.add(resultTablePanel,MessageBundle.getMessage("result_table"));
-			resultTabbedPane.add(resultLogScrollPane,MessageBundle.getMessage("result_log"));
+			resultTabbedPane.add(resultTablePanel,MessageBundle.getInstance().getMessage("result_table"));
+			resultTabbedPane.add(resultLogScrollPane,MessageBundle.getInstance().getMessage("result_log"));
 			
 			// スプリットパネルに上記で作成した物を設定。
 			splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,sqlTextScrollPane, resultTabbedPane);
@@ -243,7 +243,7 @@ public class RdbaSqlEditorPanel extends JPanel implements RdbaGuiInterface, Rdba
 		}
 		boolean breakflag = false;
 		
-		appendResultLog(MessageBundle.getMessage("result_separator_raw"));
+		appendResultLog(MessageBundle.getInstance().getMessage("result_separator_raw"));
 		appendResultLog("\n");
 		for (int i=0;!breakflag && i<sqlStrs.length;i++) {
 			String sqlStr = sqlStrs[i];

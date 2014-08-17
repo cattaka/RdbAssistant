@@ -173,14 +173,14 @@ public class JPopupMenuForFileView extends JPopupMenu implements ActionListener 
 				File targetFile = node.getFile();
 				File parentFile = targetFile.getParentFile();
 				String newName = "";
-				if ((newName = JOptionPane.showInputDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getMessage("input_file_name"), targetFile.getName())) != null) {
+				if ((newName = JOptionPane.showInputDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getInstance().getMessage("input_file_name"), targetFile.getName())) != null) {
 					File newFile = new File(parentFile.getAbsolutePath() + File.separator + newName);
 					if (targetFile.renameTo(newFile)) {
 						// 成功
 						parentNode.reflesh();
 					} else {
 						// 失敗
-						JOptionPane.showMessageDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getMessage("rename_file_failed"), MessageBundle.getMessage("error"), JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getInstance().getMessage("rename_file_failed"), MessageBundle.getInstance().getMessage("error"), JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -193,13 +193,13 @@ public class JPopupMenuForFileView extends JPopupMenu implements ActionListener 
 				File targetFile = node.getFile();
 				if (targetFile != null) {
 					// 念のためダイアログを表示して確認
-					if (JOptionPane.showConfirmDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getMessage("delete_file_really"), MessageBundle.getMessage("confirm"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
+					if (JOptionPane.showConfirmDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getInstance().getMessage("delete_file_really"), MessageBundle.getInstance().getMessage("confirm"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
 						if (FileUtil.deleteFile(targetFile)) {
 							// 成功
 							parentNode.reflesh();
 						} else {
 							// 失敗
-							JOptionPane.showMessageDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getMessage("delete_file_failed"), MessageBundle.getMessage("error"), JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getInstance().getMessage("delete_file_failed"), MessageBundle.getInstance().getMessage("error"), JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				}
@@ -212,14 +212,14 @@ public class JPopupMenuForFileView extends JPopupMenu implements ActionListener 
 				File targetFile = node.getFile();
 				if (targetFile != null && targetFile.isDirectory()) {
 					String newName = "";
-					if ((newName = JOptionPane.showInputDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getMessage("input_dir_name"))) != null) {
+					if ((newName = JOptionPane.showInputDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getInstance().getMessage("input_dir_name"))) != null) {
 						File newFileDir = new File(targetFile.getAbsolutePath() + File.separator + newName);
 						if (newFileDir.mkdir()) {
 							// 成功
 							node.reflesh();
 						} else {
 							// 失敗
-							JOptionPane.showMessageDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getMessage("create_dir_failed"), MessageBundle.getMessage("error"), JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getInstance().getMessage("create_dir_failed"), MessageBundle.getInstance().getMessage("error"), JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				}
@@ -232,7 +232,7 @@ public class JPopupMenuForFileView extends JPopupMenu implements ActionListener 
 				File targetFile = node.getFile();
 				if (targetFile != null && targetFile.isDirectory()) {
 					String newName = "";
-					if ((newName = JOptionPane.showInputDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getMessage("input_file_name"))) != null) {
+					if ((newName = JOptionPane.showInputDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getInstance().getMessage("input_file_name"))) != null) {
 						File newFileDir = new File(targetFile.getAbsolutePath() + File.separator + newName);
 						try {
 							if (newFileDir.createNewFile()) {
@@ -240,11 +240,11 @@ public class JPopupMenuForFileView extends JPopupMenu implements ActionListener 
 								node.reflesh();
 							} else {
 								// 失敗
-								JOptionPane.showMessageDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getMessage("create_file_failed"), MessageBundle.getMessage("error"), JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getInstance().getMessage("create_file_failed"), MessageBundle.getInstance().getMessage("error"), JOptionPane.ERROR_MESSAGE);
 							}
 						} catch(IOException exc) {
 							// 起こりえないと思うのだけど・・・
-							JOptionPane.showMessageDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getMessage("create_file_failed") + exc.getMessage(), MessageBundle.getMessage("error"), JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(RdbaGuiUtil.getParentFrame(this), MessageBundle.getInstance().getMessage("create_file_failed") + exc.getMessage(), MessageBundle.getInstance().getMessage("error"), JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				}

@@ -284,9 +284,9 @@ public class RdbaScriptUtil {
 	 * @throws JspfException ユーザーがcancelを選択した場合にスローされます
 	 */
 	public boolean showConfirmDialog(String message) throws JspfException {
-		int result = JOptionPane.showConfirmDialog((Component)parentComponent, message, MessageBundle.getMessage("confirm"), JOptionPane.YES_NO_CANCEL_OPTION);
+		int result = JOptionPane.showConfirmDialog((Component)parentComponent, message, MessageBundle.getInstance().getMessage("confirm"), JOptionPane.YES_NO_CANCEL_OPTION);
 		if (result == JOptionPane.CANCEL_OPTION) {
-			throw new JspfException(MessageBundle.getMessage("canceled_by_user"));
+			throw new JspfException(MessageBundle.getInstance().getMessage("canceled_by_user"));
 		} else if (result == JOptionPane.YES_OPTION) {
 			return true;
 		} else {
@@ -317,7 +317,7 @@ public class RdbaScriptUtil {
 		String result = JOptionPane.showInputDialog((Component)parentComponent, message, initialValue);
 		if (result == null) {
 			if (throwOnCancel) {
-				throw new JspfException(MessageBundle.getMessage("canceled_by_user"));
+				throw new JspfException(MessageBundle.getInstance().getMessage("canceled_by_user"));
 			} else {
 				return null;
 			}

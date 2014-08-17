@@ -102,7 +102,7 @@ public class TextFileChooser extends JDialog {
 	private void makeLayout() {
 		this.fileChooser = new JFileChooserEx();
 		this.charsetComboBox = new JComboBox<Charset>();
-		JLabel encodingLabel = new JLabel(MessageBundle.getMessage("encoding"));
+		JLabel encodingLabel = new JLabel(MessageBundle.getInstance().getMessage("encoding"));
 		{
 			SortedMap<String, Charset> availableCharsets = Charset.availableCharsets();
 			for (Charset cs : availableCharsets.values()) {
@@ -141,7 +141,7 @@ public class TextFileChooser extends JDialog {
 	
     public int showOpenDialog(Component parent) throws HeadlessException {
 		this.setModal(true);
-		this.setTitle(MessageBundle.getMessage("file_open"));
+		this.setTitle(MessageBundle.getInstance().getMessage("file_open"));
 		this.pack();
 		this.setVisible(true);
 		return this.option;
@@ -149,7 +149,7 @@ public class TextFileChooser extends JDialog {
 
 	public int showSaveDialog(Component parent) throws HeadlessException {
 		this.setModal(true);
-		this.setTitle(MessageBundle.getMessage("file_save"));
+		this.setTitle(MessageBundle.getInstance().getMessage("file_save"));
     	fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
 		this.pack();
 		this.setVisible(true);

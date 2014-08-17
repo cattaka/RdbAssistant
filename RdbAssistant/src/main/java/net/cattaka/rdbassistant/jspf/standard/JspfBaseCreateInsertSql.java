@@ -53,7 +53,7 @@ public class JspfBaseCreateInsertSql extends JspfBase {
 
 	public JspfBaseCreateInsertSql() {
 		this.setName(JspfConstants.JSPF_NAME_CREATE_INSERT_SQL);
-		this.setDisplayName(MessageBundle.getMessage("create_insert_sql"));
+		this.setDisplayName(MessageBundle.getInstance().getMessage("create_insert_sql"));
 	}
 	
 	@Override
@@ -62,7 +62,7 @@ public class JspfBaseCreateInsertSql extends JspfBase {
 		if (selectionInfo.getTables().length == 1) {
 			out.println("\t" + selectionInfo.getTables()[0]);
 		} else {
-			error(MessageBundle.getMessage("select_single_table"));
+			error(MessageBundle.getInstance().getMessage("select_single_table"));
 		}
 		
 		// VALUESを作成

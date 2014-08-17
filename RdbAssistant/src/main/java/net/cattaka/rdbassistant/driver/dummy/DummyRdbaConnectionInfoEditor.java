@@ -60,7 +60,7 @@ public class DummyRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 	}
 	
 	private void makeLayout() {
-		JLabel labelLabel = new JLabel(MessageBundle.getMessage("label"));
+		JLabel labelLabel = new JLabel(MessageBundle.getInstance().getMessage("label"));
 		labelField = new StdTextField();
 		
 		GridBagLayout gbl = new GridBagLayout();

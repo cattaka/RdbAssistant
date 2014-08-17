@@ -74,7 +74,7 @@ public class CancelExecuteStatementDialog extends JDialog implements ActionListe
 	
 	public CancelExecuteStatementDialog(Frame parentFrame, StatementExecuteThread statementExecuteThread, long startTime) throws HeadlessException {
 		super(parentFrame);
-		setTitle(MessageBundle.getMessage("now_sql_executing"));
+		setTitle(MessageBundle.getInstance().getMessage("now_sql_executing"));
 		setSize(300,100);
 		
 		this.statementExecuteThread = statementExecuteThread;
@@ -87,7 +87,7 @@ public class CancelExecuteStatementDialog extends JDialog implements ActionListe
 		cancelButton.setActionCommand("cancel");
 		cancelButton.addActionListener(this);
 		this.messageLabel = new JLabel();
-		this.messageLabel.setText(MessageBundle.getMessage("now_sql_executing"));
+		this.messageLabel.setText(MessageBundle.getInstance().getMessage("now_sql_executing"));
 		this.timeLabel = new JLabel();
 		
 		cancelButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);

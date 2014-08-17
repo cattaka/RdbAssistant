@@ -98,21 +98,21 @@ public class RdbAssistantPanel extends JPanel implements RdbaGuiInterface {
 	class ActionListenerImpl implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equals("license")) {
-				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getMessage("license"), "net/cattaka/rdbassistant/docs/license%1$s.utf8.txt");
+				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getInstance().getMessage("license"), "net/cattaka/rdbassistant/docs/license%1$s.utf8.txt");
 				dd.setSize(500, 500);
 				dd.setModal(true);
 				dd.setLocationRelativeTo(RdbAssistantPanel.this);
 				dd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dd.setVisible(true);
 			} else if (e.getActionCommand().equals("readme")) {
-				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getMessage("readme"), "net/cattaka/rdbassistant/docs/readme%1$s.utf8.txt");
+				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getInstance().getMessage("readme"), "net/cattaka/rdbassistant/docs/readme%1$s.utf8.txt");
 				dd.setSize(500, 500);
 				dd.setModal(true);
 				dd.setLocationRelativeTo(RdbAssistantPanel.this);
 				dd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dd.setVisible(true);
 			} else if (e.getActionCommand().equals("about")) {
-				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getMessage("about"), "net/cattaka/rdbassistant/docs/about%1$s.utf8.txt");
+				DocumentDialog dd = new DocumentDialog(RdbaGuiUtil.getParentFrame(RdbAssistantPanel.this), MessageBundle.getInstance().getMessage("about"), "net/cattaka/rdbassistant/docs/about%1$s.utf8.txt");
 				dd.setSize(400, 200);
 				dd.setModal(true);
 				dd.setLocationRelativeTo(RdbAssistantPanel.this);
@@ -173,7 +173,7 @@ public class RdbAssistantPanel extends JPanel implements RdbaGuiInterface {
 		// コンフィグファイル用ダイアログ
 		{
 			configFileChooser = new JFileChooser();
-			configFileChooser.setFileFilter(new ExtFileFilter(".xml", MessageBundle.getMessage("config_xml_file")));
+			configFileChooser.setFileFilter(new ExtFileFilter(".xml", MessageBundle.getInstance().getMessage("config_xml_file")));
 		}
 		
 		Icon gcIcon = (Icon)this.getRdbaSingletonBundle().getResource(RdbaMessageConstants.ICON_GC);
@@ -357,7 +357,7 @@ public class RdbAssistantPanel extends JPanel implements RdbaGuiInterface {
 	public void doExportConfig() {
 		if (configFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
 			File configFile = configFileChooser.getSelectedFile();
-			if (!configFile.exists() || JOptionPane.showConfirmDialog(this, String.format(MessageBundle.getMessage("already_exists_overwrite_file"),configFile.getName()), MessageBundle.getMessage("confirm"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			if (!configFile.exists() || JOptionPane.showConfirmDialog(this, String.format(MessageBundle.getInstance().getMessage("already_exists_overwrite_file"),configFile.getName()), MessageBundle.getInstance().getMessage("confirm"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				FileOutputStream fout = null;
 				try {
 					fout = new FileOutputStream(configFile);

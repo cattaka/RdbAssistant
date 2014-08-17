@@ -101,13 +101,13 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 	}
 	
 	private void makeLayout() {
-		JLabel labelLabel = new JLabel(MessageBundle.getMessage("label"));
-		JLabel driverFileLabel = new JLabel(MessageBundle.getMessage("jdbc_file"));
-		JLabel driverClassNameLabel = new JLabel(MessageBundle.getMessage("jdbc_class_name"));
-		JLabel urlLabel = new JLabel(MessageBundle.getMessage("url"));
-		JLabel usernameLabel = new JLabel(MessageBundle.getMessage("username"));
-		JLabel passwordLabel = new JLabel(MessageBundle.getMessage("password"));
-		JButton reloadDriverFileButton = new JButton(MessageBundle.getMessage("update"));
+		JLabel labelLabel = new JLabel(MessageBundle.getInstance().getMessage("label"));
+		JLabel driverFileLabel = new JLabel(MessageBundle.getInstance().getMessage("jdbc_file"));
+		JLabel driverClassNameLabel = new JLabel(MessageBundle.getInstance().getMessage("jdbc_class_name"));
+		JLabel urlLabel = new JLabel(MessageBundle.getInstance().getMessage("url"));
+		JLabel usernameLabel = new JLabel(MessageBundle.getInstance().getMessage("username"));
+		JLabel passwordLabel = new JLabel(MessageBundle.getInstance().getMessage("password"));
+		JButton reloadDriverFileButton = new JButton(MessageBundle.getInstance().getMessage("update"));
 		
 		labelField = new StdTextField();
 		driverFileField = new DIPInfoFile("", "", DIPInfoFile.MODE_OPEN); 
@@ -226,7 +226,7 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 		}
 		if (jdbcUrl == null) {
 			// URLが見つからないので諦め
-			throw new RdbaException(MessageBundle.getMessage("jdbc_driver_file_not_found"));
+			throw new RdbaException(MessageBundle.getInstance().getMessage("jdbc_driver_file_not_found"));
 		}
 		
 		// Zipファイルとしてclassを検索

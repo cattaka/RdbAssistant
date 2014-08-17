@@ -248,10 +248,10 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 			compiledSource.setEditable(false);
 			compiledSourceScrollPane = new StdScrollPane(compiledSource);
 			
-			resultTabbedPane.add(resultLogScrollPane,MessageBundle.getMessage("result_log"));
-			resultTabbedPane.add(compiledSourceScrollPane,MessageBundle.getMessage("compiled_source"));
-			resultTabbedPane.add(outputTablePanel,MessageBundle.getMessage("output_table"));
-			resultTabbedPane.add(outputLogScrollPane,MessageBundle.getMessage("output_log"));
+			resultTabbedPane.add(resultLogScrollPane,MessageBundle.getInstance().getMessage("result_log"));
+			resultTabbedPane.add(compiledSourceScrollPane,MessageBundle.getInstance().getMessage("compiled_source"));
+			resultTabbedPane.add(outputTablePanel,MessageBundle.getInstance().getMessage("output_table"));
+			resultTabbedPane.add(outputLogScrollPane,MessageBundle.getInstance().getMessage("output_log"));
 			
 			// スプリットパネルに上記で作成した物を設定。
 			splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,scriptTextScrollPane, resultTabbedPane);
@@ -282,7 +282,7 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 	 * @return 成功ならtrue、それ以外はfalse
 	 */
 	public JspfEntry<RdbaScriptUtil> compileScript(String labelName, String sourceText) {
-		appendResultLog(MessageBundle.getMessage("compile_result_separator_raw"));
+		appendResultLog(MessageBundle.getInstance().getMessage("compile_result_separator_raw"));
 		appendResultLog("\n");
 		StringWriter resultSw = new StringWriter();
 		PrintWriterEx resultWriter = new PrintWriterEx(resultSw);
@@ -304,10 +304,10 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 		}
 		
 		if (result != null) {
-			appendResultLog(MessageBundle.getMessage("compile_script_succeed"));
+			appendResultLog(MessageBundle.getInstance().getMessage("compile_script_succeed"));
 			appendResultLog("\n");
 		} else {
-			appendResultLog(MessageBundle.getMessage("compile_script_failed"));
+			appendResultLog(MessageBundle.getInstance().getMessage("compile_script_failed"));
 			appendResultLog("\n");
 		}
 		
@@ -335,7 +335,7 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 			StringWriter outputSw = new StringWriter();
 			PrintWriterEx outputWriter = new PrintWriterEx(outputSw);
 			
-			appendResultLog(MessageBundle.getMessage("script_result_separator_raw"));
+			appendResultLog(MessageBundle.getInstance().getMessage("script_result_separator_raw"));
 			appendResultLog("\n");
 			
 			RdbaScriptUtil util = new RdbaScriptUtil();
@@ -381,9 +381,9 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 				appendResultLog("\n");
 			}
 			if (result) {
-				appendResultLog(MessageBundle.getMessage("executing_script_succeed"));
+				appendResultLog(MessageBundle.getInstance().getMessage("executing_script_succeed"));
 			} else {
-				appendResultLog(MessageBundle.getMessage("executing_script_failed"));
+				appendResultLog(MessageBundle.getInstance().getMessage("executing_script_failed"));
 			}
 			appendResultLog("\n");
 			appendResultLog("\n");

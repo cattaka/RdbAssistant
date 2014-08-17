@@ -55,7 +55,7 @@ public class JspfBaseCreateUpdateSql extends JspfBase {
 
 	public JspfBaseCreateUpdateSql() {
 		this.setName(JspfConstants.JSPF_NAME_CREATE_UPDATE_SQL);
-		this.setDisplayName(MessageBundle.getMessage("create_update_sql"));
+		this.setDisplayName(MessageBundle.getInstance().getMessage("create_update_sql"));
 	}
 	
 	@Override
@@ -66,7 +66,7 @@ public class JspfBaseCreateUpdateSql extends JspfBase {
 			tableName = selectionInfo.getTables()[0];
 			out.println("\t" + tableName);
 		} else {
-			error(MessageBundle.getMessage("select_single_table"));
+			error(MessageBundle.getInstance().getMessage("select_single_table"));
 		}
 		
 		// SETを作成

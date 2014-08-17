@@ -266,7 +266,7 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			MouseEventUtil.createMouseEventPipe(tableListScrollPane, tableList);
 
 			tableListPanel.setLayout(new BoxLayout(tableListPanel, BoxLayout.PAGE_AXIS));
-			tableListPanel.add(new JLabel(MessageBundle.getMessage("table")));
+			tableListPanel.add(new JLabel(MessageBundle.getInstance().getMessage("table")));
 			tableListPanel.add(tableListScrollPane);
 		}
 		{
@@ -276,15 +276,15 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			propertyTablePanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
 
 			propertyTablePanel.setLayout(new BoxLayout(propertyTablePanel, BoxLayout.PAGE_AXIS));
-			propertyTablePanel.add(new JLabel(MessageBundle.getMessage("table_detail")));
+			propertyTablePanel.add(new JLabel(MessageBundle.getInstance().getMessage("table_detail")));
 			propertyTablePanel.add(tableDetailPanel);
 		}
 		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, tableListPanel, propertyTablePanel);
 
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		this.add(new JLabel(MessageBundle.getMessage("database")));
+		this.add(new JLabel(MessageBundle.getInstance().getMessage("database")));
 		this.add(databaseComboBox);
-		this.add(new JLabel(MessageBundle.getMessage("object_type")));
+		this.add(new JLabel(MessageBundle.getInstance().getMessage("object_type")));
 		this.add(objectTypeComboBox);
 		this.add(splitPane);
 

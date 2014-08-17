@@ -301,10 +301,10 @@ abstract public class RdbaConnectionInfoListPanel extends JPanel implements Rdba
 	private void updateConnectionInfoTable() {
 		if (this.connectionInfoList != null) {
 			String[] header = new String[]{
-					MessageBundle.getMessage("target_rdbms"),
-					MessageBundle.getMessage("target_label"),
-					MessageBundle.getMessage("target_database"),
-					MessageBundle.getMessage("target_user")
+					MessageBundle.getInstance().getMessage("target_rdbms"),
+					MessageBundle.getInstance().getMessage("target_label"),
+					MessageBundle.getInstance().getMessage("target_database"),
+					MessageBundle.getInstance().getMessage("target_user")
 				};
 			
 			ArrayList<String[]> displayStringsList = new ArrayList<String[]>();

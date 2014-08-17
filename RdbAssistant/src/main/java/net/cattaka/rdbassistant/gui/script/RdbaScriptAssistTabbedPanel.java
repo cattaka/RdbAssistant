@@ -65,7 +65,7 @@ public class RdbaScriptAssistTabbedPanel extends JTabbedPane implements RdbaGuiI
 	private void makeLayout() {
 		this.rdbaScriptAccessPanel = new RdbaScriptAccessPanel(this);
 		
-		this.addTab(MessageBundle.getMessage("script_list"), this.rdbaScriptAccessPanel);
+		this.addTab(MessageBundle.getInstance().getMessage("script_list"), this.rdbaScriptAccessPanel);
 	}
 
 	public void setRdbaConnection(RdbaConnection rdbaConnection) {

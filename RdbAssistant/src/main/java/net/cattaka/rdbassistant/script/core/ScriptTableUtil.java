@@ -177,7 +177,7 @@ public class ScriptTableUtil {
 			for (int r=1;r<tbl1.getRowCount();r++) {
 				List<String> cols = tbl1.getRowValuesAsFullList(r);
 				if (!uniqueTbl1.add(cols)) {
-					throw new JspfException(MessageBundle.getMessage("keys_are_not_unique"));
+					throw new JspfException(MessageBundle.getInstance().getMessage("keys_are_not_unique"));
 				}
 			}
 		}
@@ -186,7 +186,7 @@ public class ScriptTableUtil {
 		for (int r=1;r<tbl2.getRowCount();r++) {
 			List<String> cols = tbl2.getRowValuesAsFullList(r);
 			if (indexedMap.put(cols,cols) != null) {
-				throw new JspfException(MessageBundle.getMessage("keys_are_not_unique"));
+				throw new JspfException(MessageBundle.getInstance().getMessage("keys_are_not_unique"));
 			}
 		}
 		
@@ -484,7 +484,7 @@ public class ScriptTableUtil {
 		InputStream in = null;
 		File file = new File(fileName);
 		if (file.exists() && file.isDirectory()) {
-			String msg = String.format(MessageBundle.getMessage("this_is_directory"),fileName);
+			String msg = String.format(MessageBundle.getInstance().getMessage("this_is_directory"),fileName);
 			ExceptionHandler.error(msg);
 			throw new JspfException(msg);
 		}
@@ -497,7 +497,7 @@ public class ScriptTableUtil {
 			}
 		} catch (FileNotFoundException e) {
 			ExceptionHandler.error(e);
-			throw new JspfException(String.format(MessageBundle.getMessage("this_is_not_found"),fileName));
+			throw new JspfException(String.format(MessageBundle.getInstance().getMessage("this_is_not_found"),fileName));
 		} catch (UnsupportedEncodingException e) {
 			ExceptionHandler.error(e);
 			throw new JspfException(e.getMessage());
@@ -521,7 +521,7 @@ public class ScriptTableUtil {
 		OutputStream out = null;
 		File file = new File(fileName);
 		if (file.exists() && file.isDirectory()) {
-			String msg = String.format(MessageBundle.getMessage("this_is_directory"),fileName);
+			String msg = String.format(MessageBundle.getInstance().getMessage("this_is_directory"),fileName);
 			ExceptionHandler.error(msg);
 			throw new JspfException(msg);
 		}
@@ -534,7 +534,7 @@ public class ScriptTableUtil {
 			}
 		} catch (FileNotFoundException e) {
 			ExceptionHandler.error(e);
-			throw new JspfException(String.format(MessageBundle.getMessage("this_is_not_found"),fileName));
+			throw new JspfException(String.format(MessageBundle.getInstance().getMessage("this_is_not_found"),fileName));
 		} catch (UnsupportedEncodingException e) {
 			ExceptionHandler.error(e);
 			throw new JspfException(e.getMessage());

@@ -188,7 +188,7 @@ public class RdbaScriptJavaSourceConverter implements JspfJavaSourceConverter<Rd
 			}
 		}
 		if (sourceMode) {
-			throw new JspfException(MessageBundle.getMessage("scriptlet_is_not_closed"));
+			throw new JspfException(MessageBundle.getInstance().getMessage("scriptlet_is_not_closed"));
 		}
 		if (sb.length() > 0) {
 			result.add(new BodyPiace(sourceMode, sb.toString()));
@@ -307,7 +307,7 @@ public class RdbaScriptJavaSourceConverter implements JspfJavaSourceConverter<Rd
 				sb.append((char)r);
 			}
 		} catch (IOException e) {
-			throw new JspfException(String.format(MessageBundle.getMessage("could_not_open_file"), fileName));
+			throw new JspfException(String.format(MessageBundle.getInstance().getMessage("could_not_open_file"), fileName));
 		} finally {
 			if (reader != null) {
 				try {

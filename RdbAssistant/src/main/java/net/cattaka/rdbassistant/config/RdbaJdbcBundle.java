@@ -136,13 +136,13 @@ public class RdbaJdbcBundle {
 	public Driver getDriver(String key, String className) throws RdbaException {
 		URLClassLoader urlClassLoader = classLoaderMap.get(key);
 		if (urlClassLoader == null) {
-			throw new RdbaException(MessageBundle.getMessage("jdbc_not_configured"));
+			throw new RdbaException(MessageBundle.getInstance().getMessage("jdbc_not_configured"));
 		}
 		Class<?> driverClass = null;
 		try {
 			driverClass = urlClassLoader.loadClass(className);
 		} catch (ClassNotFoundException e) {
-			throw new RdbaException(MessageBundle.getMessage("jdbc_class_not_found"));
+			throw new RdbaException(MessageBundle.getInstance().getMessage("jdbc_class_not_found"));
 		}
 		Driver driver = null;
 		try {

@@ -75,7 +75,7 @@ public class DocumentDialog extends JDialog {
 		try {
 			StringBuilder sb = new StringBuilder();
 			BufferedReader in = new BufferedReader(ResourceUtil.getResourceAsReader(document));
-			String releaseNumber = MessageBundle.getReleaseNumber();
+			String releaseNumber = MessageBundle.getInstance().getReleaseNumber();
 			String tmp;
 			while ((tmp = in.readLine()) != null) {
 				tmp = tmp.replace("${release_number}", releaseNumber);

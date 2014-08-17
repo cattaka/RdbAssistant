@@ -55,7 +55,7 @@ public class JspfBaseCreateDeleteSql extends JspfBase {
 
 	public JspfBaseCreateDeleteSql() {
 		this.setName(JspfConstants.JSPF_NAME_CREATE_DELETE_SQL);
-		this.setDisplayName(MessageBundle.getMessage("create_delete_sql"));
+		this.setDisplayName(MessageBundle.getInstance().getMessage("create_delete_sql"));
 	}
 	
 	@Override
@@ -66,7 +66,7 @@ public class JspfBaseCreateDeleteSql extends JspfBase {
 			tableName = selectionInfo.getTables()[0];
 			out.println("\t" + tableName);
 		} else {
-			error(MessageBundle.getMessage("select_single_table"));
+			error(MessageBundle.getInstance().getMessage("select_single_table"));
 		}
 		
 		// WHERE句の作成

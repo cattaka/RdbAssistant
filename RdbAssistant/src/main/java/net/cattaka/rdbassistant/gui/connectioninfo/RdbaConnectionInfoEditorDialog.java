@@ -118,10 +118,10 @@ public class RdbaConnectionInfoEditorDialog extends JDialog {
 		ActionListener al = new ActionListenerForEditorFrame();
 		JButton okButton = new JButton();
 		JButton cancelButton = new JButton();
-		okButton.setText(MessageBundle.getMessage("ok"));
+		okButton.setText(MessageBundle.getInstance().getMessage("ok"));
 		okButton.setActionCommand("ok");
 		okButton.addActionListener(al);
-		cancelButton.setText(MessageBundle.getMessage("cancel"));
+		cancelButton.setText(MessageBundle.getInstance().getMessage("cancel"));
 		cancelButton.setActionCommand("cancel");
 		cancelButton.addActionListener(al);
 		

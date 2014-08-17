@@ -129,10 +129,10 @@ public class FontChooser extends JDialog {
 	}
 
 	public void makeLayout() {
-		setTitle(MessageBundle.getMessage("font"));
+		setTitle(MessageBundle.getInstance().getMessage("font"));
 		setSize(500,400);
 		
-		String sampleStringForFont = MessageBundle.getMessage("sample_string_for_font");
+		String sampleStringForFont = MessageBundle.getInstance().getMessage("sample_string_for_font");
 		previewPlain = new JTextField(sampleStringForFont);
 		previewBold = new JTextField(sampleStringForFont);
 		previewItalic = new JTextField(sampleStringForFont);
@@ -153,9 +153,9 @@ public class FontChooser extends JDialog {
 		}
 		StdScrollPane fontNameScrollPane = new StdScrollPane(fontNameList);
 		StdScrollPane fontSizeScrollPane = new StdScrollPane(fontSizeList);
-		JLabel fontNameLabel = new JLabel(MessageBundle.getMessage("font_name"));
-		JLabel fontSizeLabel = new JLabel(MessageBundle.getMessage("font_size"));
-		JLabel previewLabel = new JLabel(MessageBundle.getMessage("preview"));
+		JLabel fontNameLabel = new JLabel(MessageBundle.getInstance().getMessage("font_name"));
+		JLabel fontSizeLabel = new JLabel(MessageBundle.getInstance().getMessage("font_size"));
+		JLabel previewLabel = new JLabel(MessageBundle.getInstance().getMessage("preview"));
 		ButtonPanel buttonPanel = new ButtonPanel();
 		
 		GridBagLayout gbl = new GridBagLayout();

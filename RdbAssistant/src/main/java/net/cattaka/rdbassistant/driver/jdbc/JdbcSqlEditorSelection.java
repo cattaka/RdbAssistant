@@ -201,34 +201,34 @@ public class JdbcSqlEditorSelection implements SqlEditorSelection {
 					SortWrapperResultSetTableModel rstm = null;
 					StaticResultSetTableModel pt = new StaticResultSetTableModel();
 					if (i==0) {
-						tableTitle = MessageBundle.getMessage("list_columns");
+						tableTitle = MessageBundle.getInstance().getMessage("list_columns");
 						rs = databaseMetaData.getColumns(null, database, table, null);
 						pt.extractResultSetData(rdbConnection, rs, null);
 						rstm = new SortWrapperResultSetTableModel(pt);
 						rstm.moveColumnFront(SORT_COLUMNS);
 					} else if (i==1) {
-						tableTitle = MessageBundle.getMessage("list_primary_keys");
+						tableTitle = MessageBundle.getInstance().getMessage("list_primary_keys");
 						rs = databaseMetaData.getPrimaryKeys(null, database, table);
 						pt.extractResultSetData(rdbConnection, rs, null);
 						rstm = new SortWrapperResultSetTableModel(pt);
 						rstm.moveColumnFront(SORT_PRIMARY_KEYS);
 					} else if (i==2) {
-						tableTitle = MessageBundle.getMessage("list_exported_keys");
+						tableTitle = MessageBundle.getInstance().getMessage("list_exported_keys");
 						rs = databaseMetaData.getExportedKeys(null, database, table);
 						pt.extractResultSetData(rdbConnection, rs, null);
 						rstm = new SortWrapperResultSetTableModel(pt);
 					} else if (i==3) {
-						tableTitle = MessageBundle.getMessage("list_imported_keys");
+						tableTitle = MessageBundle.getInstance().getMessage("list_imported_keys");
 						rs = databaseMetaData.getImportedKeys(null, database, table);
 						pt.extractResultSetData(rdbConnection, rs, null);
 						rstm = new SortWrapperResultSetTableModel(pt);
 					} else if (i==4) {
-						tableTitle = MessageBundle.getMessage("list_table_privileges");
+						tableTitle = MessageBundle.getInstance().getMessage("list_table_privileges");
 						rs = databaseMetaData.getTablePrivileges(null, database, table);
 						pt.extractResultSetData(rdbConnection, rs, null);
 						rstm = new SortWrapperResultSetTableModel(pt);
 					} else if (i==5) {
-						tableTitle = MessageBundle.getMessage("list_column_privileges");
+						tableTitle = MessageBundle.getInstance().getMessage("list_column_privileges");
 						rs = databaseMetaData.getColumnPrivileges(null, database, table, null);
 						pt.extractResultSetData(rdbConnection, rs, null);
 						rstm = new SortWrapperResultSetTableModel(pt);

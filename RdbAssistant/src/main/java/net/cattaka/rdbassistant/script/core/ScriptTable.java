@@ -138,7 +138,7 @@ public class ScriptTable implements Serializable {
 	public int getColumnIndex(String columnName) throws JspfException {
 		Integer col = this.columnMap.get(columnName);
 		if (col == null) {
-			throw new JspfException(String.format(MessageBundle.getMessage("no_such_column"),columnName));
+			throw new JspfException(String.format(MessageBundle.getInstance().getMessage("no_such_column"),columnName));
 		}
 		return col;
 	}

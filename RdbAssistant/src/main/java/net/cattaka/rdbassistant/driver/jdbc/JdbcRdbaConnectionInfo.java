@@ -96,7 +96,7 @@ public class JdbcRdbaConnectionInfo implements RdbaConnectionInfo {
 		}
 		if (jdbcUrl == null) {
 			// URLが見つからないので諦め
-			throw new RdbaException(MessageBundle.getMessage("jdbc_driver_file_not_found"));
+			throw new RdbaException(MessageBundle.getInstance().getMessage("jdbc_driver_file_not_found"));
 		}
 		
 		// Jarファイルをロード
@@ -106,7 +106,7 @@ public class JdbcRdbaConnectionInfo implements RdbaConnectionInfo {
 		try {
 			driverClass =  urlClassLoader.loadClass(this.driverClassName);
 		} catch (ClassNotFoundException e) {
-			throw new RdbaException(MessageBundle.getMessage("jdbc_class_not_found"));
+			throw new RdbaException(MessageBundle.getInstance().getMessage("jdbc_class_not_found"));
 		}
 		Driver driver = null;
 		try {

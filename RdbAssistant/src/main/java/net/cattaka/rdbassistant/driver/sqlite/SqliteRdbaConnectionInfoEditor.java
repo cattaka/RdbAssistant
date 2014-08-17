@@ -62,8 +62,8 @@ public class SqliteRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 	}
 	
 	private void makeLayout() {
-		JLabel labelLabel = new JLabel(MessageBundle.getMessage("label"));
-		JLabel databaseLabel = new JLabel(MessageBundle.getMessage("database"));
+		JLabel labelLabel = new JLabel(MessageBundle.getInstance().getMessage("label"));
+		JLabel databaseLabel = new JLabel(MessageBundle.getInstance().getMessage("database"));
 		labelField = new StdTextField();
 		databaseField = new DIPInfoFile("", "", DIPInfoFile.MODE_OPEN);
 		

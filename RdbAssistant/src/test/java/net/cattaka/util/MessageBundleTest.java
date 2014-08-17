@@ -36,50 +36,35 @@
  * not be interpreted as representing official policies,
  * either expressed or implied.
  */
-/*
- * $Id: MessageBundle.java 232 2009-08-01 07:06:41Z cattaka $
- */
 package net.cattaka.util;
 
-import java.util.MissingResourceException;
+import static org.junit.Assert.*;
+
 import java.util.Properties;
 
-public class MessageBundle {
-	private static MessageBundle instance;
-	private Properties properties;
-	private Properties versionProperties;
-	static {
-		Properties properties = ResourceUtil.getPropertiesResourceAsStream(
-				"messages%1$s.properties", true);
-		Properties versionProperties = ResourceUtil
-				.getPropertiesResourceAsStream("version%1$s.properties", false);
-		instance = new MessageBundle(properties, versionProperties);
+import org.junit.Before;
+import org.junit.Test;
+
+public class MessageBundleTest {
+	private MessageBundle target;
+
+	@Before
+	public void setUp() throws Exception {
+		Properties properties = new Properties();
+		Properties versionProperties = new Properties();
+		properties.put("test_message", "This is message");
+		versionProperties.put("release.number", "1232");
+		target = new MessageBundle(properties, versionProperties);
 	}
 
-	MessageBundle(Properties properties, Properties versionProperties) {
-		super();
-		this.properties = properties;
-		this.versionProperties = versionProperties;
+	@Test
+	public void testGetReleaseNumber() {
+		assertEquals("1232", target.getReleaseNumber());
 	}
 
-	public static MessageBundle getInstance() {
-		return instance;
-	}
-
-	public String getReleaseNumber() {
-		return versionProperties.getProperty("release.number");
-	}
-
-	public String getMessage(String key) {
-		try {
-			String result = properties.getProperty(key);
-			if (result != null) {
-				return result;
-			} else {
-				return key;
-			}
-		} catch (MissingResourceException e) {
-			return key;
-		}
+	@Test
+	public void testGetMessage() {
+		assertEquals("This is message", target.getMessage("test_message"));
+		assertEquals("bad_key", target.getMessage("bad_key"));
 	}
 }

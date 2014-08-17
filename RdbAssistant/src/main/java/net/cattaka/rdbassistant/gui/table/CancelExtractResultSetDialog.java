@@ -75,7 +75,7 @@ public class CancelExtractResultSetDialog extends JDialog implements ActionListe
 	
 	public CancelExtractResultSetDialog(Frame parentFrame, ExtractResultSetDataThread extractResultSetDataThread, long startTime) throws HeadlessException {
 		super(parentFrame);
-		setTitle(MessageBundle.getMessage("now_extracting"));
+		setTitle(MessageBundle.getInstance().getMessage("now_extracting"));
 		setSize(300,100);
 		
 		this.extractResultSetDataThread = extractResultSetDataThread;
@@ -121,7 +121,7 @@ public class CancelExtractResultSetDialog extends JDialog implements ActionListe
 	
 	private void updateLabel() {
 		if (this.extractResultSetDataThread.isAlive()) {
-			String message = String.format(MessageBundle.getMessage("rows_were_extracted"),this.extractResultSetDataThread.getExtractedRowCount());
+			String message = String.format(MessageBundle.getInstance().getMessage("rows_were_extracted"),this.extractResultSetDataThread.getExtractedRowCount());
 			this.messageLabel.setText(message);
 			long time = System.currentTimeMillis() - startTime;
 			this.timeLabel.setText(StringUtil.longToTimeString(time));

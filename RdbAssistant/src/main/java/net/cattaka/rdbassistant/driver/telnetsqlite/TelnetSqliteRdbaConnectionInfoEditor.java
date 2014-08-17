@@ -65,14 +65,14 @@ public class TelnetSqliteRdbaConnectionInfoEditor extends RdbaConnectionInfoEdit
 	}
 	
 	private void makeLayout() {
-		JLabel labelLabel = new JLabel(MessageBundle.getMessage("label"));
-		JLabel hostnameLabel = new JLabel(MessageBundle.getMessage("hostname"));
-		JLabel portLabel = new JLabel(MessageBundle.getMessage("port"));
-		JLabel databaseLabel = new JLabel(MessageBundle.getMessage("database"));
+		JLabel labelLabel = new JLabel(MessageBundle.getInstance().getMessage("label"));
+		JLabel hostnameLabel = new JLabel(MessageBundle.getInstance().getMessage("hostname"));
+		JLabel portLabel = new JLabel(MessageBundle.getInstance().getMessage("port"));
+		JLabel databaseLabel = new JLabel(MessageBundle.getInstance().getMessage("database"));
 		labelField = new StdTextField();
-		hostnameField = new DIPInfoString(MessageBundle.getMessage("hostname"),"");
-		portField = new DIPInfoInteger(MessageBundle.getMessage("port"), "");
-		databaseField = new DIPInfoString(MessageBundle.getMessage("database"),"");
+		hostnameField = new DIPInfoString(MessageBundle.getInstance().getMessage("hostname"),"");
+		portField = new DIPInfoInteger(MessageBundle.getInstance().getMessage("port"), "");
+		databaseField = new DIPInfoString(MessageBundle.getInstance().getMessage("database"),"");
 		
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();

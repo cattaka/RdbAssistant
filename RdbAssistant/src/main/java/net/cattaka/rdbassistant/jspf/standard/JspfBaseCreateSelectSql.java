@@ -52,7 +52,7 @@ public class JspfBaseCreateSelectSql extends JspfBase {
 
 	public JspfBaseCreateSelectSql() {
 		this.setName(JspfConstants.JSPF_NAME_CREATE_SELECT_SQL);
-		this.setDisplayName(MessageBundle.getMessage("create_select_sql"));
+		this.setDisplayName(MessageBundle.getInstance().getMessage("create_select_sql"));
 	}
 	
 	@Override

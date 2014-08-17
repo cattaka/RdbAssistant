@@ -57,7 +57,7 @@ public class RdbaConfigEditorDialog extends JDialog {
 	public RdbaConfigEditorDialog(Frame owner) throws HeadlessException {
 		super(owner);
 		this.setSize(600,400);
-		this.setTitle(MessageBundle.getMessage("config"));
+		this.setTitle(MessageBundle.getInstance().getMessage("config"));
 		this.makeLayout();
 	}
 	

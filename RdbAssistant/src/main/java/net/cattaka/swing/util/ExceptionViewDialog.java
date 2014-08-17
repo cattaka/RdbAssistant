@@ -73,7 +73,7 @@ public class ExceptionViewDialog extends JDialog {
 	}
 	
 	private void makeLayout() {
-		this.setTitle(MessageBundle.getMessage("log_list"));
+		this.setTitle(MessageBundle.getInstance().getMessage("log_list"));
 		this.setSize(600,500);
 		
 		textArea = new JTextArea();

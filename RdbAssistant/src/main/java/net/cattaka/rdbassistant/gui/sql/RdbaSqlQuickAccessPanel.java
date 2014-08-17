@@ -77,7 +77,7 @@ public class RdbaSqlQuickAccessPanel extends JPanel implements RdbaGuiInterface 
 		public void doOpen(File file) {
 			boolean goFlag = false;
 			if (!file.getName().toUpperCase().endsWith(".SQL")) {
-				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(RdbaGuiUtil.getParentFrame(RdbaSqlQuickAccessPanel.this), MessageBundle.getMessage("this_is_not_sql_open_really"), MessageBundle.getMessage("confirm"), JOptionPane.YES_NO_OPTION)) {
+				if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(RdbaGuiUtil.getParentFrame(RdbaSqlQuickAccessPanel.this), MessageBundle.getInstance().getMessage("this_is_not_sql_open_really"), MessageBundle.getInstance().getMessage("confirm"), JOptionPane.YES_NO_OPTION)) {
 					goFlag = true;
 				}
 			} else {

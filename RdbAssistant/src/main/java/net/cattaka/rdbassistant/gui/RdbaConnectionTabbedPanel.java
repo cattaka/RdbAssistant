@@ -103,13 +103,13 @@ public class RdbaConnectionTabbedPanel extends CloseableTabbedPane implements Rd
 				RdbaGuiUtil.doLayout(rdbaConnectionPanel);
 				
 				// ステータスバーに表示。
-				String message = String.format(MessageBundle.getMessage("connecting_is_succeeded"), messageName);
+				String message = String.format(MessageBundle.getInstance().getMessage("connecting_is_succeeded"), messageName);
 				sendRdbaMessage(new RdbaMessage(RdbaMessageConstants.RDBASTATUSBAR_MESSAGE, null, RdbaConnectionTabbedPanel.this, message));
 			} catch (RdbaException e) {
 				JOptionPane.showMessageDialog(RdbaConnectionTabbedPanel.this, e.getMessage());
 				ExceptionHandler.error(e);
 				// ステータスバーに表示。
-				String message = String.format(MessageBundle.getMessage("connecting_is_failed"), messageName);
+				String message = String.format(MessageBundle.getInstance().getMessage("connecting_is_failed"), messageName);
 				sendRdbaMessage(new RdbaMessage(RdbaMessageConstants.RDBASTATUSBAR_MESSAGE, null, RdbaConnectionTabbedPanel.this, message));
 			}
 		}
@@ -141,7 +141,7 @@ public class RdbaConnectionTabbedPanel extends CloseableTabbedPane implements Rd
 		// 新規タブを作成
 		this.rdbaConnectionInfoListPanel = new RdbaConnectionInfoListPanelEx(this.parentComponent);
 		this.rdbaConnectionInfoListPanel.putClientProperty("isClosable", new Boolean(false));
-		this.add(MessageBundle.getMessage("new_connection"), this.rdbaConnectionInfoListPanel);
+		this.add(MessageBundle.getInstance().getMessage("new_connection"), this.rdbaConnectionInfoListPanel);
 
 		// タブ操作についての処理を追加
 		this.addChangeListener(new ChangeListenerImpl());

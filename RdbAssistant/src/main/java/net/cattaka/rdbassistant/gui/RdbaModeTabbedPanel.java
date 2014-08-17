@@ -77,8 +77,8 @@ public class RdbaModeTabbedPanel extends JTabbedPane implements RdbaGuiInterface
 		this.rdbaSqlModePanel = new RdbaSqlModePanel(this.parentComponent);
 		this.rdbaScriptModePanel = new RdbaScriptModePanel(this.parentComponent);
 		
-		this.add(MessageBundle.getMessage("sql"), this.rdbaSqlModePanel);
-		this.add(MessageBundle.getMessage("script"), this.rdbaScriptModePanel);
+		this.add(MessageBundle.getInstance().getMessage("sql"), this.rdbaSqlModePanel);
+		this.add(MessageBundle.getInstance().getMessage("script"), this.rdbaScriptModePanel);
 
 		// タブ操作についての処理を追加
 		this.addChangeListener(new ChangeListenerImpl());
