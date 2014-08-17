@@ -108,7 +108,7 @@ public class RdbaConnectionInfoEditorDialog extends JDialog {
 	
 	public RdbaConnectionInfoEditorDialog(Frame parentFrame) {
 		super(parentFrame);
-		this.setSize(500,250);
+		this.setSize(600,300);
 		this.setModal(true);
 		makeLayout();
 		updateRdbaConnectionInfo();

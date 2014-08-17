@@ -105,6 +105,8 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 		JLabel driverFileLabel = new JLabel(MessageBundle.getInstance().getMessage("jdbc_file"));
 		JLabel driverClassNameLabel = new JLabel(MessageBundle.getInstance().getMessage("jdbc_class_name"));
 		JLabel urlLabel = new JLabel(MessageBundle.getInstance().getMessage("url"));
+		JLabel urlSampleLabel = new JLabel(MessageBundle.getInstance().getMessage("url_example"));
+		JLabel urlSampleText = new JLabel();
 		JLabel usernameLabel = new JLabel(MessageBundle.getInstance().getMessage("username"));
 		JLabel passwordLabel = new JLabel(MessageBundle.getInstance().getMessage("password"));
 		JButton reloadDriverFileButton = new JButton(MessageBundle.getInstance().getMessage("update"));
@@ -137,6 +139,8 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 		gbc.gridy++;
 		gbl.setConstraints(urlLabel, gbc);
 		gbc.gridy++;
+		gbl.setConstraints(urlSampleLabel, gbc);
+		gbc.gridy++;
 		gbl.setConstraints(usernameLabel, gbc);
 		gbc.gridy++;
 		gbl.setConstraints(passwordLabel, gbc);
@@ -161,6 +165,8 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 		gbc.gridwidth=2;
 		gbl.setConstraints(urlField, gbc);
 		gbc.gridy++;
+		gbl.setConstraints(urlSampleText, gbc);
+		gbc.gridy++;
 		gbl.setConstraints(usernameField, gbc);
 		gbc.gridy++;
 		gbl.setConstraints(passwordField, gbc);
@@ -174,11 +180,21 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 		this.add(driverClassNameCombo);
 		this.add(urlLabel);
 		this.add(urlField);
+		this.add(urlSampleLabel);
+		this.add(urlSampleText);
 		this.add(usernameLabel);
 		this.add(usernameField);
 		this.add(passwordLabel);
 		this.add(passwordField);
 		this.add(reloadDriverFileButton);
+		
+		String urlSampleStr = "<html>" +
+				"MySQL=jdbc:mysql://[host][,failoverhost...][:port]/[database]<br>" +
+				"Oracle=jdbc:oracle:thin:@(hostname):(Port):(SID)<br>" +
+				"SQLite=jdbc:sqlite:(db file)<br>" +
+				"Postgress=jdbc:postgresql://(host):(port)/(database)<br>" +
+				"</html>";
+		urlSampleText.setText(urlSampleStr);
 	}
 	
 	@Override
