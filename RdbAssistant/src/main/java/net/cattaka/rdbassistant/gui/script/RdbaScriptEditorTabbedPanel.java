@@ -140,13 +140,13 @@ public class RdbaScriptEditorTabbedPanel extends JPanel implements RdbaGuiInterf
 			Icon iconRun = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_RUN);
 			Icon iconCompile = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_COMPILE);
 			Icon iconFind = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_FIND);
-			ButtonsBundle.applyButtonDifinition(newScriptButton, iconNew, "file_new", true);
-			ButtonsBundle.applyButtonDifinition(openScriptButton, iconOpen, "file_open", true);
-			ButtonsBundle.applyButtonDifinition(saveScriptButton, iconSave, "file_save", true);
-			ButtonsBundle.applyButtonDifinition(saveAsScriptButton, iconSaveAs, "file_save_as", true);
-			ButtonsBundle.applyButtonDifinition(runScriptButton, iconRun, "run_script", true);
-			ButtonsBundle.applyButtonDifinition(compileScriptButton, iconCompile, "compile_script", true);
-			ButtonsBundle.applyButtonDifinition(editFindButton, iconFind, "search_replace", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(newScriptButton, iconNew, "file_new", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(openScriptButton, iconOpen, "file_open", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(saveScriptButton, iconSave, "file_save", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(saveAsScriptButton, iconSaveAs, "file_save_as", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(runScriptButton, iconRun, "run_script", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(compileScriptButton, iconCompile, "compile_script", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(editFindButton, iconFind, "search_replace", true);
 		}
 
 		newScriptButton.addActionListener(al);

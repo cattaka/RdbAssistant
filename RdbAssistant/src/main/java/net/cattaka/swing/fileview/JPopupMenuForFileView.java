@@ -118,12 +118,12 @@ public class JPopupMenuForFileView extends JPopupMenu implements ActionListener 
 		createDirItem = new JMenuItem();
 		createFileItem = new JMenuItem();
 		refleshItem = new JMenuItem();
-		ButtonsBundle.applyMenuDifinition(openItem, "file_open");
-		ButtonsBundle.applyMenuDifinition(renameItem, "file_rename");
-		ButtonsBundle.applyMenuDifinition(deleteItem, "file_delete");
-		ButtonsBundle.applyMenuDifinition(createDirItem, "file_create_dir");
-		ButtonsBundle.applyMenuDifinition(createFileItem, "file_create_file");
-		ButtonsBundle.applyMenuDifinition(refleshItem, "reflesh");
+		ButtonsBundle.getInstance().applyMenuDifinition(openItem, "file_open");
+		ButtonsBundle.getInstance().applyMenuDifinition(renameItem, "file_rename");
+		ButtonsBundle.getInstance().applyMenuDifinition(deleteItem, "file_delete");
+		ButtonsBundle.getInstance().applyMenuDifinition(createDirItem, "file_create_dir");
+		ButtonsBundle.getInstance().applyMenuDifinition(createFileItem, "file_create_file");
+		ButtonsBundle.getInstance().applyMenuDifinition(refleshItem, "reflesh");
 		
 		openItem.setActionCommand("open");
 		renameItem.setActionCommand("rename");

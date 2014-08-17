@@ -101,8 +101,8 @@ public class DataInputPanel extends JPanel {
 		{
 			buttonApprove = new JButton();
 			buttonCancel = new JButton();
-			ButtonsBundle.applyButtonDifinition(buttonApprove, "ok");
-			ButtonsBundle.applyButtonDifinition(buttonCancel, "cancel");
+			ButtonsBundle.getInstance().applyButtonDifinition(buttonApprove, "ok");
+			ButtonsBundle.getInstance().applyButtonDifinition(buttonCancel, "cancel");
 			panelButtons.setLayout(new GridLayout(1, 2));
 			panelButtons.add(buttonApprove);
 			panelButtons.add(buttonCancel);

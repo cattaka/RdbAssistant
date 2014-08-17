@@ -66,7 +66,7 @@ public class StdStatusBar extends JPanel {
 	}
 	private void makeLayout(Icon gcIcon) {
 		JButton gcButton = new JButton();
-		ButtonsBundle.applyButtonDifinition(gcButton, gcIcon, "exec_gc", true);
+		ButtonsBundle.getInstance().applyButtonDifinition(gcButton, gcIcon, "exec_gc", true);
 		
 		this.messageLabel = new JLabel();
 		this.memoryBar = new JProgressBar(0,1);

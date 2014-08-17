@@ -249,7 +249,7 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 
 			JPopupMenuForColumnList tableListPopupMenu = new JPopupMenuForColumnList(false);
 			JMenuItem refleshItem = new JMenuItem();
-			ButtonsBundle.applyMenuDifinition(refleshItem, "reflesh");
+			ButtonsBundle.getInstance().applyMenuDifinition(refleshItem, "reflesh");
 			refleshItem.addActionListener(al);
 			refleshItem.setActionCommand("refleshTableList");
 			tableListPopupMenu.createMenuItems();

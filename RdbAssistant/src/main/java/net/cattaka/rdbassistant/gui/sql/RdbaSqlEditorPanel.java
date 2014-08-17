@@ -135,7 +135,7 @@ public class RdbaSqlEditorPanel extends JPanel implements RdbaGuiInterface, Rdba
 			JMenuItem runSqlItem = new JMenuItem();
 			runSqlItem.setActionCommand("run_sql");
 			runSqlItem.addActionListener(al);
-			ButtonsBundle.applyButtonDifinition(runSqlItem, "run_sql");
+			ButtonsBundle.getInstance().applyButtonDifinition(runSqlItem, "run_sql");
 
 			JMenuItem searchReplaceItem = new JMenuItem();
 			JMenuItem searchNextItem = new JMenuItem();
@@ -146,9 +146,9 @@ public class RdbaSqlEditorPanel extends JPanel implements RdbaGuiInterface, Rdba
 			searchReplaceItem.addActionListener(al);
 			searchNextItem.addActionListener(al);
 			searchPrevItem.addActionListener(al);
-			ButtonsBundle.applyMenuDifinition(searchReplaceItem, "search_replace");
-			ButtonsBundle.applyMenuDifinition(searchNextItem, "search_next");
-			ButtonsBundle.applyMenuDifinition(searchPrevItem, "search_prev");
+			ButtonsBundle.getInstance().applyMenuDifinition(searchReplaceItem, "search_replace");
+			ButtonsBundle.getInstance().applyMenuDifinition(searchNextItem, "search_next");
+			ButtonsBundle.getInstance().applyMenuDifinition(searchPrevItem, "search_prev");
 
 			this.add(runSqlItem);
 			this.addSeparator();

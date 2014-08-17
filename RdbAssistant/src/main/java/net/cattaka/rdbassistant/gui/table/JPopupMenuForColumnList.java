@@ -137,13 +137,13 @@ public class JPopupMenuForColumnList extends JPopupMenu {
 		copyAsTsvWithHeaderItem.addActionListener(ac);
 		copyAsHtmlWithHeaderItem.setActionCommand("copy_as_html_with_header");
 		copyAsHtmlWithHeaderItem.addActionListener(ac);
-		ButtonsBundle.applyMenuDifinition(inputSelectedNameItem, "input_selected_name");
-		ButtonsBundle.applyMenuDifinition(copyAsCsvItem, "copy_as_csv");
-		ButtonsBundle.applyMenuDifinition(copyAsTsvItem, "copy_as_tsv");
-		ButtonsBundle.applyMenuDifinition(copyAsHtmlItem, "copy_as_html");
-		ButtonsBundle.applyMenuDifinition(copyAsCsvWithHeaderItem, "copy_as_csv_with_header");
-		ButtonsBundle.applyMenuDifinition(copyAsTsvWithHeaderItem, "copy_as_tsv_with_header");
-		ButtonsBundle.applyMenuDifinition(copyAsHtmlWithHeaderItem, "copy_as_html_with_header");
+		ButtonsBundle.getInstance().applyMenuDifinition(inputSelectedNameItem, "input_selected_name");
+		ButtonsBundle.getInstance().applyMenuDifinition(copyAsCsvItem, "copy_as_csv");
+		ButtonsBundle.getInstance().applyMenuDifinition(copyAsTsvItem, "copy_as_tsv");
+		ButtonsBundle.getInstance().applyMenuDifinition(copyAsHtmlItem, "copy_as_html");
+		ButtonsBundle.getInstance().applyMenuDifinition(copyAsCsvWithHeaderItem, "copy_as_csv_with_header");
+		ButtonsBundle.getInstance().applyMenuDifinition(copyAsTsvWithHeaderItem, "copy_as_tsv_with_header");
+		ButtonsBundle.getInstance().applyMenuDifinition(copyAsHtmlWithHeaderItem, "copy_as_html_with_header");
 		
 		inputSelectedNameItem.setVisible(false);
 		

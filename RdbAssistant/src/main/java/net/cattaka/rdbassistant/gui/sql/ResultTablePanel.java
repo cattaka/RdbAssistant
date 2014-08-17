@@ -86,7 +86,7 @@ public class ResultTablePanel extends JPanel implements RdbaGuiInterface {
 			transposeButton = new JButton();
 			transposeButton.setActionCommand("transpose");
 			transposeButton.addActionListener(buttonAction);
-			ButtonsBundle.applyButtonDifinition(transposeButton, iconTranspose, "transpose", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(transposeButton, iconTranspose, "transpose", true);
 		}
 		resultSetTable = new ResultSetTablePanel();
 		{

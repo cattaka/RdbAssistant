@@ -171,7 +171,7 @@ public class RdbaScriptModePanel extends JPanel implements RdbaGuiInterface, Rdb
 	public JMenu[] getExtraMenu() {
 		ActionListenerImpl al = new ActionListenerImpl();
 		JMenu scriptMenu = new JMenu();
-		ButtonsBundle.applyButtonDifinition(scriptMenu, "menu_script");
+		ButtonsBundle.getInstance().applyButtonDifinition(scriptMenu, "menu_script");
 		{
 			JMenuItem runScriptItem = new JMenuItem();
 			JMenuItem compileScriptItem = new JMenuItem();
@@ -187,10 +187,10 @@ public class RdbaScriptModePanel extends JPanel implements RdbaGuiInterface, Rdb
 			switchResultPanelItem.addActionListener(al);
 			commentOutItem.addActionListener(al);
 			
-			ButtonsBundle.applyMenuDifinition(runScriptItem, "run_script");
-			ButtonsBundle.applyMenuDifinition(compileScriptItem, "compile_script");
-			ButtonsBundle.applyMenuDifinition(switchResultPanelItem, "switch_result_panel");
-			ButtonsBundle.applyMenuDifinition(commentOutItem, "comment_out");
+			ButtonsBundle.getInstance().applyMenuDifinition(runScriptItem, "run_script");
+			ButtonsBundle.getInstance().applyMenuDifinition(compileScriptItem, "compile_script");
+			ButtonsBundle.getInstance().applyMenuDifinition(switchResultPanelItem, "switch_result_panel");
+			ButtonsBundle.getInstance().applyMenuDifinition(commentOutItem, "comment_out");
 			
 			scriptMenu.add(runScriptItem);
 			scriptMenu.add(compileScriptItem);
@@ -222,11 +222,11 @@ public class RdbaScriptModePanel extends JPanel implements RdbaGuiInterface, Rdb
 			saveAsItem.addActionListener(al);
 			closeItem.addActionListener(al);
 			
-			ButtonsBundle.applyMenuDifinition(newItem, "file_new");
-			ButtonsBundle.applyMenuDifinition(openItem, "file_open");
-			ButtonsBundle.applyMenuDifinition(saveItem, "file_save");
-			ButtonsBundle.applyMenuDifinition(saveAsItem, "file_save_as");
-			ButtonsBundle.applyMenuDifinition(closeItem, "file_close");
+			ButtonsBundle.getInstance().applyMenuDifinition(newItem, "file_new");
+			ButtonsBundle.getInstance().applyMenuDifinition(openItem, "file_open");
+			ButtonsBundle.getInstance().applyMenuDifinition(saveItem, "file_save");
+			ButtonsBundle.getInstance().applyMenuDifinition(saveAsItem, "file_save_as");
+			ButtonsBundle.getInstance().applyMenuDifinition(closeItem, "file_close");
 			
 			menu.add(newItem);
 			menu.add(openItem);
@@ -262,15 +262,15 @@ public class RdbaScriptModePanel extends JPanel implements RdbaGuiInterface, Rdb
 			findItem.addActionListener(al);
 			findNextItem.addActionListener(al);
 			findPrevItem.addActionListener(al);
-			ButtonsBundle.applyMenuDifinition(undoItem, "editor_undo");
-			ButtonsBundle.applyMenuDifinition(redoItem, "editor_redo");
-			ButtonsBundle.applyMenuDifinition(cutItem, "editor_cut");
-			ButtonsBundle.applyMenuDifinition(copyItem, "editor_copy");
-			ButtonsBundle.applyMenuDifinition(pasteItem, "editor_paste");
-			ButtonsBundle.applyMenuDifinition(selectAllItem, "editor_select_all");
-			ButtonsBundle.applyMenuDifinition(findItem, "search_replace");
-			ButtonsBundle.applyMenuDifinition(findNextItem, "search_next");
-			ButtonsBundle.applyMenuDifinition(findPrevItem, "search_prev");
+			ButtonsBundle.getInstance().applyMenuDifinition(undoItem, "editor_undo");
+			ButtonsBundle.getInstance().applyMenuDifinition(redoItem, "editor_redo");
+			ButtonsBundle.getInstance().applyMenuDifinition(cutItem, "editor_cut");
+			ButtonsBundle.getInstance().applyMenuDifinition(copyItem, "editor_copy");
+			ButtonsBundle.getInstance().applyMenuDifinition(pasteItem, "editor_paste");
+			ButtonsBundle.getInstance().applyMenuDifinition(selectAllItem, "editor_select_all");
+			ButtonsBundle.getInstance().applyMenuDifinition(findItem, "search_replace");
+			ButtonsBundle.getInstance().applyMenuDifinition(findNextItem, "search_next");
+			ButtonsBundle.getInstance().applyMenuDifinition(findPrevItem, "search_prev");
 			
 			menu.add(undoItem);
 			menu.add(redoItem);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, Takao Sumitomo
+ * Copyright (c) 2009-2014, Takao Sumitomo
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, 
@@ -44,6 +44,7 @@ package net.cattaka.swing.util;
 import java.awt.Insets;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.AbstractButton;
 import javax.swing.Icon;
@@ -54,13 +55,15 @@ import net.cattaka.util.ExceptionHandler;
 import net.cattaka.util.PropertiesEx;
 import net.cattaka.util.ResourceUtil;
 
-
 public class ButtonsBundle {
-	private static HashMap<String, ButtonDefinition> buttonDifinitionMap;
+	private static ButtonsBundle instance;
+	private Map<String, ButtonDefinition> buttonDifinitionMap;
 	static {
+		Map<String, ButtonDefinition> buttonDifinitionMap = new HashMap<String, ButtonDefinition>();
 		try {
-			buttonDifinitionMap = new HashMap<String, ButtonDefinition>();
-			PropertiesEx properties = ButtonDifinitionBundleLoader.getProperties();
+			PropertiesEx properties = ResourceUtil
+					.getPropertiesExResourceAsStream("buttons%1$s.properties",
+							true);
 			Enumeration<Object> keys = properties.keys();
 			while (keys.hasMoreElements()) {
 				Object key = keys.nextElement();
@@ -70,19 +73,29 @@ public class ButtonsBundle {
 					buttonDifinitionMap.put(key.toString(), buttonDefinition);
 				}
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			// 起こりえない
 			ExceptionHandler.error(e);
 		}
+		instance = new ButtonsBundle(buttonDifinitionMap);
 	}
 
-	public static void applyMenuDifinition(JMenuItem button, String key) {
+	ButtonsBundle(Map<String, ButtonDefinition> buttonDifinitionMap) {
+		super();
+		this.buttonDifinitionMap = buttonDifinitionMap;
+	}
+
+	public static ButtonsBundle getInstance() {
+		return instance;
+	}
+
+	public void applyMenuDifinition(JMenuItem button, String key) {
 		ButtonDefinition buttonDefinition = buttonDifinitionMap.get(key);
 		if (buttonDefinition != null) {
 			Character mnemonic = buttonDefinition.getMnemonic();
 			String buttonText = buttonDefinition.getButtonText();
 			KeyStroke keyStroke = buttonDefinition.createKeyStroke();
-//			String toolTip = buttonDefinition.getButtonToolTip();
+			// String toolTip = buttonDefinition.getButtonToolTip();
 			if (buttonText == null || buttonText.length() == 0) {
 				buttonText = key;
 			}
@@ -98,8 +111,8 @@ public class ButtonsBundle {
 			button.setText(key);
 		}
 	}
-	
-	public static void applyButtonDifinition(AbstractButton button, String key) {
+
+	public void applyButtonDifinition(AbstractButton button, String key) {
 		ButtonDefinition buttonDefinition = buttonDifinitionMap.get(key);
 		if (buttonDefinition != null) {
 			Character mnemonic = buttonDefinition.getMnemonic();
@@ -120,14 +133,16 @@ public class ButtonsBundle {
 			button.setText(key);
 		}
 	}
-	public static void applyButtonDifinition(AbstractButton button, Icon icon, String key, boolean withoutText) {
+
+	public void applyButtonDifinition(AbstractButton button, Icon icon,
+			String key, boolean withoutText) {
 		ButtonDefinition buttonDefinition = buttonDifinitionMap.get(key);
 		if (buttonDefinition != null) {
 			Character mnemonic = buttonDefinition.getMnemonic();
 			String buttonText = buttonDefinition.getButtonText();
 			String toolTip = buttonDefinition.getButtonToolTip();
 			button.setIcon(icon);
-			button.setMargin(new Insets(0,0,0,0));
+			button.setMargin(new Insets(0, 0, 0, 0));
 			if (buttonText == null || buttonText.length() == 0) {
 				buttonText = key;
 			}
@@ -144,11 +159,5 @@ public class ButtonsBundle {
 		} else {
 			button.setText(key);
 		}
-	}
-}
-
-class ButtonDifinitionBundleLoader {
-	public static PropertiesEx getProperties() {
-		return ResourceUtil.getPropertiesExResourceAsStream("buttons%1$s.properties", true);
 	}
 }

@@ -213,14 +213,14 @@ abstract public class RdbaConnectionInfoListPanel extends JPanel implements Rdba
 		copyButton = new JButton();
 		copyButton.setActionCommand("copy");
 		copyButton.addActionListener(al);
-		ButtonsBundle.applyButtonDifinition(connectButton, "connect");
-		ButtonsBundle.applyButtonDifinition(cancelButton, "cancel");
-		ButtonsBundle.applyButtonDifinition(upButton, "move_up");
-		ButtonsBundle.applyButtonDifinition(downButton, "move_down");
-		ButtonsBundle.applyButtonDifinition(addButton, "new");
-		ButtonsBundle.applyButtonDifinition(editButton, "edit");
-		ButtonsBundle.applyButtonDifinition(deleteButton, "delete");
-		ButtonsBundle.applyButtonDifinition(copyButton, "copy");
+		ButtonsBundle.getInstance().applyButtonDifinition(connectButton, "connect");
+		ButtonsBundle.getInstance().applyButtonDifinition(cancelButton, "cancel");
+		ButtonsBundle.getInstance().applyButtonDifinition(upButton, "move_up");
+		ButtonsBundle.getInstance().applyButtonDifinition(downButton, "move_down");
+		ButtonsBundle.getInstance().applyButtonDifinition(addButton, "new");
+		ButtonsBundle.getInstance().applyButtonDifinition(editButton, "edit");
+		ButtonsBundle.getInstance().applyButtonDifinition(deleteButton, "delete");
+		ButtonsBundle.getInstance().applyButtonDifinition(copyButton, "copy");
 
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();

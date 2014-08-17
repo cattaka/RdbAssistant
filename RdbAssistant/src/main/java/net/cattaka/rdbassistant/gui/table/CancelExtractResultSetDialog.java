@@ -84,7 +84,7 @@ public class CancelExtractResultSetDialog extends JDialog implements ActionListe
 	}
 	private void makeLayout() {
 		JButton cancelButton = new JButton();
-		ButtonsBundle.applyButtonDifinition(cancelButton, "cancel");
+		ButtonsBundle.getInstance().applyButtonDifinition(cancelButton, "cancel");
 		cancelButton.setActionCommand("cancel");
 		cancelButton.addActionListener(this);
 		this.messageLabel = new JLabel();

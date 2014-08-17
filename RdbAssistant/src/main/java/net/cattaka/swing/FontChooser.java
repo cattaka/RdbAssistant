@@ -81,8 +81,8 @@ public class FontChooser extends JDialog {
 			JButton cancelButton = new JButton();
 			
 			ActionListenerImpl al = new ActionListenerImpl();
-			ButtonsBundle.applyButtonDifinition(okButton, "ok");
-			ButtonsBundle.applyButtonDifinition(cancelButton, "cancel");
+			ButtonsBundle.getInstance().applyButtonDifinition(okButton, "ok");
+			ButtonsBundle.getInstance().applyButtonDifinition(cancelButton, "cancel");
 			okButton.setActionCommand("ok");
 			cancelButton.setActionCommand("cancel");
 			okButton.addActionListener(al);

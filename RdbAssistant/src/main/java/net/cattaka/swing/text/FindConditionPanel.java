@@ -151,8 +151,8 @@ public class FindConditionPanel extends JPanel {
 		this.downwardRadio = new JRadioButton();
 		this.upwardRadio = new JRadioButton();
 		{
-			ButtonsBundle.applyButtonDifinition(downwardRadio, "downward");
-			ButtonsBundle.applyButtonDifinition(upwardRadio, "upward");
+			ButtonsBundle.getInstance().applyButtonDifinition(downwardRadio, "downward");
+			ButtonsBundle.getInstance().applyButtonDifinition(upwardRadio, "upward");
 		}
 		this.senseCaseSearchCheckBox = new JCheckBox();
 		this.loopSearchCheckBox = new JCheckBox();
@@ -165,10 +165,10 @@ public class FindConditionPanel extends JPanel {
 			this.wordUnitSearchCheckBox.addItemListener(il);
 			this.regexSearchCheckBox.addItemListener(il);
 			
-			ButtonsBundle.applyButtonDifinition(senseCaseSearchCheckBox, "sense_case_search");
-			ButtonsBundle.applyButtonDifinition(loopSearchCheckBox, "loop_search");
-			ButtonsBundle.applyButtonDifinition(wordUnitSearchCheckBox, "word_unit_search");
-			ButtonsBundle.applyButtonDifinition(regexSearchCheckBox, "regex_search");
+			ButtonsBundle.getInstance().applyButtonDifinition(senseCaseSearchCheckBox, "sense_case_search");
+			ButtonsBundle.getInstance().applyButtonDifinition(loopSearchCheckBox, "loop_search");
+			ButtonsBundle.getInstance().applyButtonDifinition(wordUnitSearchCheckBox, "word_unit_search");
+			ButtonsBundle.getInstance().applyButtonDifinition(regexSearchCheckBox, "regex_search");
 		}
 		
 		JLabel searchLabel = new JLabel(MessageBundle.getMessage("search_field"));
@@ -179,11 +179,11 @@ public class FindConditionPanel extends JPanel {
 		JButton replaceButton = new JButton();
 		JButton replaceAllButton = new JButton();
 		JButton closeButton = new JButton();
-		ButtonsBundle.applyButtonDifinition(searchButton, "search");
-		ButtonsBundle.applyButtonDifinition(replaceSearchButton, "replace_search");
-		ButtonsBundle.applyButtonDifinition(replaceButton, "replace");
-		ButtonsBundle.applyButtonDifinition(replaceAllButton, "replace_all");
-		ButtonsBundle.applyButtonDifinition(closeButton, "close");
+		ButtonsBundle.getInstance().applyButtonDifinition(searchButton, "search");
+		ButtonsBundle.getInstance().applyButtonDifinition(replaceSearchButton, "replace_search");
+		ButtonsBundle.getInstance().applyButtonDifinition(replaceButton, "replace");
+		ButtonsBundle.getInstance().applyButtonDifinition(replaceAllButton, "replace_all");
+		ButtonsBundle.getInstance().applyButtonDifinition(closeButton, "close");
 		{
 			ActionListener al = new ActionListenerEx();
 			replaceSearchButton.addActionListener(al);

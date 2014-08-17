@@ -73,13 +73,13 @@ public class JPopupMenuForStandardText extends JPopupMenu implements ActionListe
 		JMenuItem pasteItem = new JMenuItem();
 		JMenuItem deleteItem = new JMenuItem();
 		JMenuItem selectAllItem = new JMenuItem();
-		ButtonsBundle.applyMenuDifinition(undoItem, "editor_undo");
-		ButtonsBundle.applyMenuDifinition(redoItem, "editor_redo");
-		ButtonsBundle.applyMenuDifinition(cutItem, "editor_cut");
-		ButtonsBundle.applyMenuDifinition(copyItem, "editor_copy");
-		ButtonsBundle.applyMenuDifinition(pasteItem, "editor_paste");
-		ButtonsBundle.applyMenuDifinition(deleteItem, "editor_delete");
-		ButtonsBundle.applyMenuDifinition(selectAllItem, "editor_select_all");
+		ButtonsBundle.getInstance().applyMenuDifinition(undoItem, "editor_undo");
+		ButtonsBundle.getInstance().applyMenuDifinition(redoItem, "editor_redo");
+		ButtonsBundle.getInstance().applyMenuDifinition(cutItem, "editor_cut");
+		ButtonsBundle.getInstance().applyMenuDifinition(copyItem, "editor_copy");
+		ButtonsBundle.getInstance().applyMenuDifinition(pasteItem, "editor_paste");
+		ButtonsBundle.getInstance().applyMenuDifinition(deleteItem, "editor_delete");
+		ButtonsBundle.getInstance().applyMenuDifinition(selectAllItem, "editor_select_all");
 		
 		undoItem.setActionCommand("editor_undo");
 		undoItem.addActionListener(ac);

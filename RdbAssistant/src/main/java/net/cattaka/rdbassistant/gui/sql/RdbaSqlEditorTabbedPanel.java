@@ -133,12 +133,12 @@ public class RdbaSqlEditorTabbedPanel extends JPanel implements RdbaGuiInterface
 			Icon iconSaveAs = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_SAVEAS);
 			Icon iconRun = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_RUN);
 			Icon iconFind = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_FIND);
-			ButtonsBundle.applyButtonDifinition(newSqlButton, iconNew, "file_new", true);
-			ButtonsBundle.applyButtonDifinition(openSqlButton, iconOpen, "file_open", true);
-			ButtonsBundle.applyButtonDifinition(saveSqlButton, iconSave, "file_save", true);
-			ButtonsBundle.applyButtonDifinition(saveAsSqlButton, iconSaveAs, "file_save_as", true);
-			ButtonsBundle.applyButtonDifinition(runSqlButton, iconRun, "run_sql", true);
-			ButtonsBundle.applyButtonDifinition(editFindButton, iconFind, "search_replace", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(newSqlButton, iconNew, "file_new", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(openSqlButton, iconOpen, "file_open", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(saveSqlButton, iconSave, "file_save", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(saveAsSqlButton, iconSaveAs, "file_save_as", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(runSqlButton, iconRun, "run_sql", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(editFindButton, iconFind, "search_replace", true);
 		}
 
 		newSqlButton.addActionListener(al);

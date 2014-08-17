@@ -154,7 +154,7 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 			JMenuItem runScriptItem = new JMenuItem();
 			runScriptItem.setActionCommand("run_script");
 			runScriptItem.addActionListener(al);
-			ButtonsBundle.applyButtonDifinition(runScriptItem, "run_script");
+			ButtonsBundle.getInstance().applyButtonDifinition(runScriptItem, "run_script");
 
 			JMenuItem searchReplaceItem = new JMenuItem();
 			JMenuItem searchNextItem = new JMenuItem();
@@ -165,9 +165,9 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 			searchReplaceItem.addActionListener(al);
 			searchNextItem.addActionListener(al);
 			searchPrevItem.addActionListener(al);
-			ButtonsBundle.applyMenuDifinition(searchReplaceItem, "search_replace");
-			ButtonsBundle.applyMenuDifinition(searchNextItem, "search_next");
-			ButtonsBundle.applyMenuDifinition(searchPrevItem, "search_prev");
+			ButtonsBundle.getInstance().applyMenuDifinition(searchReplaceItem, "search_replace");
+			ButtonsBundle.getInstance().applyMenuDifinition(searchNextItem, "search_next");
+			ButtonsBundle.getInstance().applyMenuDifinition(searchPrevItem, "search_prev");
 
 			this.add(runScriptItem);
 			this.addSeparator();

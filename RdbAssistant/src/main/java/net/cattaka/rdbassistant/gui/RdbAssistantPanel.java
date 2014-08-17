@@ -207,14 +207,14 @@ public class RdbAssistantPanel extends JPanel implements RdbaGuiInterface {
 		ActionListenerImpl al = new ActionListenerImpl();
 		this.menuBar.removeAll();
 		JMenu fileMenu = new JMenu();
-		ButtonsBundle.applyButtonDifinition(fileMenu, "menu_file");
+		ButtonsBundle.getInstance().applyButtonDifinition(fileMenu, "menu_file");
 		{
 			JMenuItem importConfigMenu = new JMenuItem();
 			JMenuItem exportConfigMenu = new JMenuItem();
 			JMenuItem exitMenu = new JMenuItem();
-			ButtonsBundle.applyMenuDifinition(importConfigMenu, "menu_import_config");
-			ButtonsBundle.applyMenuDifinition(exportConfigMenu, "menu_export_config");
-			ButtonsBundle.applyMenuDifinition(exitMenu, "menu_exit");
+			ButtonsBundle.getInstance().applyMenuDifinition(importConfigMenu, "menu_import_config");
+			ButtonsBundle.getInstance().applyMenuDifinition(exportConfigMenu, "menu_export_config");
+			ButtonsBundle.getInstance().applyMenuDifinition(exitMenu, "menu_exit");
 			importConfigMenu.setActionCommand("import_config");
 			exportConfigMenu.setActionCommand("export_config");
 			exitMenu.setActionCommand("menu_exit");
@@ -233,10 +233,10 @@ public class RdbAssistantPanel extends JPanel implements RdbaGuiInterface {
 			menuBar.add(fileMenu);
 		}
 		JMenu editMenu = new JMenu();
-		ButtonsBundle.applyButtonDifinition(editMenu, "menu_edit");
+		ButtonsBundle.getInstance().applyButtonDifinition(editMenu, "menu_edit");
 		{
 			JMenuItem configMenu = new JMenuItem();
-			ButtonsBundle.applyMenuDifinition(configMenu, "menu_config");
+			ButtonsBundle.getInstance().applyMenuDifinition(configMenu, "menu_config");
 			configMenu.setActionCommand("config");
 			configMenu.addActionListener(al);
 			
@@ -255,22 +255,22 @@ public class RdbAssistantPanel extends JPanel implements RdbaGuiInterface {
 			}
 		}
 		JMenu helpMenu = new JMenu();
-		ButtonsBundle.applyButtonDifinition(helpMenu, "menu_help");
+		ButtonsBundle.getInstance().applyButtonDifinition(helpMenu, "menu_help");
 		{
 			JMenuItem readmeMenu = new JMenuItem();
-			ButtonsBundle.applyMenuDifinition(readmeMenu, "menu_readme");
+			ButtonsBundle.getInstance().applyMenuDifinition(readmeMenu, "menu_readme");
 			readmeMenu.setActionCommand("readme");
 			readmeMenu.addActionListener(al);
 			JMenuItem aboutMenu = new JMenuItem();
-			ButtonsBundle.applyMenuDifinition(aboutMenu, "menu_about");
+			ButtonsBundle.getInstance().applyMenuDifinition(aboutMenu, "menu_about");
 			aboutMenu.setActionCommand("about");
 			aboutMenu.addActionListener(al);
 			JMenuItem licenseMenu = new JMenuItem();
-			ButtonsBundle.applyMenuDifinition(licenseMenu, "menu_license");
+			ButtonsBundle.getInstance().applyMenuDifinition(licenseMenu, "menu_license");
 			licenseMenu.setActionCommand("license");
 			licenseMenu.addActionListener(al);
 			JMenuItem showLogList = new JMenuItem();
-			ButtonsBundle.applyMenuDifinition(showLogList, "menu_show_log_list");
+			ButtonsBundle.getInstance().applyMenuDifinition(showLogList, "menu_show_log_list");
 			showLogList.setActionCommand("showLogList");
 			showLogList.addActionListener(al);
 			
