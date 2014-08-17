@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, Takao Sumitomo
+ * Copyright (c) 2009-2014, Takao Sumitomo
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, 
@@ -45,8 +45,6 @@ package net.cattaka.rdbassistant.util;
 import java.awt.Frame;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
 
