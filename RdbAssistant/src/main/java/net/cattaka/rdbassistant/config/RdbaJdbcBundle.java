@@ -42,6 +42,7 @@
 package net.cattaka.rdbassistant.config;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.SocketPermission;
 import java.net.URL;
@@ -58,6 +59,7 @@ import java.util.PropertyPermission;
 
 import net.cattaka.rdbassistant.RdbaConfigConstants;
 import net.cattaka.rdbassistant.core.RdbaException;
+import net.cattaka.util.ExceptionHandler;
 import net.cattaka.util.MessageBundle;
 
 public class RdbaJdbcBundle {
@@ -80,6 +82,15 @@ public class RdbaJdbcBundle {
 				pc.add(perm);
 			}
 			return pc;
+		}
+		
+		@Override
+		public void close() {
+			try {
+				super.close();
+			} catch (IOException e) {
+				ExceptionHandler.warn(e);
+			}
 		}
 	}
 	

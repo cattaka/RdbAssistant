@@ -55,6 +55,7 @@ import java.util.Set;
 
 
 import net.cattaka.rdbassistant.RdbaConstants;
+import net.cattaka.rdbassistant.config.RdbaJdbcBundle.MyURLClassLoader;
 import net.cattaka.rdbassistant.core.RdbaConnection;
 import net.cattaka.rdbassistant.core.SqlEditorSelection;
 import net.cattaka.rdbassistant.util.ConnectionWrapper;
@@ -71,10 +72,12 @@ public class JdbcRdbaConnection implements RdbaConnection {
 	private JdbcSqlEditorSelection myEditorSelection;
 	private String defaultDatabase;
 	private static HashSet<String> reservedWords = null;
+	private MyURLClassLoader urlClassLoader;
 	
-	JdbcRdbaConnection(ConnectionWrapper connection, String defaultDatabase) {
+	JdbcRdbaConnection(ConnectionWrapper connection, String defaultDatabase, MyURLClassLoader urlClassLoader) {
 		this.connection = connection;
 		this.defaultDatabase = defaultDatabase;
+		this.urlClassLoader = urlClassLoader;
 		myEditorSelection = new JdbcSqlEditorSelection(this);
 		
 		if (reservedWords == null) {
@@ -90,8 +93,9 @@ public class JdbcRdbaConnection implements RdbaConnection {
 		try {
 			this.connection.close();
 		} catch (SQLException e) {
-			// あり得ない
+			ExceptionHandler.warn(e);
 		}
+		urlClassLoader.close();
 	}
 
 	public String getDefaultDatabase() {

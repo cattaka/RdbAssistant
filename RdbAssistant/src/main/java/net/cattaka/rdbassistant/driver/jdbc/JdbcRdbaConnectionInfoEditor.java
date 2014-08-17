@@ -257,21 +257,28 @@ public class JdbcRdbaConnectionInfoEditor extends RdbaConnectionInfoEditor {
 		}
 		
 		// 各クラスがDriverの子供かチェックする
-		MyURLClassLoader urlClassLoader = new MyURLClassLoader(new URL[]{jdbcUrl});
-		urlClassLoader.getExtraPermission().add(new SocketPermission("*", "connect,resolve"));
-		
 		List<String> resultList = new ArrayList<String>();
-		for (String className: classNameList) {
-			Class<?> loadedClass = null;
-			try {
-				loadedClass = urlClassLoader.loadClass(className);
-			} catch (NoClassDefFoundError e) {
-				continue;
-			} catch (ClassNotFoundException e) {
-				continue;
+		MyURLClassLoader urlClassLoader = null;
+		try {
+			urlClassLoader = new MyURLClassLoader(new URL[]{jdbcUrl});
+			urlClassLoader.getExtraPermission().add(new SocketPermission("*", "connect,resolve"));
+			
+			for (String className: classNameList) {
+				Class<?> loadedClass = null;
+				try {
+					loadedClass = urlClassLoader.loadClass(className);
+				} catch (NoClassDefFoundError e) {
+					continue;
+				} catch (ClassNotFoundException e) {
+					continue;
+				}
+				if (Driver.class.isAssignableFrom(loadedClass)) {
+					resultList.add(className);
+				}
 			}
-			if (Driver.class.isAssignableFrom(loadedClass)) {
-				resultList.add(className);
+		} finally {
+			if (urlClassLoader != null) {
+				urlClassLoader.close();
 			}
 		}
 		

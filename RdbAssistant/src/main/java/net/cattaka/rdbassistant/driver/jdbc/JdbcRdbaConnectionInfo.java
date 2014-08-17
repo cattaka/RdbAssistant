@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010, Takao Sumitomo
+ * Copyright (c) 2010-2014, Takao Sumitomo
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, 
@@ -42,7 +42,6 @@
 package net.cattaka.rdbassistant.driver.jdbc;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.SocketPermission;
 import java.net.URL;
@@ -103,19 +102,21 @@ public class JdbcRdbaConnectionInfo implements RdbaConnectionInfo {
 		MyURLClassLoader urlClassLoader = new MyURLClassLoader(new URL[]{jdbcUrl});
 		urlClassLoader.getExtraPermission().add(new SocketPermission("*", "connect,resolve"));
 		Class<?> driverClass;
-		try {
-			driverClass =  urlClassLoader.loadClass(this.driverClassName);
-		} catch (ClassNotFoundException e) {
-			throw new RdbaException(MessageBundle.getInstance().getMessage("jdbc_class_not_found"));
-		}
 		Driver driver = null;
 		try {
+			driverClass =  urlClassLoader.loadClass(this.driverClassName);
 			driver = (Driver)driverClass.newInstance();
+		} catch (ClassNotFoundException e) {
+			urlClassLoader.close();
+			throw new RdbaException(MessageBundle.getInstance().getMessage("jdbc_class_not_found"));
 		} catch (ClassCastException e) {
+			urlClassLoader.close();
 			throw new RdbaException(e.getMessage(),e);
 		} catch (IllegalAccessException e) {
+			urlClassLoader.close();
 			throw new RdbaException(e.getMessage(),e);
 		} catch (InstantiationException e) {
+			urlClassLoader.close();
 			throw new RdbaException(e.getMessage(),e);
 		}
 		
@@ -126,6 +127,7 @@ public class JdbcRdbaConnectionInfo implements RdbaConnectionInfo {
 			info.setProperty("password", password);
 			conn = driver.connect(toUrl(), info);
 		} catch (SQLException e) {
+			urlClassLoader.close();
 			throw new RdbaException(e.getMessage(),e);
 		}
 		try {
@@ -135,7 +137,7 @@ public class JdbcRdbaConnectionInfo implements RdbaConnectionInfo {
 			ExceptionHandler.warn(e);
 		}
 		
-		JdbcRdbaConnection rdbaConnection = new JdbcRdbaConnection(new ConnectionWrapper(conn), userName);
+		JdbcRdbaConnection rdbaConnection = new JdbcRdbaConnection(new ConnectionWrapper(conn), userName, urlClassLoader);
 		return rdbaConnection;
 	}
 
