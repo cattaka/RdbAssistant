@@ -50,6 +50,7 @@ import java.util.Date;
 import javax.swing.AbstractAction;
 import javax.swing.JTable;
 
+import net.cattaka.swing.util.HtmlSelection;
 import net.cattaka.util.StringUtil;
 
 public class StdTable extends JTable {
@@ -286,7 +287,7 @@ public class StdTable extends JTable {
 		sb.append("</body>\n");
 		sb.append("</html>\n");
 		
-		StringSelection ss = new StringSelection(sb.toString());
+		HtmlSelection ss = new HtmlSelection(sb.toString());
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		clipboard.setContents(ss, ss);
 	}
