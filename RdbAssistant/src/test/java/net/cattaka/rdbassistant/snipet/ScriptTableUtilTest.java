@@ -39,7 +39,7 @@
 /*
  * $Id: ScriptTableUtilTest.java 232 2009-08-01 07:06:41Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.rdbassistant.snipet;
 
 import net.cattaka.rdbassistant.script.core.ScriptTable;
 import net.cattaka.rdbassistant.script.core.ScriptTableUtil;

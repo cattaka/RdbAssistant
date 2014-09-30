@@ -39,12 +39,15 @@
 /*
  * $Id: StdTextPaneTest.java 259 2010-02-27 13:45:56Z cattaka $
  */
-package net.cattaka.swing.test;
+package net.cattaka.swing;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 import net.cattaka.rdbassistant.driver.oracle.OracleStyledDocument;
 import net.cattaka.swing.text.FindCondition;
@@ -52,6 +55,7 @@ import net.cattaka.swing.text.FindConditionDialog;
 import net.cattaka.swing.text.StdStyledDocument;
 import net.cattaka.swing.text.StdTextPane;
 import net.cattaka.swing.text.TextLineInfo;
+import static org.hamcrest.CoreMatchers.*;
 
 public class StdTextPaneTest extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -59,6 +63,26 @@ public class StdTextPaneTest extends JFrame {
 	private StdTextPane stdTextPane;
 	private FindConditionDialog findConditionDialog;
 	
+	@Test
+	public void test() {
+		StdTextPane stdTextPane = new StdTextPane();
+		stdTextPane.setStdStyledDocument(new OracleStyledDocument());
+		stdTextPane.setText("ab ab ab ab\nac ac ac ac\n");
+		StdStyledDocument ssd = stdTextPane.getStdStyledDocument();
+		{
+			TextLineInfo tli = ssd.getLine(0);
+			Assert.assertThat(ssd.getPrevLine(tli), is(nullValue()));
+			Assert.assertThat(tli, is(new TextLineInfo(0, 11, "ab ab ab ab")));
+			Assert.assertThat(ssd.getNextLine(tli), is(new TextLineInfo(12, 23, "ac ac ac ac")));
+		}
+		{
+			TextLineInfo tli = ssd.getLine(12);
+			Assert.assertThat(ssd.getPrevLine(tli), is(new TextLineInfo(0, 11, "ab ab ab ab")));
+			Assert.assertThat(tli, is(new TextLineInfo(12, 23, "ac ac ac ac")));
+			Assert.assertThat(ssd.getNextLine(tli), is(new TextLineInfo(24, 24, "")));
+		}
+	}
+
 	public StdTextPaneTest() {
 		setSize(800,600);
 		stdTextPane = new StdTextPane();

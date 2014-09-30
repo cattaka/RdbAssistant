@@ -37,28 +37,25 @@
  * either expressed or implied.
  */
 /*
- * $Id: RdbaJspfJavaSourceConverterTest.java 232 2009-08-01 07:06:41Z cattaka $
+ * $Id: FindConditionPanelTest.java 232 2009-08-01 07:06:41Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.rdbassistant;
 
+import org.junit.Test;
 
-public class RdbaJspfJavaSourceConverterTest {
-	public static void main(String[] args) throws Exception {
-		convertTest();
-	}
-	
-	public static void convertTest() throws Exception {
-//		File workDir = new File("RdbaScriptWork");
-//		RdbaScriptJavaSourceConverter rjjsc = new RdbaScriptJavaSourceConverter();
-//		JspfBundle<RdbaScript> jspfBundle = new JspfBundle<RdbaScript>(rjjsc, RdbaScript.class);
+import net.cattaka.swing.text.FindConditionDialog;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+
+public class FindConditionPanelTest {
+	@Test
+	public void test() {
+		FindConditionDialog d = new FindConditionDialog();
 		
-//		StringWriter stringWriter = new StringWriter();
-//		PrintWriterEx printWriter = new PrintWriterEx(stringWriter);
-//		jspfBundle.compile("Test.jspf", "System.out.println(\"test\");", printWriter);
-//		printWriter.flush();
-//		System.out.println(stringWriter.toString());
-//		
-//		RdbaScript rs = jspfBundle.getNewInstance("Test.jspf");
-//		rs.runScript(null, null);
+		d.setVisible(true);
+		assertThat(d.isVisible(), is(true));
+		
+		d.setVisible(false);
+		assertThat(d.isVisible(), is(false));
 	}
 }

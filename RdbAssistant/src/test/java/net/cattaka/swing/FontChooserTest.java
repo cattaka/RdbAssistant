@@ -37,37 +37,32 @@
  * either expressed or implied.
  */
 /*
- * $Id: RdbAssistantPanelTest.java 232 2009-08-01 07:06:41Z cattaka $
+ * $Id: FontChooserTest.java 232 2009-08-01 07:06:41Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.swing;
 
-import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
 
-import net.cattaka.rdbassistant.config.RdbaConfig;
-import net.cattaka.rdbassistant.config.RdbaConfigUtil;
-import net.cattaka.rdbassistant.gui.RdbAssistantPanel;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class RdbAssistantPanelTest {
-	public static void main(String[] args) {
-		RdbaConfig rdbaConfig = RdbaConfigUtil.loadRdbaConfig();
-		RdbAssistantPanel rdbAssistantPanel = new RdbAssistantPanel(rdbaConfig);
-		
-		JFrame f = new JFrame();
-		f.setSize(600,400);
-		f.getContentPane().add(rdbAssistantPanel);
-		
-//		MySqlRdbaConnectionInfo rci = new MySqlRdbaConnectionInfo();
-//		rci.setHost("localhost");
-//		rci.setPort(3306);
-//		rci.setDatabase("rdbassistant");
-//		rci.setUserName("rdbassistant");
-//		rci.setPassword("rdbassistant");
-//		RdbaConnection conn = RdbaConnectionFactory.createRdbConnection(rci);
-//		SqlEditorSelection ses = conn.getSqlEditorSelection();
-//		rdbSqlSelectPanel.setSqlEditorSelection(ses);
-		
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setVisible(true);
-		rdbAssistantPanel.doGuiLayout();
+import net.cattaka.swing.FontChooser;
+
+public class FontChooserTest {
+	@Test
+	public void testOk() throws InterruptedException {
+		FontChooser sup = new FontChooser();
+		sup.setVisible(true);
+		sup.actionListener.actionPerformed(new ActionEvent(this, -1, "ok"));
+		Assert.assertNotNull(sup.currentFont);
+		sup.setVisible(false);
+	}
+	@Test
+	public void testCancel() throws InterruptedException {
+		FontChooser sup = new FontChooser();
+		sup.setVisible(true);
+		sup.actionListener.actionPerformed(new ActionEvent(this, -1, "cancel"));
+		Assert.assertNull(sup.currentFont);
+		sup.setVisible(false);
 	}
 }

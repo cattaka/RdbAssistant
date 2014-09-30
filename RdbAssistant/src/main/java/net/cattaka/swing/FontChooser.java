@@ -66,13 +66,13 @@ import net.cattaka.util.MessageBundle;
 
 public class FontChooser extends JDialog {
 	private static final long serialVersionUID = 1L;
-	private JList<String> fontNameList;
-	private JList<Integer> fontSizeList;
-	private Font currentFont;
-	private JTextField previewPlain;
-	private JTextField previewBold;
-	private JTextField previewItalic;
-	private JTextField previewBoldItalic;
+	JList<String> fontNameList;
+	JList<Integer> fontSizeList;
+	Font currentFont;
+	JTextField previewPlain;
+	JTextField previewBold;
+	JTextField previewItalic;
+	JTextField previewBoldItalic;
 	
 	class ButtonPanel extends JPanel {
 		private static final long serialVersionUID = 1L;
@@ -80,13 +80,12 @@ public class FontChooser extends JDialog {
 			JButton okButton = new JButton();
 			JButton cancelButton = new JButton();
 			
-			ActionListenerImpl al = new ActionListenerImpl();
 			ButtonsBundle.getInstance().applyButtonDifinition(okButton, "ok");
 			ButtonsBundle.getInstance().applyButtonDifinition(cancelButton, "cancel");
 			okButton.setActionCommand("ok");
 			cancelButton.setActionCommand("cancel");
-			okButton.addActionListener(al);
-			cancelButton.addActionListener(al);
+			okButton.addActionListener(actionListener);
+			cancelButton.addActionListener(actionListener);
 			
 			this.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			this.add(okButton);
@@ -94,6 +93,7 @@ public class FontChooser extends JDialog {
 		}
 	}
 	
+	ActionListenerImpl actionListener = new ActionListenerImpl();
 	class ActionListenerImpl implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equals("ok")) {

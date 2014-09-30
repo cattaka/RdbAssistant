@@ -140,7 +140,10 @@ public class TextFileChooser extends JDialog {
 	}
 	
     public int showOpenDialog(Component parent) throws HeadlessException {
-		this.setModal(true);
+    	return showOpenDialog(parent, true);
+    }
+    public int showOpenDialog(Component parent, boolean modal) throws HeadlessException {
+		this.setModal(modal);
 		this.setTitle(MessageBundle.getInstance().getMessage("file_open"));
 		this.pack();
 		this.setVisible(true);
@@ -148,7 +151,10 @@ public class TextFileChooser extends JDialog {
     }
 
 	public int showSaveDialog(Component parent) throws HeadlessException {
-		this.setModal(true);
+		return showSaveDialog(parent, true);
+	}
+	public int showSaveDialog(Component parent, boolean modal) throws HeadlessException {
+		this.setModal(modal);
 		this.setTitle(MessageBundle.getInstance().getMessage("file_save"));
     	fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
 		this.pack();
