@@ -37,19 +37,22 @@
  * either expressed or implied.
  */
 /*
- * $Id: FindConditionPanelTest.java 232 2009-08-01 07:06:41Z cattaka $
+ * $Id: RdbaConfigEditorDialogTest.java 232 2009-08-01 07:06:41Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.rdbassistant;
 
-import net.cattaka.swing.text.FindConditionDialog;
+import net.cattaka.rdbassistant.gui.config.RdbaConfigEditorDialog;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
-public class FindConditionPanelTest {
+public class RdbaConfigEditorDialogTest {
 	public static void main(String[] args) {
-		FindConditionDialog d = new FindConditionDialog();
+		RdbaConfigEditorDialog dialog = new RdbaConfigEditorDialog(null);
 		
-		d.setModal(true);
-		//d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		d.setVisible(true);
-		System.exit(0);
+		dialog.setVisible(true);
+		assertThat(dialog.isVisible(), is(true));
+		
+		dialog.setVisible(false);
+		assertThat(dialog.isVisible(), is(false));
 	}
 }

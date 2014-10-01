@@ -277,7 +277,7 @@ public class JdbcStyledDocument extends AbstractStdStyledDocument {
 				}
 				
 				// 変わってなければ終了
-				if (attributeBuffer.charAt(i) == nextAttr) {
+				if (attributeBuffer.charAt(i) == nextAttr && nextAttr != CT_WORD) {
 					updateTail = i;
 					break;
 				}

@@ -37,29 +37,35 @@
  * either expressed or implied.
  */
 /*
- * $Id: RdbaConnectionInfoEditorFrameTest.java 232 2009-08-01 07:06:41Z cattaka $
+ * $Id: RdbAssistantPanelTest.java 232 2009-08-01 07:06:41Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.rdbassistant;
 
 import javax.swing.JFrame;
 
-import net.cattaka.rdbassistant.config.RdbaConnectionInfo;
-import net.cattaka.rdbassistant.gui.connectioninfo.RdbaConnectionInfoEditorDialog;
+import net.cattaka.rdbassistant.config.RdbaConfig;
+import net.cattaka.rdbassistant.config.RdbaConfigUtil;
+import net.cattaka.rdbassistant.gui.RdbAssistantPanel;
 
-public class RdbaConnectionInfoEditorFrameTest {
-	public static void main(String[] args) throws Exception {
-		RdbaConnectionInfoEditorDialog f = new RdbaConnectionInfoEditorDialog(null);
-		f.setSize(500,300);
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+
+public class RdbAssistantPanelTest {
+	public static void main(String[] args) {
+		RdbaConfig rdbaConfig = RdbaConfigUtil.loadRdbaConfig();
+		RdbAssistantPanel rdbAssistantPanel = new RdbAssistantPanel(rdbaConfig);
+		
+		JFrame f = new JFrame();
+		f.setSize(600,400);
+		f.getContentPane().add(rdbAssistantPanel);
+		
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setVisible(true);
+		rdbAssistantPanel.doGuiLayout();
 		
 		f.setVisible(true);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		RdbaConnectionInfo info = f.getRdbaConnectionInfo();
-		if (info != null) {
-			System.out.println(info.getDisplayStrings()[0]);
-			System.out.println(info.getDisplayStrings()[1]);
-		} else {
-			System.out.println("null");
-		}
+		assertThat(f.isVisible(), is(true));
+		f.setVisible(false);
+		assertThat(f.isVisible(), is(false));
 	}
 }

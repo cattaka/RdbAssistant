@@ -39,47 +39,59 @@
 /*
  * $Id: StringUtilTest.java 244 2009-11-14 07:39:36Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.rdbassistant;
 
 import java.awt.Color;
 import java.util.List;
 
+import org.junit.Test;
+
 import net.cattaka.util.StringUtil;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 public class StringUtilTest {
-	public static void main(String[] args) {
-		test5();
-	}
-	public static void test1() {
+	@Test
+	public void test1() {
 		String str = "ab\\\\cd\\nef\\tgi";
-		System.out.println(str);
-		System.out.println();
-		System.out.println(StringUtil.replaceEscapedChar(str));
+		assertThat(str, is("ab\\\\cd\\nef\\tgi"));
+		assertThat(StringUtil.replaceEscapedChar(str), is("ab\\\\cd\nef\tgi"));
 	}
-	public static void test2() {
+	@Test
+	public void test2() {
 		String str = "page attr1 = \"abc1\" attr2=\"abc2\"";
 		List<String[]> result = StringUtil.parseAttributeString(str);
-		for (String[] r:result) {
-			System.out.println(r[0] + " : " + r[1]);
-		}
+		assertThat(result.size(), is(3));
+		assertThat(result.get(0)[0], is("page"));
+		assertThat(result.get(0)[1], is(nullValue()));
+		assertThat(result.get(1)[0], is("attr1"));
+		assertThat(result.get(1)[1], is("abc1"));
+		assertThat(result.get(2)[0], is("attr2"));
+		assertThat(result.get(2)[1], is("abc2"));
 	}
-	public static void test3() {
-		System.out.println(StringUtil.camelToComposite("testUserTable"));
-		System.out.println(StringUtil.camelToComposite("TestUserTable"));
-		System.out.println(StringUtil.camelToComposite("AGradeQuantity"));
-		System.out.println(StringUtil.compositeToCamel("TEST_USER_TABLE", false));
-		System.out.println(StringUtil.compositeToCamel("TEST_USER_TABLE", true));
-		System.out.println(StringUtil.compositeToCamel("A_GRADE_QUANTITY", false));
-		System.out.println(StringUtil.compositeToCamel("A_GRADE_QUANTITY", true));
+	@Test
+	public void test3() {
+		assertThat(StringUtil.camelToComposite("testUserTable"), is("TEST_USER_TABLE"));
+		assertThat(StringUtil.camelToComposite("TestUserTable"), is("TEST_USER_TABLE"));
+		assertThat(StringUtil.camelToComposite("AGradeQuantity"), is("A_GRADE_QUANTITY"));
+		assertThat(StringUtil.compositeToCamel("TEST_USER_TABLE", false), is("testUserTable"));
+		assertThat(StringUtil.compositeToCamel("TEST_USER_TABLE", true), is("TestUserTable"));
+		assertThat(StringUtil.compositeToCamel("A_GRADE_QUANTITY", false), is("aGradeQuantity"));
+		assertThat(StringUtil.compositeToCamel("A_GRADE_QUANTITY", true), is("AGradeQuantity"));
 	}
-	public static void test4() {
-		System.out.println(StringUtil.colorToHex(new Color(0x0F,0x0F,0x0F)));
+	@Test
+	public void test4() {
+		assertThat(StringUtil.colorToHex(new Color(0x0F,0x0F,0x0F)), is("#0F0F0F"));
 	}
-	public static void test5() {
+	@Test
+	public void test5() {
 		String src = "'fea.faew'.abc.'abcde.'..a";
 		String[] ary = StringUtil.split(src, '.', '\'');
-		for (String str:ary) {
-			System.out.println(str);
-		}
+		assertThat(ary.length, is(5));
+		assertThat(ary[0], is("fea.faew"));
+		assertThat(ary[1], is("abc"));
+		assertThat(ary[2], is("abcde."));
+		assertThat(ary[3], is(""));
+		assertThat(ary[4], is("a"));
 	}
 }

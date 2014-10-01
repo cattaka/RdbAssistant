@@ -37,31 +37,33 @@
  * either expressed or implied.
  */
 /*
- * $Id: RdbaConnectTest.java 259 2010-02-27 13:45:56Z cattaka $
+ * $Id: RdbaConfigTest.java 232 2009-08-01 07:06:41Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.rdbassistant;
 
-import net.cattaka.rdbassistant.driver.mysql.MySqlRdbaConnectionInfo;
+import org.junit.Test;
 
-public class RdbaConnectTest {
-	public static void main(String[] args) throws Exception {
-		test01();
-	}
-	public static void test01() throws Exception {
-		MySqlRdbaConnectionInfo rci = new MySqlRdbaConnectionInfo();
-		rci.setHost("localhost");
-		rci.setPort(3306);
-		rci.setDatabase("rdbassistant");
-		rci.setUserName("rdbassistant");
-		rci.setPassword("rdbassistant");
+import net.cattaka.rdbassistant.config.RdbaConfig;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+
+public class RdbaConfigTest {
+	@Test
+	public void test() {
+		RdbaConfig rc = new RdbaConfig();
+		String[] rs;
+		String[] strAry = new String[] {
+			"abc",
+			"&#ABC#&",
+			"123"
+		};
 		
-//		RdbaConnection conn = RdbaConnectionFactory.createRdbConnection(rci);
-//		SqlEditorSelection ses = conn.getSqlEditorSelection();
-//		System.out.println(ses.getDatabaseList());
-//		System.out.println(ses.getObjectTypeList());
-//		System.out.println(ses.getTableList("rdbassistant", "TABLE"));
-//		System.out.println(ses.getTableProperties("rdbassistant", "TABLE", "test2"));
-//		
-//		conn.dispose();
+		rc.setPropertyArray("test", strAry);
+		rs = rc.getPropertyArray("test");
+		
+		assertThat(rs.length, is(3));
+		assertThat(rs[0], is("abc"));
+		assertThat(rs[1], is("&#ABC#&"));
+		assertThat(rs[2], is("123"));
 	}
 }

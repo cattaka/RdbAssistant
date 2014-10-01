@@ -39,22 +39,20 @@
 /*
  * $Id: TextFileChooserTest.java 232 2009-08-01 07:06:41Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.rdbassistant;
 
-import javax.swing.JFileChooser;
+import org.junit.Test;
 
 import net.cattaka.swing.TextFileChooser;
 
 public class TextFileChooserTest {
-	public static void main(String[] args) {
+	@Test
+	public void testShow() {
 		TextFileChooser tfc = new TextFileChooser();
-		if (tfc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-			System.out.println(tfc.getSelectedFile());
-		}
-		if (tfc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-			System.out.println(tfc.getSelectedFile());
-		}
-		
-		System.exit(0);
+		tfc.showOpenDialog(null, false);
+		tfc.setVisible(false);
+
+		tfc.showSaveDialog(null, false);
+		tfc.setVisible(false);
 	}
 }

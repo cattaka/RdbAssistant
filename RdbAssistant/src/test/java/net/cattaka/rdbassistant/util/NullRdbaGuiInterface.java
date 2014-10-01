@@ -37,16 +37,43 @@
  * either expressed or implied.
  */
 /*
- * $Id: RdbaConfigEditorDialogTest.java 232 2009-08-01 07:06:41Z cattaka $
+ * $Id: NullRdbaGuiInterface.java 232 2009-08-01 07:06:41Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.rdbassistant.util;
 
-import net.cattaka.rdbassistant.gui.config.RdbaConfigEditorDialog;
 
-public class RdbaConfigEditorDialogTest {
-	public static void main(String[] args) {
-		RdbaConfigEditorDialog dialog = new RdbaConfigEditorDialog(null);
-		dialog.setModal(true);
-		dialog.setVisible(true);
+import net.cattaka.rdbassistant.bean.RdbaSingletonBundle;
+import net.cattaka.rdbassistant.config.RdbaConfig;
+import net.cattaka.rdbassistant.config.RdbaConfigUtil;
+import net.cattaka.rdbassistant.gui.RdbaGuiInterface;
+import net.cattaka.rdbassistant.gui.RdbaMessage;
+
+public class NullRdbaGuiInterface implements RdbaGuiInterface {
+	private RdbaConfig rdbaConfig;
+	private RdbaSingletonBundle rdbaSingletonBundle;
+	
+	public NullRdbaGuiInterface() {
+		rdbaConfig = RdbaConfigUtil.loadRdbaConfig();
+		rdbaSingletonBundle = new RdbaSingletonBundle();
+	}
+
+	public void doGuiLayout() {
+	}
+
+	public RdbaConfig getRdbaConfig() {
+		return this.rdbaConfig;
+	}
+
+	public void reloadRdbaConfig() {
+	}
+
+	public void sendRdbaMessage(RdbaMessage rdbaMessage) {
+		// なし
+	}
+	public void relayRdbaMessage(RdbaMessage rbdaMessage) {
+		// なし
+	}
+	public RdbaSingletonBundle getRdbaSingletonBundle() {
+		return this.rdbaSingletonBundle;
 	}
 }

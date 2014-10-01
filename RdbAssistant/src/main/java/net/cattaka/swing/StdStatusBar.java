@@ -50,7 +50,6 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.Timer;
 
 import net.cattaka.swing.util.ButtonsBundle;
@@ -58,7 +57,7 @@ import net.cattaka.swing.util.ButtonsBundle;
 public class StdStatusBar extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel messageLabel;
-	private JProgressBar memoryBar;
+	private JLabel memoryBar;
 	private Timer timer;
 
 	public StdStatusBar(Icon gcIcon) {
@@ -69,8 +68,7 @@ public class StdStatusBar extends JPanel {
 		ButtonsBundle.getInstance().applyButtonDifinition(gcButton, gcIcon, "exec_gc", true);
 		
 		this.messageLabel = new JLabel();
-		this.memoryBar = new JProgressBar(0,1);
-		this.memoryBar.setStringPainted(true);
+		this.memoryBar = new JLabel();
 		
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -116,11 +114,8 @@ public class StdStatusBar extends JPanel {
 		maxMemory = (int)(runtime.maxMemory() / (2<<10));
 		totalMemory = (int)((runtime.totalMemory() - runtime.freeMemory()) / (2<<10));
 		
-		this.memoryBar.setMaximum((int)maxMemory);
-		this.memoryBar.setValue((int)totalMemory);
-		
 		String caption = String.format("%dKB / %dKB", totalMemory, maxMemory);
-		this.memoryBar.setString(caption);
+		this.memoryBar.setText(caption);
 	}
 	public void startMemoryUpdate() {
 		timer.start();

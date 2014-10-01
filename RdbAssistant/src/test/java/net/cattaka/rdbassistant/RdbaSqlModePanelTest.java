@@ -39,19 +39,26 @@
 /*
  * $Id: RdbaSqlModePanelTest.java 259 2010-02-27 13:45:56Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.rdbassistant;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
+import org.junit.Test;
+
 import net.cattaka.rdbassistant.core.RdbaConnection;
 import net.cattaka.rdbassistant.core.RdbaConnectionFactory;
-import net.cattaka.rdbassistant.driver.mysql.MySqlRdbaConnectionInfo;
+import net.cattaka.rdbassistant.driver.dummy.DummyRdbaConnectionInfo;
 import net.cattaka.rdbassistant.gui.sql.RdbaSqlEditorTabbedPanel;
+import net.cattaka.rdbassistant.util.NullRdbaGuiInterface;
+
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 public class RdbaSqlModePanelTest {
-	public static void main(String[] args) throws Exception {
+	@Test
+	public void test() throws Exception {
 		NullRdbaGuiInterface nullRdbaGuiInterface = new NullRdbaGuiInterface();
 		//RdbaSqlModePanel rdbaSqlModePanel = new RdbaSqlModePanel(nullRdbaGuiInterface);
 		RdbaSqlEditorTabbedPanel rdbaSqlModePanel = new RdbaSqlEditorTabbedPanel(nullRdbaGuiInterface);
@@ -69,12 +76,8 @@ public class RdbaSqlModePanelTest {
 		menuBar.add(editMenu);
 		f.setJMenuBar(menuBar);
 		
-		MySqlRdbaConnectionInfo rci = new MySqlRdbaConnectionInfo();
-		rci.setHost("localhost");
-		rci.setPort(3306);
-		rci.setDatabase("rdbassistant");
-		rci.setUserName("rdbassistant");
-		rci.setPassword("rdbassistant");
+		DummyRdbaConnectionInfo rci = new DummyRdbaConnectionInfo();
+		rci.setLabel("Dummy");
 		final RdbaConnection conn = RdbaConnectionFactory.createRdbConnection(rci, nullRdbaGuiInterface.getRdbaConfig().getRdbaJdbcBundle());
 		rdbaSqlModePanel.setRdbConnection(conn);
 		rdbaSqlModePanel.addTab();
@@ -83,5 +86,9 @@ public class RdbaSqlModePanelTest {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
 		rdbaSqlModePanel.doGuiLayout();
+
+		assertThat(f.isVisible(), is(true));
+		f.setVisible(false);
+		assertThat(f.isVisible(), is(false));
 	}
 }

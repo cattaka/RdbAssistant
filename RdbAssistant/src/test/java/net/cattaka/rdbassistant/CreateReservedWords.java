@@ -37,35 +37,47 @@
  * either expressed or implied.
  */
 /*
- * $Id: RdbaConfigTest.java 232 2009-08-01 07:06:41Z cattaka $
+ * $Id: CreateReservedWords.java 232 2009-08-01 07:06:41Z cattaka $
  */
-package net.cattaka.rdbassistant.test;
+package net.cattaka.rdbassistant;
 
-import net.cattaka.rdbassistant.config.RdbaConfig;
+import java.beans.XMLDecoder;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashSet;
 
-public class RdbaConfigTest {
-	public static void main(String[] args) {
-		RdbaConfig rc = new RdbaConfig();
-		String[] rs;
-		String[] strAry = new String[] {
-			"abc",
-			"&#ABC#&",
-			"123"
-		};
-		dumpStrAry(strAry);
-		
-		rc.setPropertyArray("test", strAry);
-		rs = rc.getPropertyArray("test");
-		
-		dumpStrAry(rs);
-		System.out.println(rc.getProperty("test"));
-	}
-	
-	public static void dumpStrAry(String[] strAry) {
-		System.out.println("==START==");
-		for (String str : strAry) {
-			System.out.println(str);
+import org.junit.Test;
+
+import net.cattaka.util.ExceptionHandler;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+
+public class CreateReservedWords {
+	@Test
+	public void testParse() throws Exception {
+		InputStream in = null;
+		XMLDecoder dec = null;
+		try {
+			in = getClass().getResourceAsStream("/ReservedWords.test.properties");
+			dec = new XMLDecoder(in);
+			@SuppressWarnings("unchecked")
+			HashSet<String> words = (HashSet<String>)dec.readObject();
+			assertThat(words, hasItem("NOT"));
+			assertThat(words, hasItem("FOREIGN"));
+			assertThat(words, hasItem("SEPARATOR"));
+			assertThat(words, hasItem("MOD"));
+			assertThat(words, hasItem("PRECISION"));
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					ExceptionHandler.warn(e);
+				}
+			}
+			if (dec != null) {
+				dec.close();
+			}
 		}
-		System.out.println("===END===");
 	}
 }
