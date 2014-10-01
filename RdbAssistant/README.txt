@@ -8,10 +8,10 @@ Copyright 2009-2014 Takao Sumitomo. All rights reserved.
      that supports MySQL, SQLite, Oracle, and JDBC. 
 
 - Requirement 
-     - Java (TM) 2 SDK, Standard Edition Version 1.6 or higher 
+     - Java (TM) 2 SDK, Standard Edition Version 1.7 or higher 
 
 - Development environment 
-     - Java (TM) 2 SDK, Standard Edition Version 1.6 
+     - Java (TM) 2 SDK, Standard Edition Version 1.7
      - Eclipse 4.2.x 
      - Maven 3.x 
 
