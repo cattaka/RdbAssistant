@@ -50,16 +50,19 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.XMLDecoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
+import java.util.HashSet;
 
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
@@ -76,10 +79,12 @@ import javax.swing.text.Document;
 import net.cattaka.jspf.JspfBundle;
 import net.cattaka.jspf.JspfEntry;
 import net.cattaka.jspf.JspfException;
+import net.cattaka.rdbassistant.RdbaConstants;
 import net.cattaka.rdbassistant.RdbaMessageConstants;
 import net.cattaka.rdbassistant.bean.RdbaSingletonBundle;
 import net.cattaka.rdbassistant.config.RdbaConfig;
 import net.cattaka.rdbassistant.core.RdbaConnection;
+import net.cattaka.rdbassistant.driver.jdbc.JdbcRdbaConnection;
 import net.cattaka.rdbassistant.gui.RdbaGuiInterface;
 import net.cattaka.rdbassistant.gui.RdbaMessage;
 import net.cattaka.rdbassistant.gui.RdbaTextInterface;
@@ -122,6 +127,8 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 	private boolean modified = false;
 	private FindCondition lastFindCondition;
 	
+	private static HashSet<String> reservedWords = null;
+
 	public enum RESULT_PANEL {
 		RESULT_PANEL_RESULT_LOG,
 		RESULT_PANEL_SOURCE,
@@ -211,8 +218,36 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 	public RdbaScriptEditorPanel(RdbaGuiInterface parentComponent) {
 		this.parentComponent = parentComponent;
 		makeLayout();
+
+		if (reservedWords == null) {
+			createReservedWords();
+		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	private static void createReservedWords() {
+		InputStream in = null;
+		XMLDecoder dec = null;
+		try {
+			in = JdbcRdbaConnection.class.getClassLoader().getResourceAsStream(RdbaConstants.SCRIPT_RESERVED_WORDS_FILE);
+			dec = new XMLDecoder(in);
+			reservedWords = (HashSet<String>)dec.readObject();
+		} catch(Exception e) {
+			ExceptionHandler.error(e);
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					ExceptionHandler.warn(e);
+				}
+			}
+			if (dec != null) {
+				dec.close();
+			}
+		}
+	}
+
 	private void makeLayout() {
 		this.lastFindCondition = new FindCondition();
 		this.modifiedlistener = new ModifiedListener();
@@ -428,7 +463,8 @@ public class RdbaScriptEditorPanel extends JPanel implements RdbaGuiInterface, R
 		return rdbaConnection;
 	}
 	public void setRdbConnection(RdbaConnection rdbConnection) {
-		StdStyledDocument styledDocument = new ScriptStyledDocument();
+		ScriptStyledDocument styledDocument = new ScriptStyledDocument();
+		styledDocument.setReservedWords(reservedWords);
 		this.scriptTextPane.getDocument().removeDocumentListener(modifiedlistener);
 		this.scriptTextPane.setStdStyledDocument(styledDocument);
 		styledDocument.addDocumentListener(modifiedlistener);

@@ -341,7 +341,7 @@ public class ScriptStyledDocument extends AbstractStdStyledDocument {
 					this.setCharacterAttributes(wordStart, wordEnd - wordStart, style, true);
 					if (lastAttr == CT_WORD) {
 						String word = charBuffer.substring(wordStart, wordEnd);
-						if (reservedWords != null && reservedWords.contains(word.toUpperCase())) {
+						if (reservedWords != null && reservedWords.contains(word)) {
 							this.setCharacterAttributes(wordStart, wordEnd - wordStart, reservedStyle, true);
 						}
 					}

@@ -48,6 +48,7 @@ public class RdbaConstants {
 	public static final String RDBA_CONFIG_FILE = "config.xml";
 	public static final String MYSQL_RESERVED_WORDS_FILE = "ReservedWords.mysql.properties";
 	public static final String ORACLE_RESERVED_WORDS_FILE = "ReservedWords.oracle.properties";
+	public static final String SCRIPT_RESERVED_WORDS_FILE = "ReservedWords.script.properties";
 
 	public static final String RDBA_SCRIPT_DIR = "script";
 	public static final String RDBA_SCRIPT_BASE = "script/RdbaScriptBase.txt";
