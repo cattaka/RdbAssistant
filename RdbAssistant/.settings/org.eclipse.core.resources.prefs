@@ -5,4 +5,5 @@ encoding//src/main/resources/buttons.properties=UTF-8
 encoding//src/main/resources/messages.properties=UTF-8
 encoding//src/main/resources/messages_ja.properties=UTF-8
 encoding//src/test/java=UTF-8
+encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8
