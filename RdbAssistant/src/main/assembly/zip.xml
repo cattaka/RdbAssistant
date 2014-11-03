@@ -12,7 +12,8 @@
       <includes>
         <include>README.txt</include>
         <include>LICENSE.txt</include>
-      </includes>
+        <include>*-LICENSE.txt</include>
+        </includes>
     </fileSet>
     <fileSet>
       <directory>${project.basedir}/misc/release</directory>
