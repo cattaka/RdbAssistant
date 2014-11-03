@@ -42,6 +42,9 @@
 package net.cattaka.rdbassistant.jspf.core;
 
 public class JspfSelectionInfo {
+	/** デフォルトのデータベース */
+	private String defaultDatabase;
+	
 	/** 選択中のDatabese(実質1つだけ) */
 	private String[] databases = new String[0];
 
@@ -64,6 +67,14 @@ public class JspfSelectionInfo {
 	public JspfSelectionInfo() {
 	}
 	
+	public String getDefaultDatabase() {
+		return defaultDatabase;
+	}
+
+	public void setDefaultDatabase(String defaultDatabase) {
+		this.defaultDatabase = defaultDatabase;
+	}
+
 	public String[] getDatabases() {
 		return databases;
 	}

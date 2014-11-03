@@ -57,6 +57,14 @@ public class JspfBaseCreateSelectSql extends JspfBase {
 	
 	@Override
 	public void runJspf(PrintWriter out) throws SQLException {
+		String schema = "";
+		{
+			String database = selectionInfo.getDatabases().length > 0 ? selectionInfo.getDatabases()[0] : "";
+			if (!database.equals(selectionInfo.getDefaultDatabase())) {
+				schema = database + ".";
+			}
+		}
+
 		out.println("SELECT");
 		boolean firstFlag = true;
 		for (String columnName:selectionInfo.getColumns()) {
@@ -77,7 +85,7 @@ public class JspfBaseCreateSelectSql extends JspfBase {
 			} else {
 				out.print(",\n");
 			}
-			out.print("\t"+tableName);
+			out.print("\t"+schema+tableName);
 		}
 		out.print("\n");
 	}

@@ -60,11 +60,19 @@ public class JspfBaseCreateUpdateSql extends JspfBase {
 	
 	@Override
 	public void runJspf(PrintWriter out) throws SQLException, JspfMessageException {
+		String schema = "";
+		{
+			String database = selectionInfo.getDatabases().length > 0 ? selectionInfo.getDatabases()[0] : "";
+			if (!database.equals(selectionInfo.getDefaultDatabase())) {
+				schema = database + ".";
+			}
+		}
+
 		String tableName = "";
 		out.println("UPDATE");
 		if (selectionInfo.getTables().length == 1) {
 			tableName = selectionInfo.getTables()[0];
-			out.println("\t" + tableName);
+			out.println("\t" + schema + tableName);
 		} else {
 			error(MessageBundle.getInstance().getMessage("select_single_table"));
 		}

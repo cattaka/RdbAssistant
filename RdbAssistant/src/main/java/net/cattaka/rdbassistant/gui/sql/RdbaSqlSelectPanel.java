@@ -414,6 +414,7 @@ public class RdbaSqlSelectPanel extends JPanel implements RdbaGuiInterface {
 			}
 		}
 
+		jsi.setDefaultDatabase(rdbaConnection.getDefaultDatabase());
 		jsi.setDatabases(databases);
 		jsi.setTypes(types);
 		jsi.setTables(tables);

@@ -58,9 +58,17 @@ public class JspfBaseCreateInsertSql extends JspfBase {
 	
 	@Override
 	public void runJspf(PrintWriter out) throws SQLException, JspfMessageException {
+		String schema = "";
+		{
+			String database = selectionInfo.getDatabases().length > 0 ? selectionInfo.getDatabases()[0] : "";
+			if (!database.equals(selectionInfo.getDefaultDatabase())) {
+				schema = database + ".";
+			}
+		}
+
 		out.println("INSERT INTO");
 		if (selectionInfo.getTables().length == 1) {
-			out.println("\t" + selectionInfo.getTables()[0]);
+			out.println("\t" + schema + selectionInfo.getTables()[0]);
 		} else {
 			error(MessageBundle.getInstance().getMessage("select_single_table"));
 		}
