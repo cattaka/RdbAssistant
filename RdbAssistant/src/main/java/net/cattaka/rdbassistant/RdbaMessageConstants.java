@@ -47,6 +47,8 @@ public class RdbaMessageConstants {
 	public static final String ICON_SAVE			= "icon.save";
 	public static final String ICON_SAVEAS			= "icon.saveas";
 	public static final String ICON_RUN			= "icon.run";
+	public static final String ICON_COMMIT		= "icon.commit";
+	public static final String ICON_ROLLBACK	= "icon.rollback";
 	public static final String ICON_COMPILE		= "icon.compile";
 	public static final String ICON_FIND			= "icon.find";
 	public static final String ICON_GC				= "icon.gc";

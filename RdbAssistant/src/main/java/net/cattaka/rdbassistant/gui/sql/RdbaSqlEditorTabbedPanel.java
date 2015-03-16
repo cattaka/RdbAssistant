@@ -92,6 +92,16 @@ public class RdbaSqlEditorTabbedPanel extends JPanel implements RdbaGuiInterface
 				if (comp instanceof RdbaSqlEditorPanel) {
 					((RdbaSqlEditorPanel)comp).runSql();
 				}
+			} else if (e.getActionCommand().equals("run_commit")) {
+				Component comp = tabbedPane.getSelectedComponent();
+				if (comp instanceof RdbaSqlEditorPanel) {
+					((RdbaSqlEditorPanel)comp).runSql("commit");
+				}
+			} else if (e.getActionCommand().equals("run_rollback")) {
+				Component comp = tabbedPane.getSelectedComponent();
+				if (comp instanceof RdbaSqlEditorPanel) {
+					((RdbaSqlEditorPanel)comp).runSql("rollback");
+				}
 			} else if (e.getActionCommand().equals("edit_find")) {
 				RdbaMessage rm = new RdbaMessage(RdbaMessageConstants.FINDCONDITIONDIALOG_SHOW, null, RdbaSqlEditorTabbedPanel.this, null);
 				sendRdbaMessage(rm);
@@ -124,6 +134,8 @@ public class RdbaSqlEditorTabbedPanel extends JPanel implements RdbaGuiInterface
 		JButton saveSqlButton = new JButton();
 		JButton saveAsSqlButton = new JButton();
 		JButton runSqlButton = new JButton();
+		JButton runCommitButton = new JButton();
+		JButton runRollbackButton = new JButton();
 		JButton editFindButton = new JButton();
 		{
 			RdbaSingletonBundle rdbaSingletonBundle = getRdbaSingletonBundle();
@@ -132,12 +144,16 @@ public class RdbaSqlEditorTabbedPanel extends JPanel implements RdbaGuiInterface
 			Icon iconSave = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_SAVE);
 			Icon iconSaveAs = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_SAVEAS);
 			Icon iconRun = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_RUN);
+			Icon iconCommit = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_COMMIT);
+			Icon iconRollback = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_ROLLBACK);
 			Icon iconFind = (Icon)rdbaSingletonBundle.getResource(RdbaMessageConstants.ICON_FIND);
 			ButtonsBundle.getInstance().applyButtonDifinition(newSqlButton, iconNew, "file_new", true);
 			ButtonsBundle.getInstance().applyButtonDifinition(openSqlButton, iconOpen, "file_open", true);
 			ButtonsBundle.getInstance().applyButtonDifinition(saveSqlButton, iconSave, "file_save", true);
 			ButtonsBundle.getInstance().applyButtonDifinition(saveAsSqlButton, iconSaveAs, "file_save_as", true);
 			ButtonsBundle.getInstance().applyButtonDifinition(runSqlButton, iconRun, "run_sql", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(runCommitButton, iconCommit, "run_commit", true);
+			ButtonsBundle.getInstance().applyButtonDifinition(runRollbackButton, iconRollback, "run_rollback", true);
 			ButtonsBundle.getInstance().applyButtonDifinition(editFindButton, iconFind, "search_replace", true);
 		}
 
@@ -153,6 +169,10 @@ public class RdbaSqlEditorTabbedPanel extends JPanel implements RdbaGuiInterface
 		saveAsSqlButton.setActionCommand("saveas_sql");
 		editFindButton.addActionListener(al);
 		editFindButton.setActionCommand("edit_find");
+		runCommitButton.addActionListener(al);
+		runCommitButton.setActionCommand("run_commit");
+		runRollbackButton.addActionListener(al);
+		runRollbackButton.setActionCommand("run_rollback");
 
 		toolBar.setFloatable(false);
 		toolBar.add(newSqlButton);
@@ -163,6 +183,9 @@ public class RdbaSqlEditorTabbedPanel extends JPanel implements RdbaGuiInterface
 		toolBar.add(runSqlButton);
 		toolBar.addSeparator();
 		toolBar.add(editFindButton);
+		toolBar.addSeparator();
+		toolBar.add(runRollbackButton);
+		toolBar.add(runCommitButton);
 		
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -348,6 +371,12 @@ public class RdbaSqlEditorTabbedPanel extends JPanel implements RdbaGuiInterface
 		Component comp = tabbedPane.getSelectedComponent();
 		if (comp instanceof RdbaSqlEditorPanel) {
 			((RdbaSqlEditorPanel)comp).runSql();
+		}
+	}
+	public void runSql(String sql) {
+		Component comp = tabbedPane.getSelectedComponent();
+		if (comp instanceof RdbaSqlEditorPanel) {
+			((RdbaSqlEditorPanel)comp).runSql(sql);
 		}
 	}
 	public void nextSql() {

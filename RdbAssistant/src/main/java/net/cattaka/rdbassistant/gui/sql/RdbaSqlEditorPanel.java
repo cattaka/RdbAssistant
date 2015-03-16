@@ -117,6 +117,10 @@ public class RdbaSqlEditorPanel extends JPanel implements RdbaGuiInterface, Rdba
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equals("run_sql")) {
 				runSql();
+			} else if (e.getActionCommand().equals("run_commit")) {
+				runSql("commit");
+			} else if (e.getActionCommand().equals("run_rollback")) {
+				runSql("rollback");
 			} else if (e.getActionCommand().equals("show_search_replace")) {
 				RdbaMessage rm = new RdbaMessage(RdbaMessageConstants.FINDCONDITIONDIALOG_SHOW, parentComponent, RdbaSqlEditorPanel.this, sqlTextPane.getSelectedText());
 				sendRdbaMessage(rm);
@@ -136,6 +140,16 @@ public class RdbaSqlEditorPanel extends JPanel implements RdbaGuiInterface, Rdba
 			runSqlItem.setActionCommand("run_sql");
 			runSqlItem.addActionListener(al);
 			ButtonsBundle.getInstance().applyButtonDifinition(runSqlItem, "run_sql");
+
+			JMenuItem runCommitItem = new JMenuItem();
+			runCommitItem.setActionCommand("run_commit");
+			runCommitItem.addActionListener(al);
+			ButtonsBundle.getInstance().applyButtonDifinition(runCommitItem, "run_commit");
+
+			JMenuItem runRollbackItem = new JMenuItem();
+			runRollbackItem.setActionCommand("run_rollback");
+			runRollbackItem.addActionListener(al);
+			ButtonsBundle.getInstance().applyButtonDifinition(runRollbackItem, "run_rollback");
 
 			JMenuItem searchReplaceItem = new JMenuItem();
 			JMenuItem searchNextItem = new JMenuItem();
@@ -157,6 +171,9 @@ public class RdbaSqlEditorPanel extends JPanel implements RdbaGuiInterface, Rdba
 			this.add(searchReplaceItem);
 			this.add(searchNextItem);
 			this.add(searchPrevItem);
+			this.addSeparator();
+			this.add(runRollbackItem);
+			this.add(runCommitItem);
 		}
 	}
 
@@ -233,9 +250,13 @@ public class RdbaSqlEditorPanel extends JPanel implements RdbaGuiInterface, Rdba
 			this.add(splitPane);
 		}
 	}
-	
+
 	public void runSql() {
 		String sqlText = sqlTextPane.getText();
+		runSql(sqlText);
+	}
+
+	public void runSql(String sqlText) {
 		sqlText = StringUtil.removeCarriageReturn(sqlText);
 		String[] sqlStrs = sqlText.split("\n/\n");
 		for (int i=0;i<sqlStrs.length;i++) {

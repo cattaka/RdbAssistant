@@ -110,6 +110,8 @@ public class RdbaSingletonBundle {
 			URL iconSaveUrl = this.getClass().getClassLoader().getResource("icon/m_save.png");
 			URL iconSaveasUrl = this.getClass().getClassLoader().getResource("icon/m_saveas.png");
 			URL iconRunUrl = this.getClass().getClassLoader().getResource("icon/m_run.png");
+			URL iconCommitUrl = this.getClass().getClassLoader().getResource("icon/m_commit.png");
+			URL iconRollbackUrl = this.getClass().getClassLoader().getResource("icon/m_rollback.png");
 			URL iconCompileUrl = this.getClass().getClassLoader().getResource("icon/m_compile.png");
 			URL iconFindUrl = this.getClass().getClassLoader().getResource("icon/m_find.png");
 			URL iconGcUrl = this.getClass().getClassLoader().getResource("icon/m_gc.png");
@@ -119,6 +121,8 @@ public class RdbaSingletonBundle {
 			ImageIcon iconSave = new ImageIcon(iconSaveUrl);
 			ImageIcon iconSaveas = new ImageIcon(iconSaveasUrl);
 			ImageIcon iconRun = new ImageIcon(iconRunUrl);
+			ImageIcon iconCommit = new ImageIcon(iconCommitUrl);
+			ImageIcon iconRollback = new ImageIcon(iconRollbackUrl);
 			ImageIcon iconCompile = new ImageIcon(iconCompileUrl);
 			ImageIcon iconFind = new ImageIcon(iconFindUrl);
 			ImageIcon iconGc = new ImageIcon(iconGcUrl);
@@ -129,6 +133,8 @@ public class RdbaSingletonBundle {
 			resourceMap.put(RdbaMessageConstants.ICON_SAVE, iconSave);
 			resourceMap.put(RdbaMessageConstants.ICON_SAVEAS, iconSaveas);
 			resourceMap.put(RdbaMessageConstants.ICON_RUN, iconRun);
+			resourceMap.put(RdbaMessageConstants.ICON_COMMIT, iconCommit);
+			resourceMap.put(RdbaMessageConstants.ICON_ROLLBACK, iconRollback);
 			resourceMap.put(RdbaMessageConstants.ICON_COMPILE, iconCompile);
 			resourceMap.put(RdbaMessageConstants.ICON_FIND, iconFind);
 			resourceMap.put(RdbaMessageConstants.ICON_GC, iconGc);

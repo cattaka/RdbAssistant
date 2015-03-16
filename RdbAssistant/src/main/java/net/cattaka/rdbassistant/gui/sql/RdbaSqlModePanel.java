@@ -102,6 +102,10 @@ public class RdbaSqlModePanel extends JPanel implements RdbaGuiInterface, RdbaMo
 				rdbSqlEditorPanel.searchPrev();
 			} else if (e.getActionCommand().equals("run_sql")) {
 				rdbSqlEditorPanel.runSql();
+			} else if (e.getActionCommand().equals("run_commit")) {
+				rdbSqlEditorPanel.runSql("commit");
+			} else if (e.getActionCommand().equals("run_rollback")) {
+				rdbSqlEditorPanel.runSql("rollback");
 			} else if (e.getActionCommand().equals("next_sql")) {
 				rdbSqlEditorPanel.nextSql();
 			} else if (e.getActionCommand().equals("prev_sql")) {
@@ -170,17 +174,25 @@ public class RdbaSqlModePanel extends JPanel implements RdbaGuiInterface, RdbaMo
 		ButtonsBundle.getInstance().applyButtonDifinition(sqlMenu, "menu_sql");
 		{
 			JMenuItem runSqlItem = new JMenuItem();
+			JMenuItem runCommitItem = new JMenuItem();
+			JMenuItem runRollbackItem = new JMenuItem();
 			JMenuItem switchResultPanelItem = new JMenuItem();
 			JMenuItem commentOutItem = new JMenuItem();
 			runSqlItem.setActionCommand("run_sql");
+			runCommitItem.setActionCommand("run_commit");
+			runRollbackItem.setActionCommand("run_rollback");
 			switchResultPanelItem.setActionCommand("switch_result_panel");
 			commentOutItem.setActionCommand("editor_comment_out");
 			
 			runSqlItem.addActionListener(al);
+			runCommitItem.addActionListener(al);
+			runRollbackItem.addActionListener(al);
 			switchResultPanelItem.addActionListener(al);
 			commentOutItem.addActionListener(al);
 			
 			ButtonsBundle.getInstance().applyMenuDifinition(runSqlItem, "run_sql");
+			ButtonsBundle.getInstance().applyMenuDifinition(runCommitItem, "run_commit");
+			ButtonsBundle.getInstance().applyMenuDifinition(runRollbackItem, "run_rollback");
 			ButtonsBundle.getInstance().applyMenuDifinition(switchResultPanelItem, "switch_result_panel");
 			ButtonsBundle.getInstance().applyMenuDifinition(commentOutItem, "comment_out");
 			
@@ -188,6 +200,9 @@ public class RdbaSqlModePanel extends JPanel implements RdbaGuiInterface, RdbaMo
 			sqlMenu.add(switchResultPanelItem);
 			sqlMenu.addSeparator();
 			sqlMenu.add(commentOutItem);
+			sqlMenu.addSeparator();
+			sqlMenu.add(runRollbackItem);
+			sqlMenu.add(runCommitItem);
 		}
 		return new JMenu[]{sqlMenu};
 	}
