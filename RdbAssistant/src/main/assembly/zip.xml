@@ -17,6 +17,9 @@
     </fileSet>
     <fileSet>
       <directory>${project.basedir}/misc/release</directory>
+      <excludes>
+        <exclude>*/.gitkeep</exclude>
+      </excludes>
       <outputDirectory>/</outputDirectory>
     </fileSet>
     <fileSet>

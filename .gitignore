@@ -1,0 +1,7 @@
+RdbAssistant/build
+RdbAssistant/bin
+RdbAssistant/release
+RdbAssistant/target
+RdbAssistant/workspace
+
+.DS_Store
